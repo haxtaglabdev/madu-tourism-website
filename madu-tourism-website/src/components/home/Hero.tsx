@@ -1,12 +1,131 @@
-import { images } from "../../assets";
+import { useEffect, useRef, useState } from "react";
+import { heroSlideshowImages } from "../../assets";
+
+/** How long each slide stays fully visible before the next cross-fade begins. */
+const SLIDE_INTERVAL_MS = 5000;
+
+/** Cross-fade duration between the outgoing and incoming background layers. */
+const FADE_DURATION_MS = 1200;
+
+function usePrefersReducedMotion(): boolean {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    };
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  return prefersReducedMotion;
+}
+
+function preloadImage(src: string): void {
+  const image = new Image();
+  image.src = src;
+}
 
 export default function Hero() {
+  const slides = heroSlideshowImages;
+  const slideCount = slides.length;
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [incomingIndex, setIncomingIndex] = useState<number | null>(null);
+  const [incomingVisible, setIncomingVisible] = useState(false);
+
+  const activeIndexRef = useRef(0);
+  const isTransitioningRef = useRef(false);
+
+  // Keep the next slide warm in the browser cache to avoid blank frames.
+  useEffect(() => {
+    if (slideCount < 2) return;
+    const nextIndex = (activeIndex + 1) % slideCount;
+    preloadImage(slides[nextIndex]);
+  }, [activeIndex, slideCount, slides]);
+
+  useEffect(() => {
+    if (prefersReducedMotion || slideCount < 2) return;
+
+    let cancelled = false;
+    let displayTimeoutId: number | undefined;
+    let fadeTimeoutId: number | undefined;
+    let rafId: number | undefined;
+
+    const clearPending = () => {
+      if (displayTimeoutId !== undefined) window.clearTimeout(displayTimeoutId);
+      if (fadeTimeoutId !== undefined) window.clearTimeout(fadeTimeoutId);
+      if (rafId !== undefined) window.cancelAnimationFrame(rafId);
+    };
+
+    const scheduleNextSlide = () => {
+      displayTimeoutId = window.setTimeout(() => {
+        if (cancelled || isTransitioningRef.current) return;
+
+        const currentIndex = activeIndexRef.current;
+        const nextIndex = (currentIndex + 1) % slideCount;
+
+        isTransitioningRef.current = true;
+        setIncomingIndex(nextIndex);
+        setIncomingVisible(false);
+
+        // Double rAF ensures the incoming layer mounts at opacity 0 before fading in.
+        rafId = window.requestAnimationFrame(() => {
+          rafId = window.requestAnimationFrame(() => {
+            if (cancelled) return;
+            setIncomingVisible(true);
+          });
+        });
+
+        fadeTimeoutId = window.setTimeout(() => {
+          if (cancelled) return;
+
+          activeIndexRef.current = nextIndex;
+          setActiveIndex(nextIndex);
+          setIncomingIndex(null);
+          setIncomingVisible(false);
+          isTransitioningRef.current = false;
+          scheduleNextSlide();
+        }, FADE_DURATION_MS);
+      }, SLIDE_INTERVAL_MS);
+    };
+
+    scheduleNextSlide();
+
+    return () => {
+      cancelled = true;
+      isTransitioningRef.current = false;
+      clearPending();
+    };
+  }, [prefersReducedMotion, slideCount]);
+
+  const activeSlide = slides[activeIndex] ?? "";
+  const incomingSlide =
+    incomingIndex !== null ? (slides[incomingIndex] ?? "") : "";
+
   return (
     <section className="relative flex min-h-[90vh] flex-col justify-between overflow-hidden bg-forest-dark">
-      <div
-        className="absolute inset-0 scale-[1.02] bg-cover bg-center opacity-85 transition-transform duration-1000"
-        style={{ backgroundImage: `url(${images.heroBg})` }}
-      />
+      <div className="absolute inset-0" aria-hidden="true">
+        <div
+          className="absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat opacity-85"
+          style={{ backgroundImage: activeSlide ? `url(${activeSlide})` : undefined }}
+        />
+        {incomingIndex !== null && incomingSlide ? (
+          <div
+            className={`absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat transition-opacity ease-in-out ${
+              incomingVisible ? "opacity-85" : "opacity-0"
+            }`}
+            style={{
+              backgroundImage: `url(${incomingSlide})`,
+              transitionDuration: `${FADE_DURATION_MS}ms`,
+            }}
+          />
+        ) : null}
+      </div>
       <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/40 to-forest-dark/30" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,201,74,0.15),transparent_55%)]" />
 

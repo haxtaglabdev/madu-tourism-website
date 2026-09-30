@@ -20,7 +20,7 @@ export default function Navbar() {
         <a className="group flex items-center gap-3.5" href="#">
           <img
             alt="Madu Tseylon Tours Logo"
-            className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105 md:h-12"
+            className="h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105 md:h-28"
             src={images.logo}
           />
         </a>

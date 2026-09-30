@@ -23,11 +23,11 @@ export default function AboutSection() {
               src={images.temple}
             />
           </div>
-          <div className="absolute -top-6 -left-6 z-30 flex h-24 w-24 items-center justify-center rounded-full border border-charcoal/5 bg-white p-1.5 shadow-xl md:h-28 md:w-28">
+          <div className="absolute -top-6 -left-6 z-30 flex h-24 w-24 items-center justify-center border border-charcoal/5 bg-white p-1.5 shadow-xl md:h-28 md:w-28">
             <img
               alt="Madu Tseylon Tours Seal"
               className="h-full w-full object-contain"
-              src={images.logo}
+              src={images.sticker}
             />
           </div>
         </div>
