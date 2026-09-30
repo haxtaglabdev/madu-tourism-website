@@ -1,7 +1,9 @@
+import type { CSSProperties } from "react";
 import type { TourPackage } from "../../types/Home";
 
 interface TourCardProps {
   tour: TourPackage;
+  style?: CSSProperties;
 }
 
 function StarRow({ rating, reviewCount }: { rating: number; reviewCount: number }) {
@@ -21,20 +23,21 @@ function StarRow({ rating, reviewCount }: { rating: number; reviewCount: number 
   );
 }
 
-export default function TourCard({ tour }: TourCardProps) {
+export default function TourCard({ tour, style }: TourCardProps) {
   return (
     <article
-      className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white transition-all duration-300 ${
+      className={`reveal-item group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
         tour.featured
           ? "border-2 border-sunset shadow-lg hover:shadow-2xl"
           : "border border-border-subtle shadow-sm hover:border-tropical/30 hover:shadow-xl"
       }`}
+      style={style}
     >
       <div>
         <div className="relative aspect-[16/10] overflow-hidden">
           <img
             alt={tour.title}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
             src={tour.image}
           />
           <div className="absolute top-4 left-4 flex gap-2">
@@ -48,7 +51,7 @@ export default function TourCard({ tour }: TourCardProps) {
         </div>
         <div className="p-7">
           <StarRow rating={tour.rating} reviewCount={tour.reviewCount} />
-          <h3 className="mb-2 font-serif text-xl font-medium text-charcoal transition-colors group-hover:text-tropical">
+          <h3 className="mb-2 font-serif text-xl font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical">
             {tour.title}
           </h3>
           <p className="mb-6 text-xs leading-relaxed font-light text-muted">
@@ -79,7 +82,7 @@ export default function TourCard({ tour }: TourCardProps) {
           </span>
         </div>
         <a
-          className={`rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-colors ${
+          className={`rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${
             tour.featured
               ? "bg-sunset shadow-md hover:bg-sunset-hover"
               : "bg-forest group-hover:bg-tropical"

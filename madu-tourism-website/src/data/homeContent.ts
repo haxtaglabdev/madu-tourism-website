@@ -185,7 +185,7 @@ export const experiences: Experience[] = [
     title: "Spiritual Heritage & Temples",
     description:
       "Private blessings at Buddhist stupas and dusk rituals at Kandy's golden shrine.",
-    image: images.temple,
+    image: images.recliningBuddha,
   },
   {
     id: "rafting",

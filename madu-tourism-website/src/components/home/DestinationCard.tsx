@@ -1,21 +1,27 @@
+import type { CSSProperties } from "react";
 import type { Destination } from "../../types/Home";
 
 interface DestinationCardProps {
   destination: Destination;
+  style?: CSSProperties;
 }
 
-export default function DestinationCard({ destination }: DestinationCardProps) {
+export default function DestinationCard({
+  destination,
+  style,
+}: DestinationCardProps) {
   const colSpan =
     destination.span === "large" ? "md:col-span-8" : "md:col-span-4";
   const padding = destination.span === "large" ? "p-8" : "p-6";
 
   return (
     <a
-      className={`group relative flex ${destination.minHeight} ${colSpan} ${padding} flex-col justify-end overflow-hidden rounded-2xl shadow-sm transition-all duration-500 hover:shadow-xl`}
+      className={`reveal-item group relative flex ${destination.minHeight} ${colSpan} ${padding} flex-col justify-end overflow-hidden rounded-2xl shadow-sm transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
       href="#destinations"
+      style={style}
     >
       <div
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         style={{ backgroundImage: `url(${destination.image})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/40 to-transparent" />
@@ -54,7 +60,7 @@ export default function DestinationCard({ destination }: DestinationCardProps) {
         >
           {destination.description}
         </p>
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-gold uppercase transition-transform group-hover:translate-x-1">
+        <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-gold uppercase transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
           {destination.linkLabel}
           <span className="material-symbols-outlined text-sm">
             arrow_forward

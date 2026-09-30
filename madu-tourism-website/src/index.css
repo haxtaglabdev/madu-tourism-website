@@ -61,3 +61,91 @@
 .material-symbols-filled {
   font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 24;
 }
+
+/* ─── Motion system (luxury travel) ─── */
+:root {
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 250ms;
+  --duration-hover: 500ms;
+  --duration-reveal: 700ms;
+  --reveal-distance: 24px;
+  --stagger-step: 80ms;
+}
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity var(--duration-reveal) var(--ease-luxury),
+    transform var(--duration-reveal) var(--ease-luxury);
+}
+
+.reveal-fade-up {
+  transform: translate3d(0, var(--reveal-distance), 0);
+}
+
+.reveal-fade-in {
+  transform: none;
+}
+
+.reveal-fade-left {
+  transform: translate3d(calc(var(--reveal-distance) * -1), 0, 0);
+}
+
+.reveal-fade-right {
+  transform: translate3d(var(--reveal-distance), 0, 0);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-group .reveal-item {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+  transition:
+    opacity var(--duration-reveal) var(--ease-luxury),
+    transform var(--duration-reveal) var(--ease-luxury);
+  transition-delay: calc(var(--reveal-index, 0) * var(--stagger-step));
+}
+
+.reveal-group.is-visible .reveal-item {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-enter {
+  opacity: 0;
+  animation: hero-enter var(--duration-reveal) var(--ease-luxury) forwards;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-group .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-enter {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
