@@ -4,9 +4,9 @@ import { footerExplore, footerTerritories } from "../../data/homeContent";
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-white/10 bg-forest-dark pt-20 pb-12 text-white/70">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
-        <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-16 md:grid-cols-12">
+    <footer className="w-full border-t border-white/10 bg-forest-dark pt-14 pb-10 text-white/70 sm:pt-20 sm:pb-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid grid-cols-1 gap-10 border-b border-white/10 pb-12 sm:gap-12 sm:pb-16 md:grid-cols-12">
           <div className="space-y-5 md:col-span-4">
             <img
               alt="Madu Tseylon Tours"
@@ -99,11 +99,13 @@ export default function Footer() {
                 </span>
                 <span>+94 11 234 5678</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <span className="material-symbols-outlined text-sm text-gold">
+              <div className="flex items-start gap-2.5">
+                <span className="material-symbols-outlined mt-0.5 shrink-0 text-sm text-gold">
                   mail
                 </span>
-                <span>concierge@madutseylontours.com</span>
+                <span className="min-w-0 break-all">
+                  concierge@madutseylontours.com
+                </span>
               </div>
               <div className="pt-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-tropical/30 bg-tropical/20 px-3 py-1 text-[10px] font-semibold text-emerald-300">
@@ -115,20 +117,24 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-[11px] font-light text-white/50 sm:flex-row">
-          <p>
+        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-center text-[11px] font-light text-white/50 sm:flex-row sm:text-left">
+          <p className="max-w-xl">
             © 2024 Madu Tseylon Tours (Pvt) Ltd. All rights reserved. Sri Lanka
             Tourism Development Authority Reg. DMC.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             <a className="transition-colors hover:text-white" href="#">
               Privacy Policy
             </a>
-            <span>•</span>
+            <span className="hidden sm:inline" aria-hidden>
+              •
+            </span>
             <a className="transition-colors hover:text-white" href="#">
               Terms of Service
             </a>
-            <span>•</span>
+            <span className="hidden sm:inline" aria-hidden>
+              •
+            </span>
             <a className="transition-colors hover:text-white" href="#">
               Responsible Travel Code
             </a>

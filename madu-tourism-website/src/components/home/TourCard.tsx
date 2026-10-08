@@ -55,9 +55,9 @@ export default function TourCard({
             {tour.tag}
           </span>
         </div>
-        <div className="p-7">
+        <div className="p-5 sm:p-7">
           <StarRow rating={tour.rating} reviewCount={tour.reviewCount} />
-          <h3 className="mb-2 font-serif text-xl font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical">
+          <h3 className="mb-2 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl">
             {tour.title}
           </h3>
           <p className="mb-6 text-xs leading-relaxed font-light text-muted">
@@ -65,18 +65,18 @@ export default function TourCard({
           </p>
           <div className="space-y-2 border-y border-border-subtle py-4 text-xs text-charcoal/80">
             {tour.inclusions.map((item) => (
-              <div key={item} className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[16px] text-tropical">
+              <div key={item} className="flex items-start gap-2">
+                <span className="material-symbols-outlined mt-0.5 shrink-0 text-[16px] text-tropical">
                   check_circle
                 </span>
-                <span>{item}</span>
+                <span className="min-w-0 break-words">{item}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-between p-7 pt-0">
-        <div>
+      <div className="flex flex-col gap-4 p-5 pt-0 sm:flex-row sm:items-center sm:justify-between sm:p-7 sm:pt-0">
+        <div className="min-w-0">
           <span className="block text-[11px] tracking-wider text-muted uppercase">
             From
           </span>
@@ -88,7 +88,7 @@ export default function TourCard({
           </span>
         </div>
         <Link
-          className={`rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${
+          className={`inline-flex shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${
             tour.featured
               ? "bg-sunset shadow-md hover:bg-sunset-hover"
               : "bg-forest group-hover:bg-tropical"

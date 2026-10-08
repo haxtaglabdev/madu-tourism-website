@@ -15,11 +15,17 @@ export default function DestinationCard({
 }: DestinationCardProps) {
   const colSpan =
     destination.span === "large" ? "md:col-span-8" : "md:col-span-4";
-  const padding = destination.span === "large" ? "p-8" : "p-6";
+  const padding =
+    destination.span === "large" ? "p-5 sm:p-8" : "p-5 sm:p-6";
+  // Soften card height on small screens; restore exact desktop min-height from data.
+  const minHeight = destination.minHeight.replace(
+    "min-h-",
+    "min-h-[280px] sm:min-h-",
+  );
 
   return (
     <Link
-      className={`reveal-item group relative flex ${destination.minHeight} ${colSpan} ${padding} flex-col justify-end overflow-hidden rounded-2xl shadow-sm transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
+      className={`reveal-item group relative flex ${minHeight} ${colSpan} ${padding} flex-col justify-end overflow-hidden rounded-2xl shadow-sm transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
       style={style}
       to={to}
     >
@@ -48,8 +54,8 @@ export default function DestinationCard({
         <h3
           className={`mb-1 font-serif font-medium text-white ${
             destination.span === "large"
-              ? "mb-2 text-2xl md:text-3xl"
-              : "text-xl"
+              ? "mb-2 text-xl sm:text-2xl md:text-3xl"
+              : "text-lg sm:text-xl"
           }`}
         >
           {destination.title}

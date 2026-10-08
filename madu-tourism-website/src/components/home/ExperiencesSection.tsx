@@ -5,21 +5,24 @@ import ExperienceCard from "./ExperienceCard";
 
 export default function ExperiencesSection() {
   return (
-    <section className="w-full bg-forest-dark py-28 text-white" id="experiences">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
-        <div className="mb-16 flex flex-col justify-between md:flex-row md:items-end">
+    <section
+      className="w-full bg-forest-dark py-16 text-white sm:py-28"
+      id="experiences"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mb-10 flex flex-col justify-between sm:mb-16 md:flex-row md:items-end">
           <div>
             <Reveal>
               <div className="mb-2 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-gold" />
+                <span className="h-2 w-2 shrink-0 rounded-full bg-gold" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">
                   Authentic Ceylon Memories
                 </span>
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="font-serif text-3xl font-medium text-white md:text-5xl">
-                Curated Island Experiences
+              <h2 className="font-serif text-[1.75rem] font-medium text-white sm:text-3xl md:text-5xl">
+                Popular Experiences
               </h2>
             </Reveal>
           </div>

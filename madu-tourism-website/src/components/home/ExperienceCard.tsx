@@ -17,14 +17,14 @@ export default function ExperienceCard({ experience, style }: ExperienceCardProp
         style={{ backgroundImage: `url(${experience.image})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/40 to-transparent transition-colors duration-500 group-hover:via-forest-dark/25" />
-      <div className="absolute inset-0 flex flex-col justify-end p-7">
+      <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-5 lg:p-7">
         <span className="mb-1 text-[11px] font-semibold tracking-wider text-gold uppercase">
           {experience.category}
         </span>
-        <h3 className="mb-1 font-serif text-xl font-medium text-white">
+        <h3 className="mb-1 font-serif text-lg font-medium text-white lg:text-xl">
           {experience.title}
         </h3>
-        <p className="text-xs font-light text-white/80">
+        <p className="line-clamp-3 text-xs font-light text-white/80 sm:line-clamp-none">
           {experience.description}
         </p>
       </div>

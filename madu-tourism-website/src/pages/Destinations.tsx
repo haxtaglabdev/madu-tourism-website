@@ -25,9 +25,9 @@ export default function Destinations() {
           title="Discover Sri"
         />
 
-        <section className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6">
+        <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
           <Reveal>
-            <p className="mx-auto max-w-3xl text-center text-base leading-relaxed font-light text-muted">
+            <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:text-base">
               Each destination below appears on our Home page as a curated
               preview. Here we expand the same places with travel highlights so
               you can begin shaping a journey that fits your pace — culture,
@@ -36,20 +36,20 @@ export default function Destinations() {
           </Reveal>
         </section>
 
-        <section className="w-full bg-soft-mint py-24">
-          <div className="mx-auto max-w-7xl px-5 sm:px-6">
-            <div className="mb-14 flex flex-col justify-between md:flex-row md:items-end">
+        <section className="w-full bg-soft-mint py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="mb-10 flex flex-col justify-between sm:mb-14 md:flex-row md:items-end">
               <div>
                 <Reveal>
                   <div className="mb-2 flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-sunset" />
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                     <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                       Featured Destinations
                     </span>
                   </div>
                 </Reveal>
                 <Reveal delay={100}>
-                  <h2 className="font-serif text-3xl font-medium text-charcoal md:text-5xl">
+                  <h2 className="font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
                     Curated Island Destinations
                   </h2>
                 </Reveal>
@@ -75,18 +75,18 @@ export default function Destinations() {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-6">
-          <div className="mb-14 max-w-2xl">
+        <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
+          <div className="mb-10 max-w-2xl sm:mb-14">
             <Reveal>
               <div className="mb-2 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-tropical" />
+                <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                   Destination Highlights
                 </span>
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="font-serif text-3xl font-medium text-charcoal md:text-4xl">
+              <h2 className="font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
                 What You Can Experience
               </h2>
             </Reveal>
@@ -155,24 +155,24 @@ export default function Destinations() {
           </RevealGroup>
         </section>
 
-        <section className="relative w-full overflow-hidden bg-forest py-24 text-white">
+        <section className="relative w-full overflow-hidden bg-forest py-16 text-white sm:py-24">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,201,74,0.12),transparent_40%)]" />
-          <div className="relative z-10 mx-auto max-w-4xl px-5 text-center sm:px-6">
+          <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
             <Reveal>
-              <h2 className="mb-6 font-serif text-3xl font-medium text-white sm:text-4xl">
+              <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-4xl">
                 Ready to Map Your Island Route?
               </h2>
             </Reveal>
             <Reveal delay={100}>
-              <div className="flex flex-wrap items-center justify-center gap-4">
+              <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                 <Link
-                  className="rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:bg-sunset-hover"
+                  className="inline-flex items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:bg-sunset-hover"
                   to="/contact"
                 >
                   Plan Your Trip
                 </Link>
                 <Link
-                  className="rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20"
                   to="/tour-packages"
                 >
                   View Tour Packages

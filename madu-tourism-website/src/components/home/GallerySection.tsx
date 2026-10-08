@@ -11,19 +11,19 @@ export default function GallerySection() {
   ];
 
   return (
-    <section className="w-full bg-soft-mint py-24" id="gallery">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
-        <div className="mx-auto mb-16 max-w-2xl text-center">
+    <section className="w-full bg-soft-mint py-16 sm:py-24" id="gallery">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-16">
           <Reveal>
             <div className="mb-2 inline-flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-tropical" />
+              <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
               <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                 Visual Travel Diary
               </span>
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="mb-4 font-serif text-3xl font-medium text-charcoal md:text-5xl">
+            <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
               Postcards from the Island
             </h2>
           </Reveal>
@@ -35,12 +35,12 @@ export default function GallerySection() {
           </Reveal>
         </div>
 
-        <RevealGroup className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {columns.map((column, columnIndex) => (
             <div
               key={columnIndex}
-              className={`space-y-4 ${
-                columnIndex % 2 === 1 ? "pt-6 md:pt-10" : ""
+              className={`space-y-3 sm:space-y-4 ${
+                columnIndex % 2 === 1 ? "pt-4 sm:pt-6 md:pt-10" : ""
               }`}
             >
               {column.map((item, itemIndex) => {
