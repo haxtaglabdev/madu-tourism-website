@@ -1,24 +1,27 @@
 import type { CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import type { Destination } from "../../types/Home";
 
 interface DestinationCardProps {
   destination: Destination;
   style?: CSSProperties;
+  to?: string;
 }
 
 export default function DestinationCard({
   destination,
   style,
+  to = "/destinations",
 }: DestinationCardProps) {
   const colSpan =
     destination.span === "large" ? "md:col-span-8" : "md:col-span-4";
   const padding = destination.span === "large" ? "p-8" : "p-6";
 
   return (
-    <a
+    <Link
       className={`reveal-item group relative flex ${destination.minHeight} ${colSpan} ${padding} flex-col justify-end overflow-hidden rounded-2xl shadow-sm transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
-      href="#destinations"
       style={style}
+      to={to}
     >
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
@@ -67,6 +70,6 @@ export default function DestinationCard({
           </span>
         </span>
       </div>
-    </a>
+    </Link>
   );
 }

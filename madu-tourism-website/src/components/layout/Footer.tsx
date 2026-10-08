@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { images } from "../../assets";
 import { footerExplore, footerTerritories } from "../../data/homeContent";
 
@@ -51,12 +52,12 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs font-light">
               {footerExplore.map((item) => (
                 <li key={item.label}>
-                  <a
+                  <Link
                     className="transition-colors hover:text-gold"
-                    href={item.href}
+                    to={item.to}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -69,12 +70,12 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs font-light">
               {footerTerritories.map((item) => (
                 <li key={item.label}>
-                  <a
+                  <Link
                     className="transition-colors hover:text-gold"
-                    href={item.href}
+                    to={item.to}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

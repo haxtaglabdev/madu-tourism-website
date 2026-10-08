@@ -1,6 +1,3 @@
-import TopBar from "../components/layout/TopBar";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
 import Hero from "../components/home/Hero";
 import AboutSection from "../components/home/AboutSection";
 import DestinationsSection from "../components/home/DestinationsSection";
@@ -9,12 +6,15 @@ import ExperiencesSection from "../components/home/ExperiencesSection";
 import TestimonialsSection from "../components/home/TestimonialsSection";
 import GallerySection from "../components/home/GallerySection";
 import FinalCTA from "../components/home/FinalCTA";
+import PageMeta from "../components/seo/PageMeta";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-sand-bg text-charcoal antialiased">
-      <TopBar />
-      <Navbar />
+    <>
+      <PageMeta
+        description="Discover Sri Lanka with Madu Tseylon Tours — private chauffeur journeys, UNESCO citadels, tea highlands, and wildlife safaris."
+        title="Madu Tseylon Tours | Explore Sri Lanka"
+      />
       <main>
         <Hero />
         <AboutSection />
@@ -25,7 +25,6 @@ export default function Home() {
         <GallerySection />
         <FinalCTA />
       </main>
-      <Footer />
-    </div>
+    </>
   );
 }

@@ -1,9 +1,11 @@
 import type { CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import type { TourPackage } from "../../types/Home";
 
 interface TourCardProps {
   tour: TourPackage;
   style?: CSSProperties;
+  detailsTo?: string;
 }
 
 function StarRow({ rating, reviewCount }: { rating: number; reviewCount: number }) {
@@ -23,7 +25,11 @@ function StarRow({ rating, reviewCount }: { rating: number; reviewCount: number 
   );
 }
 
-export default function TourCard({ tour, style }: TourCardProps) {
+export default function TourCard({
+  tour,
+  style,
+  detailsTo = "/contact",
+}: TourCardProps) {
   return (
     <article
       className={`reveal-item group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
@@ -81,16 +87,16 @@ export default function TourCard({ tour, style }: TourCardProps) {
             </span>
           </span>
         </div>
-        <a
+        <Link
           className={`rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${
             tour.featured
               ? "bg-sunset shadow-md hover:bg-sunset-hover"
               : "bg-forest group-hover:bg-tropical"
           }`}
-          href="#planner"
+          to={detailsTo}
         >
           Explore Details
-        </a>
+        </Link>
       </div>
     </article>
   );

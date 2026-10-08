@@ -1,7 +1,7 @@
-export interface NavLink {
+export interface NavItem {
   label: string;
-  href: string;
-  active?: boolean;
+  to: string;
+  end?: boolean;
 }
 
 export interface Destination {

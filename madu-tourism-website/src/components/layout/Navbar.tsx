@@ -1,10 +1,28 @@
 import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { images } from "../../assets";
 import { navLinks } from "../../data/homeContent";
+
+const desktopInactiveClass =
+  "relative text-charcoal/80 transition-colors duration-300 hover:text-tropical after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-tropical after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:scale-x-100";
+
+const desktopActiveClass =
+  "relative font-semibold text-tropical after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:bg-tropical";
+
+const mobileInactiveClass =
+  "rounded-lg px-3 py-3 text-sm font-medium transition-colors duration-300 text-charcoal/80 hover:bg-soft-mint hover:text-tropical";
+
+const mobileActiveClass =
+  "rounded-lg px-3 py-3 text-sm font-medium transition-colors duration-300 bg-soft-mint text-tropical";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -32,37 +50,36 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6">
-        <a className="group flex items-center gap-3.5" href="#">
+        <Link className="group flex items-center gap-3.5" onClick={closeMenu} to="/">
           <img
             alt="Madu Tseylon Tours Logo"
             className="h-28 w-auto object-contain transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] md:h-28"
             src={images.logo}
           />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 text-[14px] font-medium tracking-wide lg:flex">
           {navLinks.map((link) => (
-            <a
+            <NavLink
               key={link.label}
-              className={
-                link.active
-                  ? "relative font-semibold text-tropical after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:bg-tropical"
-                  : "relative text-charcoal/80 transition-colors duration-300 hover:text-tropical after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-tropical after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:scale-x-100"
+              className={({ isActive }) =>
+                isActive ? desktopActiveClass : desktopInactiveClass
               }
-              href={link.href}
+              end={link.end}
+              to={link.to}
             >
               {link.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
         <div className="flex items-center gap-4">
-          <a
+          <Link
             className="hidden items-center justify-center rounded-full bg-sunset px-6 py-3 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_4px_16px_rgba(245,154,35,0.35)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover hover:shadow-[0_6px_20px_rgba(245,154,35,0.45)] sm:inline-flex"
-            href="#planner"
+            to="/contact"
           >
             Plan Your Trip
-          </a>
+          </Link>
           <button
             aria-expanded={open}
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
@@ -81,26 +98,25 @@ export default function Navbar() {
         <div className="border-t border-charcoal/5 bg-sand-bg lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4 sm:px-6">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.label}
-                className={`rounded-lg px-3 py-3 text-sm font-medium transition-colors duration-300 ${
-                  link.active
-                    ? "bg-soft-mint text-tropical"
-                    : "text-charcoal/80 hover:bg-soft-mint hover:text-tropical"
-                }`}
-                href={link.href}
+                className={({ isActive }) =>
+                  isActive ? mobileActiveClass : mobileInactiveClass
+                }
+                end={link.end}
                 onClick={closeMenu}
+                to={link.to}
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
-            <a
+            <Link
               className="mt-2 inline-flex items-center justify-center rounded-full bg-sunset px-6 py-3 text-[13px] font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-sunset-hover"
-              href="#planner"
               onClick={closeMenu}
+              to="/contact"
             >
               Plan Your Trip
-            </a>
+            </Link>
           </nav>
         </div>
       )}
