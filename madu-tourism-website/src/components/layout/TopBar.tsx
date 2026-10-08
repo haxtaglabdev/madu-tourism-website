@@ -27,7 +27,7 @@ export default function TopBar() {
             <span className="material-symbols-outlined shrink-0 text-[15px]">
               mail
             </span>
-            <span className="truncate">concierge@madutseylontours.com</span>
+            <span className="truncate">madutseylontours@gmail.com</span>
           </a>
         </div>
         <div className="flex shrink-0 items-center gap-3 text-white/70 lg:gap-4">
@@ -35,7 +35,6 @@ export default function TopBar() {
             <span className="material-symbols-outlined text-[15px] text-tropical">
               verified
             </span>
-            Colombo 03 HQ
           </span>
           <span className="text-white/40" aria-hidden>
             •
