@@ -49,16 +49,20 @@ export default function Navbar() {
         scrolled ? "shadow-[0_8px_24px_-12px_rgba(0,37,26,0.18)]" : "shadow-none"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6">
-        <Link className="group flex items-center gap-3.5" onClick={closeMenu} to="/">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-20 sm:gap-4 sm:px-6">
+        <Link
+          className="group flex min-w-0 shrink items-center gap-3.5"
+          onClick={closeMenu}
+          to="/"
+        >
           <img
             alt="Madu Tseylon Tours Logo"
-            className="h-28 w-auto object-contain transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] md:h-28"
+            className="h-16 w-auto max-w-[min(100%,9rem)] object-contain transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] sm:h-20 sm:max-w-none lg:h-28"
             src={images.logo}
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-[14px] font-medium tracking-wide lg:flex">
+        <nav className="hidden items-center gap-6 text-[14px] font-medium tracking-wide lg:flex xl:gap-8">
           {navLinks.map((link) => (
             <NavLink
               key={link.label}
@@ -73,9 +77,9 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-4">
           <Link
-            className="hidden items-center justify-center rounded-full bg-sunset px-6 py-3 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_4px_16px_rgba(245,154,35,0.35)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover hover:shadow-[0_6px_20px_rgba(245,154,35,0.45)] sm:inline-flex"
+            className="hidden items-center justify-center rounded-full bg-sunset px-5 py-2.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_4px_16px_rgba(245,154,35,0.35)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover hover:shadow-[0_6px_20px_rgba(245,154,35,0.45)] md:inline-flex lg:px-6 lg:py-3"
             to="/contact"
           >
             Plan Your Trip

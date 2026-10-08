@@ -93,15 +93,15 @@ export default function Hero() {
     incomingIndex !== null ? (slides[incomingIndex] ?? "") : "";
 
   return (
-    <section className="relative flex min-h-[90vh] flex-col justify-between overflow-hidden bg-forest-dark">
+    <section className="relative flex min-h-[85vh] flex-col justify-between overflow-hidden bg-forest-dark sm:min-h-[90vh]">
       <div className="absolute inset-0" aria-hidden="true">
         <div
-          className="absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat opacity-85"
+          className="absolute inset-0 scale-[1.02] bg-cover bg-[center_30%] bg-no-repeat opacity-85 sm:bg-center"
           style={{ backgroundImage: activeSlide ? `url(${activeSlide})` : undefined }}
         />
         {incomingIndex !== null && incomingSlide ? (
           <div
-            className={`absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat transition-opacity ease-in-out ${
+            className={`absolute inset-0 scale-[1.02] bg-cover bg-[center_30%] bg-no-repeat transition-opacity ease-in-out sm:bg-center ${
               incomingVisible ? "opacity-85" : "opacity-0"
             }`}
             style={{
@@ -114,24 +114,24 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/40 to-forest-dark/30" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,201,74,0.15),transparent_55%)]" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-5 pt-24 pb-16 sm:px-6 md:pt-32">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 pt-20 pb-14 sm:px-6 sm:pt-24 sm:pb-16 md:pt-32">
         <div className="max-w-3xl">
           <div
-            className="hero-enter mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs tracking-[0.16em] text-white uppercase backdrop-blur-md"
+            className="hero-enter mb-5 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] tracking-[0.14em] text-white uppercase backdrop-blur-md sm:mb-6 sm:gap-2.5 sm:px-3.5 sm:text-xs sm:tracking-[0.16em]"
             style={{ ["--hero-delay" as string]: "0ms" }}
           >
-            <span className="h-2 w-2 animate-pulse rounded-full bg-gold" />
+            <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-gold" />
             Authentic Sri Lanka • Tailor-Made Journeys
           </div>
           <h1
-            className="hero-enter mb-6 font-serif text-4xl leading-[1.08] font-medium tracking-tight text-white sm:text-6xl lg:text-7xl"
+            className="hero-enter mb-5 font-serif text-[2rem] leading-[1.08] font-medium tracking-tight text-white sm:mb-6 sm:text-6xl lg:text-7xl"
             style={{ ["--hero-delay" as string]: "100ms" }}
           >
             Discover the Pearl of the{" "}
             <span className="font-normal text-gold italic">Indian Ocean</span>
           </h1>
           <p
-            className="hero-enter mb-10 max-w-2xl text-base leading-relaxed font-light text-white/80 sm:text-lg"
+            className="hero-enter mb-8 max-w-2xl text-sm leading-relaxed font-light text-white/80 sm:mb-10 sm:text-lg"
             style={{ ["--hero-delay" as string]: "180ms" }}
           >
             Immerse yourself in UNESCO rock citadels, mist-shrouded Ceylon tea
@@ -139,17 +139,17 @@ export default function Hero() {
             chauffeur-naturalists dedicated solely to your journey.
           </p>
           <div
-            className="hero-enter flex flex-wrap items-center gap-4"
+            className="hero-enter flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
             style={{ ["--hero-delay" as string]: "260ms" }}
           >
             <Link
-              className="rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover"
+              className="inline-flex items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-center text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover"
               to="/tour-packages"
             >
               Explore Handcrafted Tours
             </Link>
             <Link
-              className="group flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:bg-white/20"
+              className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:bg-white/20"
               to="/about"
             >
               <span>Our Heritage</span>

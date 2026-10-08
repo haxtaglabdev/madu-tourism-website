@@ -35,9 +35,9 @@ export default function Gallery() {
           title="Moments From"
         />
 
-        <section className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6">
+        <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
           <Reveal>
-            <p className="mx-auto mb-10 max-w-3xl text-center text-base leading-relaxed font-light text-muted">
+            <p className="mx-auto mb-8 max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:mb-10 sm:text-base">
               A premium editorial gallery of island moments. Filter by theme or
               browse the full collection — every image is part of the Madu
               Tseylon visual story.
@@ -47,7 +47,7 @@ export default function Gallery() {
           <Reveal delay={100}>
             <div
               aria-label="Gallery categories"
-              className="mb-12 flex flex-wrap items-center justify-center gap-2"
+              className="mb-8 flex flex-wrap items-center justify-center gap-2 sm:mb-12"
               role="tablist"
             >
               {galleryCategories.map((category) => {
@@ -56,7 +56,7 @@ export default function Gallery() {
                   <button
                     key={category}
                     aria-selected={isActive}
-                    className={`rounded-full px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                    className={`rounded-full px-3 py-2 text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 sm:px-4 sm:text-xs ${
                       isActive
                         ? "bg-forest text-white shadow-sm"
                         : "bg-soft-mint text-charcoal/80 hover:bg-tropical/15 hover:text-tropical"
@@ -72,7 +72,7 @@ export default function Gallery() {
             </div>
           </Reveal>
 
-          <RevealGroup className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
             {filteredItems.map((item, index) => (
               <div
                 key={item.id}
@@ -97,17 +97,17 @@ export default function Gallery() {
           )}
         </section>
 
-        <section className="relative w-full overflow-hidden bg-forest py-24 text-white">
+        <section className="relative w-full overflow-hidden bg-forest py-16 text-white sm:py-24">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,201,74,0.12),transparent_40%)]" />
-          <div className="relative z-10 mx-auto max-w-4xl px-5 text-center sm:px-6">
+          <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
             <Reveal>
-              <h2 className="mb-6 font-serif text-3xl font-medium text-white sm:text-4xl">
+              <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-4xl">
                 Want These Moments as Your Own Memories?
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <Link
-                className="inline-flex rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:bg-sunset-hover"
+                className="inline-flex w-full items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:bg-sunset-hover sm:w-auto"
                 to="/contact"
               >
                 Plan Your Trip

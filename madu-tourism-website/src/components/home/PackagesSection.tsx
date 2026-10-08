@@ -6,20 +6,20 @@ import TourCard from "./TourCard";
 export default function PackagesSection() {
   return (
     <section
-      className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-6"
+      className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-28"
       id="packages"
     >
-      <div className="mx-auto mb-16 max-w-2xl text-center">
+      <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-16">
         <Reveal>
           <div className="mb-2 inline-flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-tropical" />
+            <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
             <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
               Private Handcrafted Itineraries
             </span>
           </div>
         </Reveal>
         <Reveal delay={100}>
-          <h2 className="mb-4 font-serif text-3xl font-medium text-charcoal md:text-5xl">
+          <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
             Featured Travel Packages
           </h2>
         </Reveal>
@@ -31,7 +31,7 @@ export default function PackagesSection() {
         </Reveal>
       </div>
 
-      <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {packages.map((tour, index) => (
           <TourCard
             key={tour.id}

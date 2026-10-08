@@ -66,19 +66,19 @@ export default function Contact() {
           title="Let's Plan Your Sri Lankan"
         />
 
-        <section className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 sm:py-24">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-4">
+        <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 sm:py-24">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
+            <div className="min-w-0 lg:col-span-4">
               <Reveal>
                 <div className="mb-3 flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-tropical" />
+                  <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
                   <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                     Contact Information
                   </span>
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="mb-6 font-serif text-3xl font-medium text-charcoal">
+                <h2 className="mb-6 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl">
                   We Are Ready When You Are
                 </h2>
               </Reveal>
@@ -130,7 +130,7 @@ export default function Contact() {
                         Email
                       </p>
                       <a
-                        className="mt-1 block text-sm font-light text-muted transition-colors hover:text-tropical"
+                        className="mt-1 block break-all text-sm font-light text-muted transition-colors hover:text-tropical"
                         href="mailto:concierge@madutseylontours.com"
                       >
                         concierge@madutseylontours.com
@@ -161,10 +161,10 @@ export default function Contact() {
               </Reveal>
             </div>
 
-            <div className="lg:col-span-8">
+            <div className="min-w-0 lg:col-span-8">
               <Reveal>
-                <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-sm sm:p-8">
-                  <h2 className="mb-2 font-serif text-2xl font-medium text-charcoal">
+                <div className="rounded-2xl border border-border-subtle bg-white p-4 shadow-sm sm:p-8">
+                  <h2 className="mb-2 font-serif text-xl font-medium text-charcoal sm:text-2xl">
                     Trip Inquiry Form
                   </h2>
                   <p className="mb-8 text-sm font-light text-muted">
@@ -330,13 +330,13 @@ export default function Contact() {
 
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                       <button
-                        className="inline-flex items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover"
+                        className="inline-flex w-full items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover sm:w-auto"
                         type="submit"
                       >
                         Send Inquiry
                       </button>
                       <Link
-                        className="text-sm font-medium text-tropical transition-colors hover:text-forest"
+                        className="text-center text-sm font-medium text-tropical transition-colors hover:text-forest sm:text-left"
                         to="/tour-packages"
                       >
                         Or browse tour packages →
