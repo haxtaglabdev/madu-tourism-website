@@ -143,16 +143,10 @@ export default function Hero() {
             style={{ ["--hero-delay" as string]: "260ms" }}
           >
             <Link
-              className="inline-flex items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-center text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover"
+              className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:bg-white/20"
               to="/tour-packages"
             >
-              Explore Handcrafted Tours
-            </Link>
-            <Link
-              className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:bg-white/20"
-              to="/about"
-            >
-              <span>Our Heritage</span>
+              <span>Explore All Tourse</span>
               <span className="material-symbols-outlined text-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5">
                 arrow_forward
               </span>

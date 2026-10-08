@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import { packages } from "../../data/homeContent";
 import Reveal, { RevealGroup } from "../ui/Reveal";
 import TourCard from "./TourCard";
@@ -40,6 +41,15 @@ export default function PackagesSection() {
           />
         ))}
       </RevealGroup>
+
+      <Reveal delay={260} className="mt-10 flex justify-center sm:mt-14">
+        <Link
+          className="inline-flex w-full max-w-xs items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover sm:w-auto sm:max-w-none"
+          to="/tour-packages"
+        >
+          Explore All Packages
+        </Link>
+      </Reveal>
     </section>
   );
 }
