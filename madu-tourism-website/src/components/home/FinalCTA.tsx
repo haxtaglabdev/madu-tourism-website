@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Reveal from "../ui/Reveal";
 
 export default function FinalCTA() {
@@ -27,12 +28,12 @@ export default function FinalCTA() {
         </Reveal>
         <Reveal delay={260}>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a
+            <Link
               className="rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover"
-              href="#planner"
+              to="/contact"
             >
               Request Custom Itinerary
-            </a>
+            </Link>
             {/* Placeholder WhatsApp number — replace with verified business contact */}
             <a
               className="flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:bg-white/20"
@@ -51,3 +52,4 @@ export default function FinalCTA() {
     </section>
   );
 }
+

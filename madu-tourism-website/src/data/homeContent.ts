@@ -3,20 +3,19 @@ import type {
   Destination,
   Experience,
   GalleryItem,
-  NavLink,
+  NavItem,
   Testimonial,
   TourPackage,
   ValuePillar,
 } from "../types/Home";
 
-export const navLinks: NavLink[] = [
-  { label: "Home", href: "#", active: true },
-  { label: "About Us", href: "#about" },
-  { label: "Destinations", href: "#destinations" },
-  { label: "Tour Packages", href: "#packages" },
-  { label: "Experiences", href: "#experiences" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+export const navLinks: NavItem[] = [
+  { label: "Home", to: "/", end: true },
+  { label: "About Us", to: "/about" },
+  { label: "Destinations", to: "/destinations" },
+  { label: "Tour Packages", to: "/tour-packages" },
+  { label: "Gallery", to: "/gallery" },
+  { label: "Contact", to: "/contact" },
 ];
 
 export const valuePillars: ValuePillar[] = [
@@ -297,18 +296,18 @@ export const galleryItems: GalleryItem[] = [
 ];
 
 export const footerExplore = [
-  { label: "Home Itineraries", href: "#" },
-  { label: "About Our Team", href: "#about" },
-  { label: "Destinations", href: "#destinations" },
-  { label: "Curated Packages", href: "#packages" },
-  { label: "Island Experiences", href: "#experiences" },
-  { label: "Travel Gallery", href: "#gallery" },
+  { label: "Home", to: "/" },
+  { label: "About Our Team", to: "/about" },
+  { label: "Destinations", to: "/destinations" },
+  { label: "Curated Packages", to: "/tour-packages" },
+  { label: "Travel Gallery", to: "/gallery" },
+  { label: "Contact", to: "/contact" },
 ];
 
 export const footerTerritories = [
-  { label: "Sigiriya & Cultural Triangle", href: "#destinations" },
-  { label: "Ella & Central Tea Hills", href: "#destinations" },
-  { label: "Galle Dutch Fort & South Coast", href: "#destinations" },
-  { label: "Yala Leopard Safari", href: "#destinations" },
-  { label: "Mirissa Marine & Whale Sanctuary", href: "#destinations" },
+  { label: "Sigiriya & Cultural Triangle", to: "/destinations" },
+  { label: "Ella & Central Tea Hills", to: "/destinations" },
+  { label: "Galle Dutch Fort & South Coast", to: "/destinations" },
+  { label: "Yala Leopard Safari", to: "/destinations" },
+  { label: "Mirissa Marine & Whale Sanctuary", to: "/destinations" },
 ];
