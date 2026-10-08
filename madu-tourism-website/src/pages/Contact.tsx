@@ -32,7 +32,8 @@ const initialForm: ContactFormState = {
 const inputClass =
   "w-full rounded-xl border border-border-subtle bg-white px-4 py-3 text-sm text-charcoal outline-none transition-colors placeholder:text-muted/60 focus:border-tropical focus:ring-2 focus:ring-tropical/20";
 
-const labelClass = "mb-1.5 block text-xs font-semibold tracking-wider text-charcoal uppercase";
+const labelClass =
+  "mb-1.5 block text-xs font-semibold tracking-wider text-charcoal uppercase";
 
 export default function Contact() {
   const [form, setForm] = useState<ContactFormState>(initialForm);
@@ -148,7 +149,7 @@ export default function Contact() {
               <Reveal delay={260}>
                 <a
                   className="mt-6 inline-flex items-center gap-2 rounded-full border border-tropical/30 bg-white px-6 py-3 text-[13px] font-medium tracking-wide text-tropical transition-all duration-300 hover:bg-soft-mint"
-                  href="https://wa.me/94112345678"
+                  href="https://wa.me/94767006719"
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -171,7 +172,11 @@ export default function Contact() {
                     messages are sent until a backend is connected.
                   </p>
 
-                  <form className="space-y-5" noValidate onSubmit={handleSubmit}>
+                  <form
+                    className="space-y-5"
+                    noValidate
+                    onSubmit={handleSubmit}
+                  >
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                       <div>
                         <label className={labelClass} htmlFor="fullName">

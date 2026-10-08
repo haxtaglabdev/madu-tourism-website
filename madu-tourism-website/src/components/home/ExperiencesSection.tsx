@@ -19,7 +19,7 @@ export default function ExperiencesSection() {
             </Reveal>
             <Reveal delay={100}>
               <h2 className="font-serif text-3xl font-medium text-white md:text-5xl">
-                Curated Island Experiences
+                Popular Experiences
               </h2>
             </Reveal>
           </div>

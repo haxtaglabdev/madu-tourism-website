@@ -37,7 +37,7 @@ export default function FinalCTA() {
             {/* Placeholder WhatsApp number — replace with verified business contact */}
             <a
               className="flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:bg-white/20"
-              href="https://wa.me/94112345678"
+              href="https://wa.me/94767006719"
               rel="noreferrer"
               target="_blank"
             >

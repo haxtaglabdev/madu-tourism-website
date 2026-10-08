@@ -19,7 +19,7 @@ export default function DestinationsSection() {
             </Reveal>
             <Reveal delay={100}>
               <h2 className="font-serif text-3xl font-medium text-charcoal md:text-5xl">
-                Curated Island Destinations
+                Popular Destinations
               </h2>
             </Reveal>
           </div>
