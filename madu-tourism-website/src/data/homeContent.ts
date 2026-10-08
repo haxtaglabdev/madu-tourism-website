@@ -139,7 +139,6 @@ export const packages: TourPackage[] = [
     ],
     // Placeholder pricing — replace with confirmed rates
     price: "$1,480",
-    featured: true,
   },
   {
     id: "wild-leopards",

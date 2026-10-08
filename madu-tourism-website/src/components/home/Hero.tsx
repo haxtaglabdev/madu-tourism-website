@@ -114,10 +114,10 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/40 to-forest-dark/30" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,201,74,0.15),transparent_55%)]" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 pt-20 pb-14 sm:px-6 sm:pt-24 sm:pb-16 md:pt-32">
-        <div className="max-w-3xl">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-grow flex-col items-center justify-center px-4 pt-20 pb-14 text-center sm:px-6 sm:pt-24 sm:pb-16 md:pt-32">
+        <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
           <div
-            className="hero-enter mb-5 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] tracking-[0.14em] text-white uppercase backdrop-blur-md sm:mb-6 sm:gap-2.5 sm:px-3.5 sm:text-xs sm:tracking-[0.16em]"
+            className="hero-enter mb-5 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] tracking-[0.14em] text-white uppercase backdrop-blur-md sm:mb-6 sm:gap-2.5 sm:px-3.5 sm:text-xs sm:tracking-[0.16em]"
             style={{ ["--hero-delay" as string]: "0ms" }}
           >
             <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-gold" />
@@ -131,7 +131,7 @@ export default function Hero() {
             <span className="font-normal text-gold italic">Indian Ocean</span>
           </h1>
           <p
-            className="hero-enter mb-8 max-w-2xl text-sm leading-relaxed font-light text-white/80 sm:mb-10 sm:text-lg"
+            className="hero-enter mx-auto mb-8 max-w-2xl text-sm leading-relaxed font-light text-white/80 sm:mb-10 sm:text-lg"
             style={{ ["--hero-delay" as string]: "180ms" }}
           >
             Immerse yourself in UNESCO rock citadels, mist-shrouded Ceylon tea
@@ -139,20 +139,14 @@ export default function Hero() {
             chauffeur-naturalists dedicated solely to your journey.
           </p>
           <div
-            className="hero-enter flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+            className="hero-enter flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4"
             style={{ ["--hero-delay" as string]: "260ms" }}
           >
             <Link
-              className="inline-flex items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-center text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover"
+              className="group inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover sm:w-auto sm:max-w-none"
               to="/tour-packages"
             >
-              Explore Handcrafted Tours
-            </Link>
-            <Link
-              className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:bg-white/20"
-              to="/about"
-            >
-              <span>Our Heritage</span>
+              <span>Explore All Tours</span>
               <span className="material-symbols-outlined text-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5">
                 arrow_forward
               </span>

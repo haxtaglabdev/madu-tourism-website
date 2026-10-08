@@ -131,6 +131,50 @@
   animation-delay: var(--hero-delay, 0ms);
 }
 
+/* Navbar brand wordmark — color/underline only (no layout shift) */
+.brand-wordmark {
+  position: relative;
+  display: inline-block;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  transition: color var(--duration-fast) var(--ease-luxury);
+}
+
+.brand-wordmark-accent {
+  transition: color var(--duration-fast) var(--ease-luxury);
+}
+
+.brand-wordmark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1em;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #ffc94a 20%,
+    #167a3e 80%,
+    transparent
+  );
+  opacity: 0;
+  transition: opacity var(--duration-hover) var(--ease-luxury);
+  pointer-events: none;
+}
+
+.group:hover .brand-wordmark {
+  color: #003d2c;
+}
+
+.group:hover .brand-wordmark-accent {
+  color: #f59a23;
+}
+
+.group:hover .brand-wordmark::after {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -147,5 +191,11 @@
     opacity: 1 !important;
     animation: none !important;
     transform: none !important;
+  }
+
+  .brand-wordmark,
+  .brand-wordmark-accent,
+  .brand-wordmark::after {
+    transition: none !important;
   }
 }

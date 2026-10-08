@@ -6,22 +6,32 @@ interface DestinationCardProps {
   destination: Destination;
   style?: CSSProperties;
   to?: string;
+  /** Full-width featured slide styling (Popular Destinations carousel only). */
+  featured?: boolean;
 }
 
 export default function DestinationCard({
   destination,
   style,
   to = "/destinations",
+  featured = false,
 }: DestinationCardProps) {
-  const colSpan =
-    destination.span === "large" ? "md:col-span-8" : "md:col-span-4";
-  const padding =
-    destination.span === "large" ? "p-5 sm:p-8" : "p-5 sm:p-6";
+  const colSpan = featured
+    ? "w-full"
+    : destination.span === "large"
+      ? "md:col-span-8"
+      : "md:col-span-4";
+  const padding = featured
+    ? "p-5 sm:p-8 md:p-10"
+    : destination.span === "large"
+      ? "p-5 sm:p-8"
+      : "p-5 sm:p-6";
   // Soften card height on small screens; restore exact desktop min-height from data.
-  const minHeight = destination.minHeight.replace(
-    "min-h-",
-    "min-h-[280px] sm:min-h-",
-  );
+  // Featured carousel slides use a consistent large editorial height.
+  const minHeight = featured
+    ? "min-h-[320px] sm:min-h-[420px] lg:min-h-[480px]"
+    : destination.minHeight.replace("min-h-", "min-h-[280px] sm:min-h-");
+  const useLargeCopy = featured || destination.span === "large";
 
   return (
     <Link
@@ -34,9 +44,7 @@ export default function DestinationCard({
         style={{ backgroundImage: `url(${destination.image})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/40 to-transparent" />
-      <div
-        className={`relative z-10 ${destination.span === "large" ? "max-w-xl" : ""}`}
-      >
+      <div className={`relative z-10 ${useLargeCopy ? "max-w-xl" : ""}`}>
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <span
             className={
@@ -53,7 +61,7 @@ export default function DestinationCard({
         </div>
         <h3
           className={`mb-1 font-serif font-medium text-white ${
-            destination.span === "large"
+            useLargeCopy
               ? "mb-2 text-xl sm:text-2xl md:text-3xl"
               : "text-lg sm:text-xl"
           }`}
@@ -62,7 +70,7 @@ export default function DestinationCard({
         </h3>
         <p
           className={`mb-3 text-white/80 ${
-            destination.span === "large"
+            useLargeCopy
               ? "mb-4 text-sm leading-relaxed font-light"
               : "line-clamp-2 text-xs"
           }`}

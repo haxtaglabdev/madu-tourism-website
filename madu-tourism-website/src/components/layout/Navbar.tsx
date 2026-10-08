@@ -51,15 +51,22 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-20 sm:gap-4 sm:px-6">
         <Link
-          className="group flex min-w-0 shrink items-center gap-3.5"
+          aria-label="MaduTseylon — Home"
+          className="group flex min-w-0 shrink items-center gap-1 sm:gap-1.5"
           onClick={closeMenu}
           to="/"
         >
           <img
-            alt="Madu Tseylon Tours Logo"
-            className="h-16 w-auto max-w-[min(100%,9rem)] object-contain transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] sm:h-20 sm:max-w-none lg:h-28"
+            alt=""
+            className="h-16 w-auto max-w-[min(100%,7.5rem)] object-contain sm:h-20 sm:max-w-none lg:h-28"
             src={images.logo}
           />
+          <span className="brand-wordmark overflow-visible py-1 font-serif text-[0.95rem] leading-normal font-medium tracking-[0.02em] text-forest sm:text-xl lg:text-[1.65rem]">
+            Madu
+            <span className="brand-wordmark-accent font-normal italic text-tropical">
+              Tseylon
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-6 text-[14px] font-medium tracking-wide lg:flex xl:gap-8">
