@@ -165,7 +165,7 @@ export default function Contact() {
               <Reveal>
                 <div className="rounded-2xl border border-border-subtle bg-white p-4 shadow-sm sm:p-8">
                   <h2 className="mb-2 font-serif text-xl font-medium text-charcoal sm:text-2xl">
-                    Trip Inquiry Form
+                    Connect With Us
                   </h2>
                   <p className="mb-8 text-sm font-light text-muted">
                     Complete the form below. This is a frontend form only — no
@@ -240,77 +240,8 @@ export default function Contact() {
                           value={form.country}
                         />
                       </div>
-                      <div>
-                        <label className={labelClass} htmlFor="travelDates">
-                          Travel Dates
-                        </label>
-                        <input
-                          className={inputClass}
-                          id="travelDates"
-                          name="travelDates"
-                          onChange={(e) =>
-                            updateField("travelDates", e.target.value)
-                          }
-                          placeholder="e.g. March 2027"
-                          type="text"
-                          value={form.travelDates}
-                        />
-                      </div>
-                      <div>
-                        <label className={labelClass} htmlFor="travelers">
-                          Number of Travelers
-                        </label>
-                        <input
-                          className={inputClass}
-                          id="travelers"
-                          min={1}
-                          name="travelers"
-                          onChange={(e) =>
-                            updateField("travelers", e.target.value)
-                          }
-                          placeholder="2"
-                          type="number"
-                          value={form.travelers}
-                        />
-                      </div>
-                      <div>
-                        <label className={labelClass} htmlFor="destinations">
-                          Preferred Destinations
-                        </label>
-                        <input
-                          className={inputClass}
-                          id="destinations"
-                          name="destinations"
-                          onChange={(e) =>
-                            updateField("destinations", e.target.value)
-                          }
-                          placeholder="Sigiriya, Ella, Yala…"
-                          type="text"
-                          value={form.destinations}
-                        />
-                      </div>
-                      <div>
-                        <label className={labelClass} htmlFor="tourType">
-                          Tour Type
-                        </label>
-                        <select
-                          className={inputClass}
-                          id="tourType"
-                          name="tourType"
-                          onChange={(e) =>
-                            updateField("tourType", e.target.value)
-                          }
-                          value={form.tourType}
-                        >
-                          <option value="">Select a preference</option>
-                          <option value="classic">Classic Cultural</option>
-                          <option value="highland">Highland &amp; Tea</option>
-                          <option value="wildlife">Wildlife &amp; Beach</option>
-                          <option value="custom">Fully Custom</option>
-                          <option value="honeymoon">Honeymoon</option>
-                          <option value="family">Family</option>
-                        </select>
-                      </div>
+
+
                     </div>
 
                     <div>
@@ -333,7 +264,7 @@ export default function Contact() {
                         className="inline-flex w-full items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover sm:w-auto"
                         type="submit"
                       >
-                        Send Inquiry
+                        Send
                       </button>
                       <Link
                         className="text-center text-sm font-medium text-tropical transition-colors hover:text-forest sm:text-left"
