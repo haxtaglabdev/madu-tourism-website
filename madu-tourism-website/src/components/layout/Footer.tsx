@@ -104,7 +104,7 @@ export default function Footer() {
                   mail
                 </span>
                 <span className="min-w-0 break-all">
-                  concierge@madutseylontours.com
+                 madutseylon@gmail.com
                 </span>
               </div>
               <div className="pt-2">

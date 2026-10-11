@@ -163,21 +163,29 @@ export const galleryCategories = [
 
 export type GalleryCategory = (typeof galleryCategories)[number];
 
-export const galleryPageItems = galleryItems.map((item, index) => {
-  const categories: GalleryCategory[] = [
-    "Beaches",
-    "Local Life",
-    "Wildlife",
-    "Culture",
-    "Mountains",
-    "Beaches",
-    "Culture",
-    "Mountains",
-  ];
-  return {
-    ...item,
-    category: categories[index] ?? "Nature",
-  };
-});
+const galleryPageImageModules = import.meta.glob("../assets/gallery/*", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+
+const GALLERY_PAGE_IMAGE_EXTENSION_PATTERN = /\.(jpe?g|png|webp|avif)$/i;
+
+const galleryPageAspectPattern: Array<"portrait" | "square"> = [
+  "portrait",
+  "square",
+  "square",
+  "portrait",
+];
+
+export const galleryPageItems = Object.keys(galleryPageImageModules)
+  .filter((path) => GALLERY_PAGE_IMAGE_EXTENSION_PATTERN.test(path))
+  .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }))
+  .map((path, index) => ({
+    id: `gallery-page-${index + 1}`,
+    alt: "Sri Lankan travel photograph",
+    image: galleryPageImageModules[path],
+    aspect: galleryPageAspectPattern[index % galleryPageAspectPattern.length],
+    category: "Nature" as GalleryCategory,
+  }));
 
 export { destinations, packages, valuePillars, galleryItems };

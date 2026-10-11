@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { images } from "../assets";
 import PageMeta from "../components/seo/PageMeta";
@@ -17,6 +17,8 @@ interface ContactFormState {
   message: string;
 }
 
+type ContactFormErrors = Partial<Record<keyof ContactFormState, string>>;
+
 const initialForm: ContactFormState = {
   fullName: "",
   email: "",
@@ -29,25 +31,139 @@ const initialForm: ContactFormState = {
   message: "",
 };
 
+/** Existing Madu Tseylon concierge WhatsApp number (digits only, with country code). */
+const BUSINESS_WHATSAPP_NUMBER = "94770880425";
+
+const VISIBLE_FIELDS: Array<keyof ContactFormState> = [
+  "fullName",
+  "email",
+  "phone",
+  "country",
+  "message",
+];
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PHONE_PATTERN = /^\+?[\d\s().-]{8,25}$/;
+
 const inputClass =
   "w-full rounded-xl border border-border-subtle bg-white px-4 py-3 text-sm text-charcoal outline-none transition-colors placeholder:text-muted/60 focus:border-tropical focus:ring-2 focus:ring-tropical/20";
+
+const inputErrorClass =
+  "border-sunset focus:border-sunset focus:ring-sunset/20";
 
 const labelClass =
   "mb-1.5 block text-xs font-semibold tracking-wider text-charcoal uppercase";
 
+function fieldClassName(hasError: boolean, extra = "") {
+  return `${inputClass} ${hasError ? inputErrorClass : ""} ${extra}`.trim();
+}
+
+function displayValue(value: string) {
+  return value.trim() || "Not provided";
+}
+
+function isValidPhoneNumber(value: string) {
+  const trimmed = value.trim();
+  if (!PHONE_PATTERN.test(trimmed)) return false;
+  const digits = trimmed.replace(/\D/g, "");
+  return digits.length >= 8 && digits.length <= 15;
+}
+
+function validateContactForm(form: ContactFormState): ContactFormErrors {
+  const errors: ContactFormErrors = {};
+  const fullName = form.fullName.trim();
+  const email = form.email.trim();
+  const phone = form.phone.trim();
+  const country = form.country.trim();
+  const message = form.message.trim();
+
+  if (!fullName) {
+    errors.fullName = "Please enter your full name.";
+  }
+
+  if (!email) {
+    errors.email = "Please enter a valid email address.";
+  } else if (!EMAIL_PATTERN.test(email)) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (phone && !isValidPhoneNumber(phone)) {
+    errors.phone = "Please enter a valid phone number.";
+  }
+
+  if (form.country && !country) {
+    errors.country = "Please enter your country.";
+  }
+
+  if (form.message && !message) {
+    errors.message = "Please enter your inquiry message.";
+  }
+
+  return errors;
+}
+
+function buildInquiryMessage(form: ContactFormState) {
+  return [
+    "Hello Madu Tseylon Tours!",
+    "",
+    "I would like to inquire about a trip to Sri Lanka.",
+    "",
+    "My Details",
+    `- Full Name: ${form.fullName.trim()}`,
+    `- Email: ${form.email.trim()}`,
+    `- Phone: ${displayValue(form.phone)}`,
+    `- Country: ${displayValue(form.country)}`,
+    "",
+    "Additional Message:",
+    displayValue(form.message),
+    "",
+    "I look forward to hearing from you.",
+    "",
+    "Thank you!",
+  ].join("\n");
+}
+
 export default function Contact() {
   const [form, setForm] = useState<ContactFormState>(initialForm);
+  const [errors, setErrors] = useState<ContactFormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const isSubmittingRef = useRef(false);
 
   const updateField = (field: keyof ContactFormState, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setSubmitted(false);
+    setErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Frontend-only form — no backend is connected yet.
+    if (isSubmittingRef.current) return;
+
+    const nextErrors = validateContactForm(form);
+    setErrors(nextErrors);
+
+    const firstInvalid = VISIBLE_FIELDS.find((field) => nextErrors[field]);
+    if (firstInvalid) {
+      window.requestAnimationFrame(() => {
+        document.getElementById(firstInvalid)?.focus();
+      });
+      return;
+    }
+
+    isSubmittingRef.current = true;
+    const whatsappUrl = `https://wa.me/${BUSINESS_WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      buildInquiryMessage(form),
+    )}`;
+    window.location.href = whatsappUrl;
     setSubmitted(true);
+    window.setTimeout(() => {
+      isSubmittingRef.current = false;
+    }, 1000);
   };
 
   return (
@@ -149,7 +265,7 @@ export default function Contact() {
               <Reveal delay={260}>
                 <a
                   className="mt-6 inline-flex items-center gap-2 rounded-full border border-tropical/30 bg-white px-6 py-3 text-[13px] font-medium tracking-wide text-tropical transition-all duration-300 hover:bg-soft-mint"
-                  href="https://wa.me/94767006719"
+                  href={`https://wa.me/${BUSINESS_WHATSAPP_NUMBER}`}
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -165,11 +281,11 @@ export default function Contact() {
               <Reveal>
                 <div className="rounded-2xl border border-border-subtle bg-white p-4 shadow-sm sm:p-8">
                   <h2 className="mb-2 font-serif text-xl font-medium text-charcoal sm:text-2xl">
-                    Trip Inquiry Form
+                    Connect With Us
                   </h2>
                   <p className="mb-8 text-sm font-light text-muted">
-                    Complete the form below. This is a frontend form only — no
-                    messages are sent until a backend is connected.
+                    Complete the form below. When you send, WhatsApp will open
+                    with your inquiry so you can review and send it.
                   </p>
 
                   <form
@@ -184,7 +300,11 @@ export default function Contact() {
                         </label>
                         <input
                           required
-                          className={inputClass}
+                          aria-describedby={
+                            errors.fullName ? "fullName-error" : undefined
+                          }
+                          aria-invalid={Boolean(errors.fullName)}
+                          className={fieldClassName(Boolean(errors.fullName))}
                           id="fullName"
                           name="fullName"
                           onChange={(e) =>
@@ -194,6 +314,15 @@ export default function Contact() {
                           type="text"
                           value={form.fullName}
                         />
+                        {errors.fullName ? (
+                          <p
+                            className="mt-1.5 text-xs text-sunset"
+                            id="fullName-error"
+                            role="alert"
+                          >
+                            {errors.fullName}
+                          </p>
+                        ) : null}
                       </div>
                       <div>
                         <label className={labelClass} htmlFor="email">
@@ -201,7 +330,11 @@ export default function Contact() {
                         </label>
                         <input
                           required
-                          className={inputClass}
+                          aria-describedby={
+                            errors.email ? "email-error" : undefined
+                          }
+                          aria-invalid={Boolean(errors.email)}
+                          className={fieldClassName(Boolean(errors.email))}
                           id="email"
                           name="email"
                           onChange={(e) => updateField("email", e.target.value)}
@@ -209,13 +342,26 @@ export default function Contact() {
                           type="email"
                           value={form.email}
                         />
+                        {errors.email ? (
+                          <p
+                            className="mt-1.5 text-xs text-sunset"
+                            id="email-error"
+                            role="alert"
+                          >
+                            {errors.email}
+                          </p>
+                        ) : null}
                       </div>
                       <div>
                         <label className={labelClass} htmlFor="phone">
                           Phone
                         </label>
                         <input
-                          className={inputClass}
+                          aria-describedby={
+                            errors.phone ? "phone-error" : undefined
+                          }
+                          aria-invalid={Boolean(errors.phone)}
+                          className={fieldClassName(Boolean(errors.phone))}
                           id="phone"
                           name="phone"
                           onChange={(e) => updateField("phone", e.target.value)}
@@ -223,13 +369,26 @@ export default function Contact() {
                           type="tel"
                           value={form.phone}
                         />
+                        {errors.phone ? (
+                          <p
+                            className="mt-1.5 text-xs text-sunset"
+                            id="phone-error"
+                            role="alert"
+                          >
+                            {errors.phone}
+                          </p>
+                        ) : null}
                       </div>
                       <div>
                         <label className={labelClass} htmlFor="country">
                           Country
                         </label>
                         <input
-                          className={inputClass}
+                          aria-describedby={
+                            errors.country ? "country-error" : undefined
+                          }
+                          aria-invalid={Boolean(errors.country)}
+                          className={fieldClassName(Boolean(errors.country))}
                           id="country"
                           name="country"
                           onChange={(e) =>
@@ -239,78 +398,18 @@ export default function Contact() {
                           type="text"
                           value={form.country}
                         />
+                        {errors.country ? (
+                          <p
+                            className="mt-1.5 text-xs text-sunset"
+                            id="country-error"
+                            role="alert"
+                          >
+                            {errors.country}
+                          </p>
+                        ) : null}
                       </div>
-                      <div>
-                        <label className={labelClass} htmlFor="travelDates">
-                          Travel Dates
-                        </label>
-                        <input
-                          className={inputClass}
-                          id="travelDates"
-                          name="travelDates"
-                          onChange={(e) =>
-                            updateField("travelDates", e.target.value)
-                          }
-                          placeholder="e.g. March 2027"
-                          type="text"
-                          value={form.travelDates}
-                        />
-                      </div>
-                      <div>
-                        <label className={labelClass} htmlFor="travelers">
-                          Number of Travelers
-                        </label>
-                        <input
-                          className={inputClass}
-                          id="travelers"
-                          min={1}
-                          name="travelers"
-                          onChange={(e) =>
-                            updateField("travelers", e.target.value)
-                          }
-                          placeholder="2"
-                          type="number"
-                          value={form.travelers}
-                        />
-                      </div>
-                      <div>
-                        <label className={labelClass} htmlFor="destinations">
-                          Preferred Destinations
-                        </label>
-                        <input
-                          className={inputClass}
-                          id="destinations"
-                          name="destinations"
-                          onChange={(e) =>
-                            updateField("destinations", e.target.value)
-                          }
-                          placeholder="Sigiriya, Ella, Yala…"
-                          type="text"
-                          value={form.destinations}
-                        />
-                      </div>
-                      <div>
-                        <label className={labelClass} htmlFor="tourType">
-                          Tour Type
-                        </label>
-                        <select
-                          className={inputClass}
-                          id="tourType"
-                          name="tourType"
-                          onChange={(e) =>
-                            updateField("tourType", e.target.value)
-                          }
-                          value={form.tourType}
-                        >
-                          <option value="">Select a preference</option>
-                          <option value="classic">Classic Cultural</option>
-                          <option value="highland">Highland &amp; Tea</option>
-                          <option value="wildlife">Wildlife &amp; Beach</option>
-                          <option value="custom">Fully Custom</option>
-                          <option value="honeymoon">Honeymoon</option>
-                          <option value="family">Family</option>
-                        </select>
-                      </div>
+
+
                     </div>
 
                     <div>
@@ -318,7 +417,14 @@ export default function Contact() {
                         Message
                       </label>
                       <textarea
-                        className={`${inputClass} min-h-[140px] resize-y`}
+                        aria-describedby={
+                          errors.message ? "message-error" : undefined
+                        }
+                        aria-invalid={Boolean(errors.message)}
+                        className={fieldClassName(
+                          Boolean(errors.message),
+                          "min-h-[140px] resize-y",
+                        )}
                         id="message"
                         name="message"
                         onChange={(e) => updateField("message", e.target.value)}
@@ -326,6 +432,15 @@ export default function Contact() {
                         rows={5}
                         value={form.message}
                       />
+                      {errors.message ? (
+                        <p
+                          className="mt-1.5 text-xs text-sunset"
+                          id="message-error"
+                          role="alert"
+                        >
+                          {errors.message}
+                        </p>
+                      ) : null}
                     </div>
 
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -333,7 +448,7 @@ export default function Contact() {
                         className="inline-flex w-full items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover sm:w-auto"
                         type="submit"
                       >
-                        Send Inquiry
+                        Send
                       </button>
                       <Link
                         className="text-center text-sm font-medium text-tropical transition-colors hover:text-forest sm:text-left"
@@ -348,10 +463,8 @@ export default function Contact() {
                         className="rounded-xl border border-tropical/30 bg-soft-mint px-4 py-3 text-sm text-charcoal"
                         role="status"
                       >
-                        Thank you — your inquiry details are ready on this form.
-                        A backend is not connected yet, so nothing has been
-                        emailed. Please contact us by phone, email, or WhatsApp
-                        to continue planning.
+                        WhatsApp is opening with your inquiry. Please review the
+                        message and tap Send in WhatsApp to deliver it.
                       </p>
                     )}
                   </form>

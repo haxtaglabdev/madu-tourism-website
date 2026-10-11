@@ -5,13 +5,13 @@ import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
 import Reveal, { RevealGroup } from "../components/ui/Reveal";
 import {
-  galleryCategories,
+
   galleryPageItems,
   type GalleryCategory,
 } from "../data/pageContent";
 
 export default function Gallery() {
-  const [activeCategory, setActiveCategory] =
+  const [activeCategory,] =
     useState<GalleryCategory>("All");
 
   const filteredItems = useMemo(() => {
@@ -36,41 +36,8 @@ export default function Gallery() {
         />
 
         <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
-          <Reveal>
-            <p className="mx-auto mb-8 max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:mb-10 sm:text-base">
-              A premium editorial gallery of island moments. Filter by theme or
-              browse the full collection — every image is part of the Madu
-              Tseylon visual story.
-            </p>
-          </Reveal>
 
-          <Reveal delay={100}>
-            <div
-              aria-label="Gallery categories"
-              className="mb-8 flex flex-wrap items-center justify-center gap-2 sm:mb-12"
-              role="tablist"
-            >
-              {galleryCategories.map((category) => {
-                const isActive = activeCategory === category;
-                return (
-                  <button
-                    key={category}
-                    aria-selected={isActive}
-                    className={`rounded-full px-3 py-2 text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 sm:px-4 sm:text-xs ${
-                      isActive
-                        ? "bg-forest text-white shadow-sm"
-                        : "bg-soft-mint text-charcoal/80 hover:bg-tropical/15 hover:text-tropical"
-                    }`}
-                    onClick={() => setActiveCategory(category)}
-                    role="tab"
-                    type="button"
-                  >
-                    {category}
-                  </button>
-                );
-              })}
-            </div>
-          </Reveal>
+
 
           <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
             {filteredItems.map((item, index) => (

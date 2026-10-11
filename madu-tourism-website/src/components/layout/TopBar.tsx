@@ -22,7 +22,7 @@ export default function TopBar() {
           </a>
           <a
             className="hidden max-w-[16rem] items-center gap-1 truncate transition-colors hover:text-gold lg:flex lg:max-w-none"
-            href="mailto:concierge@madutseylontours.com"
+            href="mailto:madutseylon@gmail.com"
           >
             <span className="material-symbols-outlined shrink-0 text-[15px]">
               mail
