@@ -24,12 +24,7 @@ export default function PackagesSection() {
             Featured Travel Packages
           </h2>
         </Reveal>
-        <Reveal delay={180}>
-          <p className="text-base leading-relaxed font-light text-muted">
-            Completely flexible itineraries combining boutique heritage villas,
-            licensed private chauffeur-guides, and curated cultural encounters.
-          </p>
-        </Reveal>
+        
       </div>
 
       <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

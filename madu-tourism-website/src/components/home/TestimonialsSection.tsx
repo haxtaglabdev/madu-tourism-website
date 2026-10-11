@@ -19,12 +19,7 @@ export default function TestimonialsSection() {
             Memories From Our Guests
           </h2>
         </Reveal>
-        <Reveal delay={180}>
-          <p className="text-base leading-relaxed font-light text-muted">
-            Read genuine reflections from couples, families, and solo adventurers
-            who trusted Madu Tseylon Tours with their holiday.
-          </p>
-        </Reveal>
+        
       </div>
 
       <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

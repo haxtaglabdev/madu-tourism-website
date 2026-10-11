@@ -139,9 +139,9 @@ export default function About() {
 
         {/* Why Travel With Us */}
         <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
-          <div className="mb-10 max-w-2xl sm:mb-14">
+          <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
             <Reveal>
-              <div className="mb-2 flex items-center gap-2">
+              <div className="mb-2 inline-flex items-center justify-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                   Why Travel With Us
@@ -149,7 +149,7 @@ export default function About() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
                 The Madu Tseylon Difference
               </h2>
             </Reveal>
@@ -158,18 +158,18 @@ export default function About() {
             {whyTravelWithUs.map((item, index) => (
               <div
                 key={item.title}
-                className="reveal-item space-y-2 border-t border-border-subtle pt-5"
+                className="reveal-item space-y-2 border-t border-border-subtle pt-5 text-center"
                 style={{ "--reveal-index": index } as CSSProperties}
               >
-                <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-soft-mint text-tropical">
+                <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-soft-mint text-tropical">
                   <span className="material-symbols-outlined text-xl">
                     {item.icon}
                   </span>
                 </div>
-                <h3 className="text-sm font-semibold text-charcoal">
+                <h3 className="text-center text-sm font-semibold text-charcoal">
                   {item.title}
                 </h3>
-                <p className="text-xs leading-relaxed text-muted">
+                <p className="text-center text-xs leading-relaxed text-muted">
                   {item.description}
                 </p>
               </div>
@@ -180,18 +180,18 @@ export default function About() {
             {valuePillars.map((pillar, index) => (
               <div
                 key={pillar.title}
-                className="reveal-item space-y-1.5"
+                className="reveal-item space-y-1.5 text-center"
                 style={{ "--reveal-index": index } as CSSProperties}
               >
-                <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-soft-mint text-tropical">
+                <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-soft-mint text-tropical">
                   <span className="material-symbols-outlined text-xl">
                     {pillar.icon}
                   </span>
                 </div>
-                <h4 className="text-sm font-semibold text-charcoal">
+                <h4 className="text-center text-sm font-semibold text-charcoal">
                   {pillar.title}
                 </h4>
-                <p className="text-xs leading-relaxed text-muted">
+                <p className="text-center text-xs leading-relaxed text-muted">
                   {pillar.description}
                 </p>
               </div>
@@ -202,9 +202,9 @@ export default function About() {
         {/* Sri Lanka Expertise */}
         <section className="w-full bg-soft-mint py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="mb-10 max-w-2xl sm:mb-14">
+            <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
               <Reveal>
-                <div className="mb-2 flex items-center gap-2">
+                <div className="mb-2 inline-flex items-center justify-center gap-2">
                   <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
                   <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                     Sri Lanka Expertise
@@ -212,7 +212,7 @@ export default function About() {
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+                <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
                   Culture, Nature, Wildlife &amp; Coast
                 </h2>
               </Reveal>
@@ -231,16 +231,16 @@ export default function About() {
                       src={item.image}
                     />
                   </div>
-                  <div className="p-5">
-                    <div className="mb-2 flex items-center gap-2 text-tropical">
+                  <div className="p-5 text-center">
+                    <div className="mb-2 flex items-center justify-center gap-2 text-tropical">
                       <span className="material-symbols-outlined text-lg">
                         {item.icon}
                       </span>
-                      <h3 className="text-sm font-semibold text-charcoal">
+                      <h3 className="text-center text-sm font-semibold text-charcoal">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-xs leading-relaxed text-muted">
+                    <p className="text-center text-xs leading-relaxed text-muted">
                       {item.description}
                     </p>
                   </div>
@@ -252,9 +252,9 @@ export default function About() {
 
         {/* Values */}
         <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
-          <div className="mb-10 max-w-2xl sm:mb-14">
+          <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
             <Reveal>
-              <div className="mb-2 flex items-center gap-2">
+              <div className="mb-2 inline-flex items-center justify-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                   Travel Philosophy
@@ -262,7 +262,7 @@ export default function About() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
                 Values That Guide Every Journey
               </h2>
             </Reveal>
@@ -271,13 +271,13 @@ export default function About() {
             {travelValues.map((value, index) => (
               <div
                 key={value.title}
-                className="reveal-item"
+                className="reveal-item text-center"
                 style={{ "--reveal-index": index } as CSSProperties}
               >
-                <h3 className="mb-3 font-serif text-xl font-medium text-charcoal">
+                <h3 className="mb-3 text-center font-serif text-xl font-medium text-charcoal">
                   {value.title}
                 </h3>
-                <p className="text-sm leading-relaxed font-light text-muted">
+                <p className="text-center text-sm leading-relaxed font-light text-muted">
                   {value.description}
                 </p>
               </div>

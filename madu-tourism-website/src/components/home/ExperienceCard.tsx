@@ -24,9 +24,7 @@ export default function ExperienceCard({ experience, style }: ExperienceCardProp
         <h3 className="mb-1 font-serif text-lg font-medium text-white lg:text-xl">
           {experience.title}
         </h3>
-        <p className="line-clamp-3 text-xs font-light text-white/80 sm:line-clamp-none">
-          {experience.description}
-        </p>
+
       </div>
     </article>
   );
