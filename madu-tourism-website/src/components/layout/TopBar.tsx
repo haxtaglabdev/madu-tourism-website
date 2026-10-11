@@ -18,7 +18,7 @@ export default function TopBar() {
             href="tel:+94112345678"
           >
             <span className="material-symbols-outlined text-[15px]">call</span>
-            +94 11 234 5678
+            +94 77 088 0425
           </a>
           <a
             className="hidden max-w-[16rem] items-center gap-1 truncate transition-colors hover:text-gold lg:flex lg:max-w-none"
@@ -27,7 +27,7 @@ export default function TopBar() {
             <span className="material-symbols-outlined shrink-0 text-[15px]">
               mail
             </span>
-            <span className="truncate">madutseylontours@gmail.com</span>
+            <span className="truncate">madutseylon@gmail.com</span>
           </a>
         </div>
         <div className="flex shrink-0 items-center gap-3 text-white/70 lg:gap-4">

@@ -233,7 +233,7 @@ export default function Contact() {
                         className="mt-1 block text-sm font-light text-muted transition-colors hover:text-tropical"
                         href="tel:+94112345678"
                       >
-                        +94 11 234 5678
+                        +94 77 088 0425
                       </a>
                     </div>
                   </div>
@@ -408,8 +408,6 @@ export default function Contact() {
                           </p>
                         ) : null}
                       </div>
-
-
                     </div>
 
                     <div>
