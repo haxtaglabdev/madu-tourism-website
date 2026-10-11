@@ -131,9 +131,9 @@ export default function Contact() {
                       </p>
                       <a
                         className="mt-1 block break-all text-sm font-light text-muted transition-colors hover:text-tropical"
-                        href="mailto:concierge@madutseylontours.com"
+                        href="mailto:madutseylon@gmail.com"
                       >
-                        concierge@madutseylontours.com
+                        madutseylon@gmail.com
                       </a>
                     </div>
                   </div>

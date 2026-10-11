@@ -27,12 +27,7 @@ export default function GallerySection() {
               Postcards from the Island
             </h2>
           </Reveal>
-          <Reveal delay={180}>
-            <p className="text-sm font-light text-muted">
-              Authentic glimpses of daily rhythms, temple rites, wildlife, and
-              ocean sunsets.
-            </p>
-          </Reveal>
+
         </div>
 
         <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">

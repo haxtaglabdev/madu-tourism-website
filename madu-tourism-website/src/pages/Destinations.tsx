@@ -38,10 +38,10 @@ export default function Destinations() {
 
         <section className="w-full bg-soft-mint py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="mb-10 flex flex-col justify-between sm:mb-14 md:flex-row md:items-end">
+            <div className="mb-10 flex flex-col items-center text-center sm:mb-14">
               <div>
                 <Reveal>
-                  <div className="mb-2 flex items-center gap-2">
+                  <div className="mb-2 inline-flex items-center justify-center gap-2">
                     <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                     <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                       Featured Destinations
@@ -49,17 +49,11 @@ export default function Destinations() {
                   </div>
                 </Reveal>
                 <Reveal delay={100}>
-                  <h2 className="font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
+                  <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
                     Curated Island Destinations
                   </h2>
                 </Reveal>
               </div>
-              <Reveal delay={180} className="mt-4 max-w-md md:mt-0">
-                <p className="text-sm font-light text-muted">
-                  The same destinations featured on our Home page — ready to
-                  explore in more depth.
-                </p>
-              </Reveal>
             </div>
 
             <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-12">
@@ -76,9 +70,9 @@ export default function Destinations() {
         </section>
 
         <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
-          <div className="mb-10 max-w-2xl sm:mb-14">
+          <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
             <Reveal>
-              <div className="mb-2 flex items-center gap-2">
+              <div className="mb-2 inline-flex items-center justify-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
                   Destination Highlights
@@ -86,7 +80,7 @@ export default function Destinations() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
                 What You Can Experience
               </h2>
             </Reveal>

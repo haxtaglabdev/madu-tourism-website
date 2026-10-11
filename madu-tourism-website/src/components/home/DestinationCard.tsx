@@ -68,15 +68,7 @@ export default function DestinationCard({
         >
           {destination.title}
         </h3>
-        <p
-          className={`mb-3 text-white/80 ${
-            useLargeCopy
-              ? "mb-4 text-sm leading-relaxed font-light"
-              : "line-clamp-2 text-xs"
-          }`}
-        >
-          {destination.description}
-        </p>
+
         <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-gold uppercase transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
           {destination.linkLabel}
           <span className="material-symbols-outlined text-sm">

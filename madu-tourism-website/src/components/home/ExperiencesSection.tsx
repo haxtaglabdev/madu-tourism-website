@@ -10,10 +10,10 @@ export default function ExperiencesSection() {
       id="experiences"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="mb-10 flex flex-col justify-between sm:mb-16 md:flex-row md:items-end">
+        <div className="mb-10 flex flex-col items-center text-center sm:mb-16">
           <div>
             <Reveal>
-              <div className="mb-2 flex items-center gap-2">
+              <div className="mb-2 inline-flex items-center justify-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-gold" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">
                   Authentic Ceylon Memories
@@ -21,17 +21,12 @@ export default function ExperiencesSection() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="font-serif text-[1.75rem] font-medium text-white sm:text-3xl md:text-5xl">
+              <h2 className="text-center font-serif text-[1.75rem] font-medium text-white sm:text-3xl md:text-5xl">
                 Popular Experiences
               </h2>
             </Reveal>
           </div>
-          <Reveal delay={180} className="mt-4 max-w-md md:mt-0">
-            <p className="text-sm font-light text-white/70">
-              Every activity is led by local specialists who share their craft,
-              culture, and deep natural understanding.
-            </p>
-          </Reveal>
+          
         </div>
 
         <RevealGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

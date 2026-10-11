@@ -27,9 +27,11 @@ export default function TourPackages() {
         <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
           <Reveal>
             <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:text-base">
-              These are the same featured packages showcased on our Home page —
-              ready to inquire about, customise, or use as inspiration for a fully
-              private itinerary designed around your dates and interests.
+            One island. Countless experiences. Your journey, your way.
+
+            Discover our collection of Sri Lanka tours, thoughtfully designed for every kind of traveller.
+
+
             </p>
           </Reveal>
         </section>
