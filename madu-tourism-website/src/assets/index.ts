@@ -14,7 +14,7 @@ import logo from "./bgremove_logo.png";
 import sigiriya from "./sigiriya.jpg";
 import teaTrain from "./tea.jpg";
 import teaWoman from "./hero image test.jpg";
-import temple from "./IMG_6237.JPG.jpg";
+import temple from "./madu baby.jpg";
 import templeHeritage from "./temple.jpg";
 import stiltFishermen from "./unnamed.jpg";
 import leopardCloseup from "./unnamed (1).jpg";
