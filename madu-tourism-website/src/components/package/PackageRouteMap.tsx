@@ -2,14 +2,11 @@ import {
   AnimatePresence,
   motion,
   useReducedMotion,
-  useSpring,
 } from "framer-motion";
 import {
   useCallback,
-  useEffect,
   useId,
   useMemo,
-  useRef,
   useState,
   type KeyboardEvent,
   type PointerEvent as ReactPointerEvent,
@@ -17,9 +14,11 @@ import {
 import {
   SRI_LANKA_LAND_PATHS,
   SRI_LANKA_VIEWBOX,
+  SRI_LANKA_VIEWBOX_RECT,
 } from "../../data/sriLankaLandPaths";
 import { useInView } from "../../hooks/useInView";
 import {
+  buildRouteSegments,
   buildSoftRoutePathD,
   projectLatLngToSvg,
   type SvgPoint,
@@ -42,41 +41,75 @@ interface TooltipState {
   anchorY: number;
 }
 
-const MARKER_RADIUS = 14;
-const DRAW_DURATION = 1.65;
-const TRAVELER_DURATION = 2.4;
-
-function getPathLength(path: SVGPathElement | null): number {
-  if (!path) return 0;
-  try {
-    return path.getTotalLength();
-  } catch {
-    return 0;
-  }
+interface LabelPosition {
+  x: number;
+  y: number;
+  textAnchor: "start" | "middle" | "end";
 }
 
-/** Straight-line length estimate used until the SVG path can be measured. */
-function estimateRouteLength(points: readonly SvgPoint[]): number {
-  if (points.length < 2) return 0;
-  let length = 0;
-  for (let i = 1; i < points.length; i += 1) {
-    const dx = points[i].x - points[i - 1].x;
-    const dy = points[i].y - points[i - 1].y;
-    length += Math.hypot(dx, dy);
+const MARKER_RADIUS = 20;
+const START_DELAY = 0.35;
+const SEGMENT_DURATION = 0.85;
+const MARKER_POP_DURATION = 0.45;
+
+/** Smart, collision-free label positioning tailored to Sri Lanka's geography */
+function getDestinationLabelPosition(stop: ProjectedStop): LabelPosition {
+  const { x, y } = stop.point;
+  switch (stop.id) {
+    case "colombo":
+      // Out into the western ocean — clear of all inland route lines
+      return { x: x - 30, y: y + 8, textAnchor: "end" };
+    case "sigiriya":
+      // Positioned to the west of the rock fortress
+      return { x: x - 28, y: y + 7, textAnchor: "end" };
+    case "minneriya":
+      // Positioned to the east/north-east (away from Sigiriya)
+      return { x: x + 28, y: y - 6, textAnchor: "start" };
+    case "kandy":
+      // Positioned to the west
+      return { x: x - 28, y: y + 8, textAnchor: "end" };
+    case "nuwara-eliya":
+    case "nuwaraEliya":
+      // Positioned to the east into tea country
+      return { x: x + 28, y: y + 7, textAnchor: "start" };
+    case "ella":
+      // Positioned to the east
+      return { x: x + 28, y: y + 7, textAnchor: "start" };
+    case "yala":
+      // Positioned to the east/south-east
+      return { x: x + 28, y: y + 8, textAnchor: "start" };
+    case "weligama":
+      // Positioned to the west/north-west
+      return { x: x - 26, y: y - 8, textAnchor: "end" };
+    case "mirissa":
+      // Positioned to the east/south-east (clear of Weligama)
+      return { x: x + 26, y: y + 24, textAnchor: "start" };
+    default: {
+      const isSouth = y > 1500;
+      return {
+        x,
+        y: isSouth ? y - 36 : y + 42,
+        textAnchor: "middle",
+      };
+    }
   }
-  return length * 1.08;
 }
 
 export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) {
   const reactId = useId();
-  const gradientId = `pkg-route-grad-${reactId.replace(/:/g, "")}`;
-  const glowId = `pkg-route-glow-${reactId.replace(/:/g, "")}`;
-  const pathRef = useRef<SVGPathElement | null>(null);
-  const [containerRef, isInView] = useInView<HTMLDivElement>({ threshold: 0.2 });
+  const safeId = reactId.replace(/:/g, "");
+  const gradientId = `pkg-route-grad-${safeId}`;
+  const glowId = `pkg-route-glow-${safeId}`;
+  const landShadowId = `pkg-land-shadow-${safeId}`;
+  const routeShadowId = `pkg-route-shadow-${safeId}`;
+
+  const [containerRef, isInView] = useInView<HTMLDivElement>({
+    threshold: 0.15,
+    once: true,
+  });
   const prefersReducedMotion = useReducedMotion();
   const reduceMotion = Boolean(prefersReducedMotion);
 
-  const [measuredLength, setMeasuredLength] = useState(0);
   const [activeStopId, setActiveStopId] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
@@ -100,62 +133,13 @@ export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) 
     [routePoints],
   );
 
-  const hasRoute = projectedStops.length >= 2;
-  const estimatedLength = useMemo(
-    () => estimateRouteLength(routePoints),
+  const routeSegments = useMemo(
+    () => buildRouteSegments(routePoints),
     [routePoints],
   );
-  const pathLength = measuredLength > 0 ? measuredLength : estimatedLength;
-  const drawn = isInView && (!hasRoute || pathLength > 0);
 
-  const travelerX = useSpring(0, { stiffness: 120, damping: 22 });
-  const travelerY = useSpring(0, { stiffness: 120, damping: 22 });
-
-  const assignPathRef = useCallback((node: SVGPathElement | null) => {
-    pathRef.current = node;
-    if (!node) return;
-    window.requestAnimationFrame(() => {
-      const length = getPathLength(node);
-      setMeasuredLength(length);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (!drawn || !hasRoute || !pathRef.current || pathLength <= 0) return;
-
-    const path = pathRef.current;
-
-    if (reduceMotion) {
-      const end = path.getPointAtLength(Math.min(pathLength, path.getTotalLength()));
-      travelerX.jump(end.x);
-      travelerY.jump(end.y);
-      return;
-    }
-
-    let frame = 0;
-    const start = performance.now();
-    const delayMs = DRAW_DURATION * 0.35 * 1000;
-    const total = path.getTotalLength() || pathLength;
-
-    const startPoint = path.getPointAtLength(0);
-    travelerX.jump(startPoint.x);
-    travelerY.jump(startPoint.y);
-
-    const animate = (now: number) => {
-      const elapsed = Math.max(0, now - start - delayMs) / 1000;
-      const t = Math.min(1, elapsed / TRAVELER_DURATION);
-      const eased = 1 - (1 - t) ** 3;
-      const point = path.getPointAtLength(total * eased);
-      travelerX.set(point.x);
-      travelerY.set(point.y);
-      if (t < 1) {
-        frame = window.requestAnimationFrame(animate);
-      }
-    };
-
-    frame = window.requestAnimationFrame(animate);
-    return () => window.cancelAnimationFrame(frame);
-  }, [drawn, hasRoute, pathLength, reduceMotion, travelerX, travelerY]);
+  const hasRoute = projectedStops.length >= 2;
+  const drawn = isInView;
 
   const openTooltip = useCallback((stop: ProjectedStop) => {
     setActiveStopId(stop.id);
@@ -219,106 +203,152 @@ export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) 
       onPointerLeave={handlePointerLeaveMap}
       ref={containerRef}
     >
-      <svg
-        aria-label={`Journey route map for ${title}`}
-        className="pkg-route-map"
-        role="img"
-        viewBox={SRI_LANKA_VIEWBOX}
-      >
+      <div className="pkg-route-map__canvas-wrap">
+        <svg
+          aria-label={`Journey route map for ${title}`}
+          className="pkg-route-map"
+          role="img"
+          viewBox={SRI_LANKA_VIEWBOX}
+        >
         <title>{title}</title>
         <desc>
-          Accurate geographic map of Sri Lanka showing the curated travel route
-          for {title}. Map outline derived from Natural Earth data.
+          Geographic map of Sri Lanka illustrating the travel route for {title}.
+          Features sequential route drawing and prominent destination landmarks.
         </desc>
 
         <defs>
+          {/* Brand-aligned rich emerald-to-orange gradient */}
           <linearGradient id={gradientId} x1="0%" x2="100%" y1="0%" y2="100%">
-            <stop offset="0%" stopColor="var(--pkg-forest)" stopOpacity="0.55" />
-            <stop
-              offset="100%"
-              stopColor="var(--pkg-tropical)"
-              stopOpacity="0.9"
-            />
+            <stop offset="0%" stopColor="var(--pkg-tropical)" stopOpacity="0.95" />
+            <stop offset="50%" stopColor="var(--pkg-forest)" stopOpacity="0.98" />
+            <stop offset="100%" stopColor="var(--pkg-orange)" stopOpacity="1" />
           </linearGradient>
-          <filter id={glowId} x="-40%" y="-40%" width="180%" height="180%">
+
+          {/* Island ambient depth shadow to make Sri Lanka visually pop */}
+          <filter id={landShadowId} x="-10%" y="-10%" width="130%" height="130%">
+            <feDropShadow
+              dx="0"
+              dy="8"
+              floodColor="#00241a"
+              floodOpacity="0.14"
+              stdDeviation="12"
+            />
+          </filter>
+
+          {/* Marker luminous glow */}
+          <filter id={glowId} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur result="blur" stdDeviation="6" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
+
+          {/* Route path subtle depth shadow */}
+          <filter id={routeShadowId} x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow
+              dx="0"
+              dy="3"
+              floodColor="#003d2c"
+              floodOpacity="0.3"
+              stdDeviation="4"
+            />
+          </filter>
         </defs>
 
+        {/* Ocean Background Canvas */}
         <rect
           className="pkg-route-map__ocean"
-          height="1838"
-          width="1200"
-          x="0"
-          y="0"
+          height={SRI_LANKA_VIEWBOX_RECT.height}
+          rx={16}
+          ry={16}
+          width={SRI_LANKA_VIEWBOX_RECT.width}
+          x={SRI_LANKA_VIEWBOX_RECT.x}
+          y={SRI_LANKA_VIEWBOX_RECT.y}
         />
 
-        <g aria-hidden="true" className="pkg-route-map__land">
+        {/* Sri Lanka Landmass with Depth Shadow */}
+        <g
+          aria-hidden="true"
+          className="pkg-route-map__land"
+          filter={`url(#${landShadowId})`}
+        >
           {SRI_LANKA_LAND_PATHS.map((d, index) => (
             <path d={d} key={`land-${index}`} />
           ))}
         </g>
 
+        {/* Route Lines */}
         {hasRoute ? (
           <>
+            {/* Subtle roadmap guide track underneath */}
             <path className="pkg-route-map__path-track" d={routePathD} />
-            <motion.path
-              animate={{
-                strokeDashoffset:
-                  (drawn || reduceMotion) && pathLength > 0
-                    ? 0
-                    : Math.max(pathLength, 1),
-                opacity: drawn || reduceMotion ? 1 : 0.2,
-              }}
-              className="pkg-route-map__path"
-              d={routePathD}
-              initial={false}
-              ref={assignPathRef}
-              stroke={`url(#${gradientId})`}
-              style={{
-                strokeDasharray: Math.max(pathLength, 1),
-              }}
-              transition={
-                reduceMotion
-                  ? { duration: 0 }
-                  : { duration: DRAW_DURATION, ease: [0.22, 1, 0.36, 1] }
-              }
-            />
+
+            {/* Individual Sequential Path Segments */}
+            {routeSegments.map((segment) => {
+              const segmentDelay = START_DELAY + segment.index * SEGMENT_DURATION;
+              return (
+                <motion.path
+                  animate={
+                    drawn || reduceMotion
+                      ? { pathLength: 1, opacity: 1 }
+                      : { pathLength: 0, opacity: 0 }
+                  }
+                  className="pkg-route-map__path"
+                  d={segment.d}
+                  filter={`url(#${routeShadowId})`}
+                  initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
+                  key={`seg-${segment.index}`}
+                  stroke={`url(#${gradientId})`}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : {
+                          pathLength: {
+                            delay: segmentDelay,
+                            duration: SEGMENT_DURATION,
+                            ease: [0.22, 1, 0.36, 1],
+                          },
+                          opacity: {
+                            delay: segmentDelay,
+                            duration: 0.05,
+                          },
+                        }
+                  }
+                />
+              );
+            })}
           </>
         ) : null}
 
-        {drawn && hasRoute && !reduceMotion ? (
-          <motion.circle
-            aria-hidden="true"
-            className="pkg-route-map__traveler"
-            r={9}
-            style={{ cx: travelerX, cy: travelerY }}
-          />
-        ) : null}
-
+        {/* Destination Markers */}
         {projectedStops.map((stop, index) => {
           const isActive = activeStopId === stop.id;
-          const labelAbove = stop.point.y > 1450;
-          const labelY = labelAbove ? stop.point.y - 38 : stop.point.y + 42;
+          const labelPos = getDestinationLabelPosition(stop);
+          const arrivalDelay =
+            index === 0
+              ? START_DELAY
+              : START_DELAY + index * SEGMENT_DURATION;
 
           return (
             <motion.g
+              animate={
+                drawn || reduceMotion
+                  ? { opacity: 1, scale: 1 }
+                  : { opacity: 0, scale: 0.55 }
+              }
               aria-label={`${stop.order}. ${stop.name}${
                 stop.description ? ` — ${stop.description}` : ""
               }`}
               className={`pkg-route-map__stop${isActive ? " is-active" : ""}`}
-              initial={reduceMotion ? false : { opacity: 0, scale: 0.6 }}
-              animate={
-                drawn || reduceMotion
-                  ? { opacity: 1, scale: 1 }
-                  : { opacity: 0, scale: 0.6 }
-              }
+              id={`pkg-marker-${stop.id}`}
+              initial={reduceMotion ? false : { opacity: 0, scale: 0.55 }}
               key={stop.id}
               onBlur={closeTooltip}
+              onClick={(event) => {
+                event.stopPropagation();
+                handleMarkerActivate(stop);
+              }}
               onFocus={() => openTooltip(stop)}
               onKeyDown={(event) => handleMarkerKeyDown(event, stop)}
               onPointerDown={(event) => {
@@ -336,20 +366,42 @@ export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) 
                 reduceMotion
                   ? { duration: 0 }
                   : {
-                      delay: 0.35 + index * 0.12,
-                      duration: 0.45,
-                      ease: [0.22, 1, 0.36, 1],
+                      delay: arrivalDelay,
+                      duration: MARKER_POP_DURATION,
+                      ease: [0.34, 1.56, 0.64, 1],
                     }
               }
               whileHover={reduceMotion ? undefined : { scale: 1.12 }}
               whileTap={reduceMotion ? undefined : { scale: 1.06 }}
             >
+              {/* Generous touch/pointer target area */}
               <circle
                 className="pkg-route-map__stop-hit"
                 cx={stop.point.x}
                 cy={stop.point.y}
                 r={MARKER_RADIUS * 2.2}
               />
+
+              {/* Dynamic Arrival Ripple Highlight: pulses outward as route reaches stop */}
+              {!reduceMotion && drawn ? (
+                <motion.circle
+                  animate={{
+                    r: [MARKER_RADIUS, MARKER_RADIUS + 20, MARKER_RADIUS + 6],
+                    opacity: [0, 0.95, 0],
+                  }}
+                  className="pkg-route-map__stop-arrival-pulse"
+                  cx={stop.point.x}
+                  cy={stop.point.y}
+                  initial={{ r: MARKER_RADIUS, opacity: 0 }}
+                  transition={{
+                    delay: arrivalDelay,
+                    duration: 0.85,
+                    ease: "easeOut",
+                  }}
+                />
+              ) : null}
+
+              {/* Persistent hover/active glow ring */}
               <circle
                 className="pkg-route-map__stop-pulse"
                 cx={stop.point.x}
@@ -357,18 +409,24 @@ export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) 
                 filter={isActive ? `url(#${glowId})` : undefined}
                 r={MARKER_RADIUS + 10}
               />
+
+              {/* High-visibility white backdrop ring with shadow */}
               <circle
                 className="pkg-route-map__stop-ring"
                 cx={stop.point.x}
                 cy={stop.point.y}
-                r={MARKER_RADIUS}
+                r={MARKER_RADIUS + 2.5}
               />
+
+              {/* Brand Orange Core Marker */}
               <circle
                 className="pkg-route-map__stop-dot"
                 cx={stop.point.x}
                 cy={stop.point.y}
-                r={MARKER_RADIUS - 3}
+                r={MARKER_RADIUS}
               />
+
+              {/* High-contrast bold order number */}
               <text
                 className="pkg-route-map__stop-order"
                 dominantBaseline="central"
@@ -378,11 +436,13 @@ export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) 
               >
                 {stop.order}
               </text>
+
+              {/* Crisp, prominent destination label with white halo */}
               <text
                 className="pkg-route-map__label"
-                textAnchor="middle"
-                x={stop.point.x}
-                y={labelY}
+                textAnchor={labelPos.textAnchor}
+                x={labelPos.x}
+                y={labelPos.y}
               >
                 {stop.name}
               </text>
@@ -391,36 +451,55 @@ export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) 
         })}
       </svg>
 
+      {/* Floating Destination Tooltip */}
       <AnimatePresence>
-        {tooltip ? (
-          <motion.div
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            aria-hidden="true"
-            className="pkg-route-map__tooltip"
-            exit={reduceMotion ? undefined : { opacity: 0, y: 4, scale: 0.96 }}
-            initial={reduceMotion ? false : { opacity: 0, y: 6, scale: 0.96 }}
-            key={tooltip.stop.id}
-            style={{
-              left: `${(tooltip.anchorX / 1200) * 100}%`,
-              top: `${(tooltip.anchorY / 1838) * 100}%`,
-            }}
-            transition={{ duration: reduceMotion ? 0 : 0.2 }}
-          >
-            <span className="pkg-route-map__tooltip-order">
-              Stop {tooltip.stop.order}
-            </span>
-            <strong className="pkg-route-map__tooltip-name">
-              {tooltip.stop.name}
-            </strong>
-            {tooltip.stop.description ? (
-              <span className="pkg-route-map__tooltip-desc">
-                {tooltip.stop.description}
-              </span>
-            ) : null}
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+        {tooltip ? (() => {
+          const leftPercent =
+            ((tooltip.anchorX - SRI_LANKA_VIEWBOX_RECT.x) /
+              SRI_LANKA_VIEWBOX_RECT.width) *
+            100;
+          const topPercent =
+            ((tooltip.anchorY - SRI_LANKA_VIEWBOX_RECT.y) /
+              SRI_LANKA_VIEWBOX_RECT.height) *
+            100;
+          const translateX =
+            leftPercent < 22 ? "-12%" : leftPercent > 78 ? "-88%" : "-50%";
+          const translateY = "calc(-100% - 22px)";
 
+          return (
+            <motion.div
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              aria-hidden="true"
+              className="pkg-route-map__tooltip"
+              exit={reduceMotion ? undefined : { opacity: 0, y: 4, scale: 0.96 }}
+              id="pkg-route-map-tooltip"
+              initial={reduceMotion ? false : { opacity: 0, y: 6, scale: 0.96 }}
+              key={tooltip.stop.id}
+              style={{
+                left: `${leftPercent}%`,
+                top: `${topPercent}%`,
+                transform: `translate(${translateX}, ${translateY})`,
+              }}
+              transition={{ duration: reduceMotion ? 0 : 0.2 }}
+            >
+              <span className="pkg-route-map__tooltip-order">
+                Stop {tooltip.stop.order}
+              </span>
+              <strong className="pkg-route-map__tooltip-name">
+                {tooltip.stop.name}
+              </strong>
+              {tooltip.stop.description ? (
+                <span className="pkg-route-map__tooltip-desc">
+                  {tooltip.stop.description}
+                </span>
+              ) : null}
+            </motion.div>
+          );
+        })() : null}
+      </AnimatePresence>
+      </div>
+
+      {/* Interactive Destination Legend */}
       <ol className="pkg-route-map__legend">
         {projectedStops.map((stop) => (
           <li key={stop.id}>
@@ -429,7 +508,11 @@ export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) 
               className={`pkg-route-map__legend-btn${
                 activeStopId === stop.id ? " is-active" : ""
               }`}
-              onClick={() => handleMarkerActivate(stop)}
+              id={`pkg-legend-btn-${stop.id}`}
+              onClick={(event) => {
+                event.stopPropagation();
+                handleMarkerActivate(stop);
+              }}
               type="button"
             >
               <span className="pkg-route-map__legend-index">{stop.order}</span>
@@ -438,7 +521,6 @@ export default function PackageRouteMap({ stops, title }: PackageRouteMapProps) 
           </li>
         ))}
       </ol>
-
     </div>
   );
 }

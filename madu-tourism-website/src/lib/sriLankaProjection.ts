@@ -62,3 +62,40 @@ export function buildSoftRoutePathD(points: readonly SvgPoint[]): string {
   d += ` C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${last.x.toFixed(2)} ${last.y.toFixed(2)}, ${last.x.toFixed(2)} ${last.y.toFixed(2)}`;
   return d;
 }
+
+export interface RouteSegment {
+  index: number;
+  from: SvgPoint;
+  to: SvgPoint;
+  d: string;
+}
+
+/** Break continuous route into individual sequential curve segments. */
+export function buildRouteSegments(
+  points: readonly SvgPoint[],
+): RouteSegment[] {
+  if (points.length < 2) return [];
+  const segments: RouteSegment[] = [];
+
+  for (let i = 0; i < points.length - 1; i += 1) {
+    const current = points[i];
+    const next = points[i + 1];
+    const afterNext = points[i + 2];
+
+    const c1x = current.x + (next.x - current.x) * 0.55;
+    const c1y = current.y + (next.y - current.y) * 0.55;
+    const c2x = afterNext ? next.x - (afterNext.x - current.x) * 0.12 : next.x;
+    const c2y = afterNext ? next.y - (afterNext.y - current.y) * 0.12 : next.y;
+
+    const d = `M ${current.x.toFixed(2)} ${current.y.toFixed(2)} C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${next.x.toFixed(2)} ${next.y.toFixed(2)}`;
+
+    segments.push({
+      index: i,
+      from: current,
+      to: next,
+      d,
+    });
+  }
+
+  return segments;
+}

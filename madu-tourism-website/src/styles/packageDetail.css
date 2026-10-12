@@ -243,8 +243,8 @@
 
 .pkg-overview__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-  gap: 3rem 3.5rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  gap: 2.5rem 2.75rem;
   align-items: start;
 }
 
@@ -295,23 +295,27 @@
 
 .pkg-stats__item {
   min-width: 0;
+  overflow: hidden;
 }
 
 .pkg-stats__value {
   display: block;
   font-family: var(--pkg-serif);
-  font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.65rem);
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--pkg-forest);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pkg-stats__label {
   display: block;
   margin-top: 0.35rem;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--pkg-muted-2);
 }
@@ -319,6 +323,8 @@
 .pkg-map-panel {
   background: var(--pkg-parchment);
   border: 1px solid var(--pkg-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(23, 43, 37, 0.04);
   padding: 1.5rem 1.35rem 1.35rem;
 }
 
@@ -369,12 +375,18 @@
   width: 100%;
 }
 
+.pkg-route-map__canvas-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 980 / 1660;
+  max-height: min(78vh, 660px);
+  margin-inline: auto;
+}
+
 .pkg-route-map {
   width: 100%;
-  aspect-ratio: 1200 / 1838;
+  height: 100%;
   display: block;
-  max-height: min(62vh, 520px);
-  margin-inline: auto;
   overflow: visible;
 }
 
@@ -398,22 +410,33 @@
 }
 
 .pkg-route-map__ocean {
-  fill: #e7efe9;
+  fill: #e1ede6;
+  stroke: rgba(0, 61, 44, 0.08);
+  stroke-width: 1.5;
 }
 
 .pkg-route-map__land {
-  fill: #ebe4d6;
-  stroke: #cbbfaa;
-  stroke-width: 1.5;
+  fill: #faf7ef;
+  stroke: #c8bba3;
+  stroke-width: 2.2;
   stroke-linejoin: round;
+}
+
+.pkg-route-map__land path {
+  fill: #faf7ef;
+  stroke: #c8bba3;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  transition: fill 180ms ease;
 }
 
 .pkg-route-map__path-track {
   fill: none;
-  stroke: rgba(0, 61, 44, 0.12);
+  stroke: rgba(0, 61, 44, 0.14);
   stroke-width: 7;
   stroke-linecap: round;
   stroke-linejoin: round;
+  stroke-dasharray: 6 10;
 }
 
 .pkg-route-map__path {
@@ -438,16 +461,24 @@
 
 .pkg-route-map__stop:focus-visible .pkg-route-map__stop-ring {
   stroke: var(--pkg-forest);
-  stroke-width: 3;
+  stroke-width: 3.5;
 }
 
 .pkg-route-map__stop-hit {
   fill: transparent;
 }
 
+.pkg-route-map__stop-arrival-pulse {
+  fill: rgba(245, 154, 35, 0.22);
+  stroke: rgba(245, 154, 35, 0.75);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
 .pkg-route-map__stop-pulse {
-  fill: rgba(245, 154, 35, 0.12);
-  stroke: none;
+  fill: rgba(245, 154, 35, 0.18);
+  stroke: rgba(245, 154, 35, 0.55);
+  stroke-width: 1.5;
   opacity: 0;
   transition: opacity 220ms ease;
 }
@@ -458,34 +489,44 @@
 }
 
 .pkg-route-map__stop-ring {
-  fill: none;
-  stroke: rgba(245, 154, 35, 0.45);
+  fill: #ffffff;
+  stroke: rgba(0, 61, 44, 0.18);
   stroke-width: 2.5;
+  filter: drop-shadow(0 2px 5px rgba(23, 43, 37, 0.25));
 }
 
 .pkg-route-map__stop-dot {
   fill: var(--pkg-orange);
   stroke: #ffffff;
   stroke-width: 3;
+  transition: fill 200ms ease;
+}
+
+.pkg-route-map__stop.is-active .pkg-route-map__stop-dot,
+.pkg-route-map__stop:hover .pkg-route-map__stop-dot {
+  fill: var(--pkg-orange-hover);
 }
 
 .pkg-route-map__stop-order {
   fill: #ffffff;
   font-family: var(--pkg-sans);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   pointer-events: none;
 }
 
 .pkg-route-map__label {
   fill: var(--pkg-text);
   font-family: var(--pkg-sans);
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  paint-order: stroke;
-  stroke: rgba(245, 242, 235, 0.92);
-  stroke-width: 6px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  paint-order: stroke fill;
+  stroke: #ffffff;
+  stroke-width: 8px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
   pointer-events: none;
 }
 
@@ -1012,15 +1053,16 @@
   }
 
   .pkg-map-panel {
-    max-width: 520px;
+    max-width: 580px;
+    margin-inline: auto;
   }
 
-  .pkg-route-map {
-    max-height: min(54vh, 460px);
+  .pkg-route-map__canvas-wrap {
+    max-height: min(68vh, 580px);
   }
 
   .pkg-route-map__label {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .pkg-experiences__grid {
@@ -1061,6 +1103,15 @@
 
   .pkg-overview {
     padding: 3.25rem 0 3rem;
+  }
+
+  .pkg-map-panel {
+    max-width: 100%;
+    padding: 1.25rem 0.9rem;
+  }
+
+  .pkg-route-map__canvas-wrap {
+    max-height: min(72vh, 520px);
   }
 
   .pkg-stats {
