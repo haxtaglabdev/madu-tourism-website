@@ -22,12 +22,12 @@ export default function About() {
       />
       <main>
         <PageHero
-          description="A licensed Sri Lankan destination management company crafting private chauffeur journeys, boutique stays, and responsible wildlife expeditions."
+          description="A licensed Sri Lankan destination management company . Seven Years of Exploring Sri Lanka."
           eyebrow="About Madu Tseylon Tours"
-          highlight="Tours"
+          highlight="Journey"
           image={images.teaWoman}
           imageAlt="Ceylon tea plucking in emerald hills"
-          title="About Madu Tseylon"
+          title="Our Island, Your "
         />
 
         {/* Our Story */}
