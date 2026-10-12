@@ -7,6 +7,7 @@ import Destinations from "./pages/Destinations";
 import Gallery from "./pages/Gallery";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import PackageDetail from "./pages/PackageDetail";
 import TourPackages from "./pages/TourPackages";
 
 export default function App() {
@@ -19,6 +20,10 @@ export default function App() {
           <Route element={<About />} path="/about" />
           <Route element={<Destinations />} path="/destinations" />
           <Route element={<TourPackages />} path="/tour-packages" />
+          <Route
+            element={<PackageDetail />}
+            path="/tour-packages/:slug"
+          />
           <Route element={<Gallery />} path="/gallery" />
           <Route element={<Contact />} path="/contact" />
           <Route element={<NotFound />} path="*" />

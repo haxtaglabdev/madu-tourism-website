@@ -1,5 +1,5 @@
 import { useRef, useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { images } from "../assets";
 import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
@@ -19,17 +19,22 @@ interface ContactFormState {
 
 type ContactFormErrors = Partial<Record<keyof ContactFormState, string>>;
 
-const initialForm: ContactFormState = {
-  fullName: "",
-  email: "",
-  phone: "",
-  country: "",
-  travelDates: "",
-  travelers: "",
-  destinations: "",
-  tourType: "",
-  message: "",
-};
+function createInitialForm(packageName?: string | null): ContactFormState {
+  const trimmed = packageName?.trim();
+  return {
+    fullName: "",
+    email: "",
+    phone: "",
+    country: "",
+    travelDates: "",
+    travelers: "",
+    destinations: "",
+    tourType: "",
+    message: trimmed
+      ? `I would like to inquire about the "${trimmed}" package.`
+      : "",
+  };
+}
 
 /** Existing Madu Tseylon concierge WhatsApp number (digits only, with country code). */
 const BUSINESS_WHATSAPP_NUMBER = "94770880425";
@@ -102,7 +107,14 @@ function validateContactForm(form: ContactFormState): ContactFormErrors {
   return errors;
 }
 
-function buildInquiryMessage(form: ContactFormState) {
+function buildInquiryMessage(
+  form: ContactFormState,
+  packageName?: string | null,
+) {
+  const packageLine = packageName?.trim()
+    ? [`- Package: ${packageName.trim()}`, ""]
+    : [];
+
   return [
     "Hello Madu Tseylon Tours!",
     "",
@@ -113,7 +125,7 @@ function buildInquiryMessage(form: ContactFormState) {
     `- Email: ${form.email.trim()}`,
     `- Phone: ${displayValue(form.phone)}`,
     `- Country: ${displayValue(form.country)}`,
-    "",
+    ...packageLine,
     "Additional Message:",
     displayValue(form.message),
     "",
@@ -124,7 +136,21 @@ function buildInquiryMessage(form: ContactFormState) {
 }
 
 export default function Contact() {
-  const [form, setForm] = useState<ContactFormState>(initialForm);
+  const [searchParams] = useSearchParams();
+  const packageName = searchParams.get("package");
+
+  return (
+    <ContactPage
+      key={packageName ?? "general"}
+      packageName={packageName}
+    />
+  );
+}
+
+function ContactPage({ packageName }: { packageName: string | null }) {
+  const [form, setForm] = useState<ContactFormState>(() =>
+    createInitialForm(packageName),
+  );
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const isSubmittingRef = useRef(false);
@@ -157,7 +183,7 @@ export default function Contact() {
 
     isSubmittingRef.current = true;
     const whatsappUrl = `https://wa.me/${BUSINESS_WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      buildInquiryMessage(form),
+      buildInquiryMessage(form, packageName),
     )}`;
     window.location.href = whatsappUrl;
     setSubmitted(true);
