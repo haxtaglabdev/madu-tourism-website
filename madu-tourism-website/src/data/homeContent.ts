@@ -21,21 +21,21 @@ export const navLinks: NavItem[] = [
 export const valuePillars: ValuePillar[] = [
   {
     icon: "psychology",
-    title: "Decades of Roots",
+    title: "Authentic Local Experiences",
     description:
-      "Lifelong insider access, local chiefs, and secret panorama points.",
+      "Discover hidden trails, family-run estates, and artisan villages away from tourist crowds",
   },
   {
     icon: "directions_car",
-    title: "Private Chauffeurs",
+    title: "Private Chauffeur Journeys",
     description:
-      "English-speaking certified naturalist drivers in luxury climate-controlled fleet.",
+      "Explore in comfort with personalised travel and private chauffeur services.",
   },
   {
     icon: "eco",
-    title: "Responsible Eco-Care",
+    title: "Thoughtful & Responsible Travel",
     description:
-      "Direct support to rural conservationists, weavers, and village schools.",
+      "Experience Sri Lanka while respecting its communities, culture, and natural beauty.",
   },
 ];
 

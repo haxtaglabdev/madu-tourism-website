@@ -17,7 +17,8 @@ export default function Destinations() {
       />
       <main>
         <PageHero
-          description="From central cloud forests and ancient citadel heights down to turquoise southern reef waters — discover the territories we know intimately."
+          description="From misty mountain peaks to turquoise southern shores, discover the extraordinary beauty of Sri Lanka, one 
+          unforgettable destination at a time."
           eyebrow="Iconic Territories"
           highlight="Lanka"
           image={images.sigiriya}
@@ -28,10 +29,8 @@ export default function Destinations() {
         <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
           <Reveal>
             <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:text-base">
-              Each destination below appears on our Home page as a curated
-              preview. Here we expand the same places with travel highlights so
-              you can begin shaping a journey that fits your pace — culture,
-              wildlife, highlands, or coast.
+              Explore Sri Lanka’s most captivating destinations, from rich cultural heritage and incredible wildlife to scenic highlands and
+              sun-kissed shores. Find the places that inspire you and create a journey that feels uniquely yours.
             </p>
           </Reveal>
         </section>

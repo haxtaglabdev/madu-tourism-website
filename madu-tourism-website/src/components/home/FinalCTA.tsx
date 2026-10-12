@@ -16,14 +16,13 @@ export default function FinalCTA() {
         </Reveal>
         <Reveal delay={100}>
           <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-5xl">
-            Ready to Experience the Magic of Ceylon?
+            Your Sri Lankan Journey Begins Here
           </h2>
         </Reveal>
         <Reveal delay={180}>
           <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed font-light text-white/80 sm:mb-10 sm:text-base">
-            Speak directly with our senior destination designers in Colombo. We
-            will tailor an exclusive day-by-day itinerary with verified hotel
-            availability within 24 hours.
+            Let us create a journey as unique as you are. Share your travel dreams with our team, and discover a personalised
+            Sri Lankan experience crafted around your interests, pace, and style.
           </p>
         </Reveal>
         <Reveal delay={260}>
@@ -32,7 +31,7 @@ export default function FinalCTA() {
               className="inline-flex items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover"
               to="/contact"
             >
-              Request Custom Itinerary
+              Plan Your Journey
             </Link>
             {/* Placeholder WhatsApp number — replace with verified business contact */}
             <a
@@ -44,7 +43,7 @@ export default function FinalCTA() {
               <span className="material-symbols-outlined text-sm text-green-400">
                 chat
               </span>
-              <span>WhatsApp Concierge</span>
+              <span>Chat With Us on WhatsApp</span>
             </a>
           </div>
         </Reveal>

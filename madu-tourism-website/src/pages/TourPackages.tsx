@@ -17,7 +17,8 @@ export default function TourPackages() {
       />
       <main>
         <PageHero
-          description="Completely flexible itineraries combining boutique heritage villas, licensed private chauffeur-guides, and curated cultural encounters."
+          description="Discover Sri Lanka your way with personalised itineraries, handpicked stays, private chauffeur journeys, and authentic cultural 
+          experiences tailored to your interests."
           eyebrow="Private Handcrafted Itineraries"
           highlight="for You"
           image={images.sigiriyaAerial}
@@ -28,9 +29,9 @@ export default function TourPackages() {
         <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
           <Reveal>
             <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:text-base">
-            One island. Countless experiences. Your journey, your way.
+              One island. Countless experiences. Your journey, your way.
 
-            Discover our collection of Sri Lanka tours, thoughtfully designed for every kind of traveller.
+              Discover our collection of Sri Lanka tours, thoughtfully designed for every kind of traveller.
 
 
             </p>
@@ -72,20 +73,20 @@ export default function TourPackages() {
               <div className="mb-2 inline-flex items-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                  Custom Tour
+                  YOUR JOURNEY, YOUR WAY
                 </span>
               </div>
             </Reveal>
             <Reveal delay={100}>
               <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
-                Prefer a Fully Tailored Itinerary?
+                A Sri Lankan Experience, Crafted Around You
               </h2>
             </Reveal>
             <Reveal delay={180}>
               <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed font-light text-muted sm:text-base">
-                Tell us your travel window, preferred destinations, and pace. Our
-                Colombo designers will shape a private day-by-day plan with
-                verified boutique stays and chauffeur support.
+                Share your travel dates, favourite destinations, and the experiences you love. We’ll help you create a
+                personalised Sri Lankan journey,
+                from handpicked stays to private chauffeur services, all at your own pace.
               </p>
             </Reveal>
             <Reveal delay={240}>

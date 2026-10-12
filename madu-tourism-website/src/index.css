@@ -198,4 +198,17 @@
   .brand-wordmark::after {
     transition: none !important;
   }
+
+  .animate-\[madu-orbit_2\.4s_linear_infinite\] {
+    animation: none !important;
+  }
+}
+
+@keyframes madu-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

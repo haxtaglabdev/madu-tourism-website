@@ -1,7 +1,12 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type ComponentType } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
 import ScrollToTop from "./components/layout/ScrollToTop";
+import {
+  LoadingProvider,
+  LoadingScreen,
+  RouteErrorBoundary,
+} from "./components/loading";
 
 /* ── Route-level code splitting ──
    Each page (and its unique deps) loads on-demand.
@@ -16,107 +21,50 @@ const Gallery = lazy(() => import("./pages/Gallery"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-/** Minimal route-transition spinner using existing design colours. */
-function RouteFallback() {
+/**
+ * Route wrapper that renders the minimal luxury LoadingScreen ONLY
+ * while the page component is genuinely loading over the network.
+ * As soon as the page is ready, it is dismissed immediately with zero artificial delay.
+ */
+function LazyRoute({ Component }: { Component: ComponentType }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "60vh",
-      }}
-    >
-      <div
-        aria-label="Loading page"
-        role="status"
-        style={{
-          width: 36,
-          height: 36,
-          border: "3px solid #e5e0d8",
-          borderTopColor: "#003d2c",
-          borderRadius: "50%",
-          animation: "route-spin 0.7s linear infinite",
-        }}
-      />
-      <style>{`@keyframes route-spin{to{transform:rotate(360deg)}}`}</style>
-    </div>
+    <RouteErrorBoundary>
+      <Suspense fallback={<LoadingScreen />}>
+        <Component />
+      </Suspense>
+    </RouteErrorBoundary>
   );
 }
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route
-            element={
-              <Suspense fallback={<RouteFallback />}>
-                <Home />
-              </Suspense>
-            }
-            path="/"
-          />
-          <Route
-            element={
-              <Suspense fallback={<RouteFallback />}>
-                <About />
-              </Suspense>
-            }
-            path="/about"
-          />
-          <Route
-            element={
-              <Suspense fallback={<RouteFallback />}>
-                <Destinations />
-              </Suspense>
-            }
-            path="/destinations"
-          />
-          <Route
-            element={
-              <Suspense fallback={<RouteFallback />}>
-                <TourPackages />
-              </Suspense>
-            }
-            path="/tour-packages"
-          />
-          <Route
-            element={
-              <Suspense fallback={<RouteFallback />}>
-                <PackageDetail />
-              </Suspense>
-            }
-            path="/tour-packages/:slug"
-          />
-          <Route
-            element={
-              <Suspense fallback={<RouteFallback />}>
-                <Gallery />
-              </Suspense>
-            }
-            path="/gallery"
-          />
-          <Route
-            element={
-              <Suspense fallback={<RouteFallback />}>
-                <Contact />
-              </Suspense>
-            }
-            path="/contact"
-          />
-          <Route
-            element={
-              <Suspense fallback={<RouteFallback />}>
-                <NotFound />
-              </Suspense>
-            }
-            path="*"
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <LoadingProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route element={<LazyRoute Component={Home} />} path="/" />
+            <Route element={<LazyRoute Component={About} />} path="/about" />
+            <Route
+              element={<LazyRoute Component={Destinations} />}
+              path="/destinations"
+            />
+            <Route
+              element={<LazyRoute Component={TourPackages} />}
+              path="/tour-packages"
+            />
+            <Route
+              element={<LazyRoute Component={PackageDetail} />}
+              path="/tour-packages/:slug"
+            />
+            <Route element={<LazyRoute Component={Gallery} />} path="/gallery" />
+            <Route element={<LazyRoute Component={Contact} />} path="/contact" />
+            <Route element={<LazyRoute Component={NotFound} />} path="*" />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LoadingProvider>
   );
 }
+
 

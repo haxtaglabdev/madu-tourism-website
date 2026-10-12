@@ -42,34 +42,30 @@ export default function AboutSection() {
             <div className="mb-3 flex items-center gap-2">
               <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
               <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                Bespoke Ceylon Expeditions
+                BESPOKE CEYLON JOURNEYS
               </span>
             </div>
           </Reveal>
           <Reveal delay={100}>
             <h2 className="mb-6 font-serif text-[1.75rem] leading-tight font-medium text-charcoal sm:text-3xl md:text-5xl">
-              Explore Sri Lanka With People Who Have Walked Its Trails for
-              Generations
+              Discover Sri Lanka Beyond the Ordinary
             </h2>
           </Reveal>
           <Reveal delay={180}>
             <p className="mb-6 text-base leading-relaxed font-light text-muted">
-              At Madu Tseylon Tours, we don’t offer hurried cookie-cutter
-              excursions. We invite you into our motherland as honoured guests.
-              From forgotten highland trails winding through artisanal tea
-              factories to privileged private jeep safaris in quiet corners of
-              Yala, every passage is crafted around your pace.
+              At MaduTseylon, every journey is an invitation to experience Sri Lanka at its finest. From the misty tea hills and timeless
+              cultural landmarks to unforgettable wildlife encounters and secluded coastal escapes,
+              discover the island at your own pace, with personalised journeys shaped around your interests
             </p>
           </Reveal>
           <Reveal delay={240}>
             <div className="mb-8 rounded-xl border-l-4 border-tropical bg-soft-mint p-5">
               <p className="font-serif text-sm text-charcoal italic">
-                &ldquo;Ceylon is not simply a destination you visit; it is a
-                fragrant sensory tapestry of sea breezes, cinnamon bark, sacred
-                bells, and warm smiles that linger with you for life.&rdquo;
+                &ldquo;Some places stay with you long after you leave. Sri Lanka is one of them — a land of timeless beauty, rich traditions,
+                and moments worth remembering.&rdquo;
               </p>
               <span className="mt-2 block text-xs font-semibold tracking-wider text-tropical uppercase">
-                — The Madu Tseylon Naturalist Team
+                — The Madu Tseylon Team
               </span>
             </div>
           </Reveal>

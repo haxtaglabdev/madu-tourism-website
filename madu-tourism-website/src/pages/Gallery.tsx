@@ -27,8 +27,9 @@ export default function Gallery() {
       />
       <main>
         <PageHero
-          description="Authentic glimpses of daily rhythms, temple rites, wildlife, and ocean sunsets — drawn from the same visual diary featured on our Home page."
-          eyebrow="Visual Travel Diary"
+          description="From timeless cultural traditions and extraordinary wildlife to sunlit coastlines and everyday island life, 
+          explore the moments that make Sri Lanka truly unforgettable."
+          eyebrow="A JOURNEY IN PICTURES"
           highlight="Sri Lanka"
           image={images.galleSunset}
           imageAlt="Galle Fort lighthouse at golden hour"
@@ -43,9 +44,8 @@ export default function Gallery() {
             {filteredItems.map((item, index) => (
               <div
                 key={item.id}
-                className={`reveal-item group overflow-hidden rounded-xl shadow-sm ${
-                  item.aspect === "portrait" ? "aspect-[3/4]" : "aspect-square"
-                } ${index % 2 === 1 ? "md:mt-6" : ""}`}
+                className={`reveal-item group overflow-hidden rounded-xl shadow-sm ${item.aspect === "portrait" ? "aspect-[3/4]" : "aspect-square"
+                  } ${index % 2 === 1 ? "md:mt-6" : ""}`}
                 style={{ "--reveal-index": index } as CSSProperties}
               >
                 <img
