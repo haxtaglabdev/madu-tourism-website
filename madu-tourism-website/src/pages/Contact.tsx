@@ -200,8 +200,8 @@ function ContactPage({ packageName }: { packageName: string | null }) {
       />
       <main>
         <PageHero
-          description="Speak with our Colombo destination designers. Share your travel window and preferences — we will shape a private itinerary around your pace."
-          eyebrow="Colombo Concierge"
+          description="Tell us when you plan to visit, what inspires you, and how you love to travel. We’ll help craft a personalised Sri Lankan journey filled with unforgettable experiences, at your own pace."
+          eyebrow="TRAVEL PLANNING"
           highlight="Journey"
           image={images.beachBoats}
           imageAlt="Boats along a Sri Lankan coastal bay"
@@ -226,9 +226,8 @@ function ContactPage({ packageName }: { packageName: string | null }) {
               </Reveal>
               <Reveal delay={160}>
                 <p className="mb-8 text-sm leading-relaxed font-light text-muted">
-                  Reach our island concierge team for custom itineraries,
-                  package inquiries, or travel advice. Placeholder contact
-                  details below — replace with verified business information.
+                  Share your travel plans and the experiences you dream of. We’ll create a bespoke Sri Lankan journey
+                  tailored to your interests, with every detail designed around you.
                 </p>
               </Reveal>
 

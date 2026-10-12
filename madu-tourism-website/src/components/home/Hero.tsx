@@ -101,9 +101,8 @@ export default function Hero() {
         />
         {incomingIndex !== null && incomingSlide ? (
           <div
-            className={`absolute inset-0 scale-[1.02] bg-cover bg-[center_30%] bg-no-repeat transition-opacity ease-in-out sm:bg-center ${
-              incomingVisible ? "opacity-85" : "opacity-0"
-            }`}
+            className={`absolute inset-0 scale-[1.02] bg-cover bg-[center_30%] bg-no-repeat transition-opacity ease-in-out sm:bg-center ${incomingVisible ? "opacity-85" : "opacity-0"
+              }`}
             style={{
               backgroundImage: `url(${incomingSlide})`,
               transitionDuration: `${FADE_DURATION_MS}ms`,
@@ -134,9 +133,7 @@ export default function Hero() {
             className="hero-enter mx-auto mb-8 max-w-2xl text-sm leading-relaxed font-light text-white/80 sm:mb-10 sm:text-lg"
             style={{ ["--hero-delay" as string]: "180ms" }}
           >
-            Immerse yourself in UNESCO rock citadels, mist-shrouded Ceylon tea
-            highlands, and wild leopard reserves with private
-            chauffeur-naturalists dedicated solely to your journey.
+            Discover ancient wonders, lush tea hills, and breathtaking wildlife. Experience the beauty of Sri Lanka, your way.
           </p>
           <div
             className="hero-enter flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4"
