@@ -1,5 +1,6 @@
 import { images } from "../assets";
 import type { PackageDetail } from "../types/PackageDetail";
+import { buildRouteStops } from "./routeDestinations";
 
 export const packageDetails: PackageDetail[] = [
   {
@@ -41,14 +42,13 @@ export const packageDetails: PackageDetail[] = [
     routeCaption: "CURATED JOURNEY",
     routeDescription:
       "Ancient fortresses, sacred temples, misty tea country, and wild elephant sanctuaries — connected into one seamless private journey.",
-    routeStops: [
-      { id: "colombo", name: "Colombo", x: 28, y: 72 },
-      { id: "sigiriya", name: "Sigiriya", x: 48, y: 32 },
-      { id: "minneriya", name: "Minneriya", x: 58, y: 36 },
-      { id: "kandy", name: "Kandy", x: 42, y: 48 },
-      { id: "nuwara", name: "Nuwara Eliya", x: 48, y: 58 },
-    ],
-    routePath: "28,72 48,32 58,36 42,48 48,58 28,72",
+    routeStops: buildRouteStops([
+      "colombo",
+      "sigiriya",
+      "minneriya",
+      "kandy",
+      "nuwaraEliya",
+    ]),
     itineraryLabel: "DAILY PROGRAM",
     itinerary: [
       {
@@ -217,13 +217,12 @@ export const packageDetails: PackageDetail[] = [
     routeCaption: "THE JOURNEY AT A GLANCE",
     routeDescription:
       "Royal heritage, scenic railways, tea estates, mountain villages, and highland landscapes — connected into one seamless private journey.",
-    routeStops: [
-      { id: "colombo", name: "Colombo", x: 28, y: 72 },
-      { id: "kandy", name: "Kandy", x: 42, y: 48 },
-      { id: "nuwara", name: "Nuwara Eliya", x: 48, y: 58 },
-      { id: "ella", name: "Ella", x: 52, y: 64 },
-    ],
-    routePath: "28,72 42,48 48,58 52,64 28,72",
+    routeStops: buildRouteStops([
+      "colombo",
+      "kandy",
+      "nuwaraEliya",
+      "ella",
+    ]),
     itineraryLabel: "DAILY PROGRAM",
     itinerary: [
       {
@@ -383,13 +382,12 @@ export const packageDetails: PackageDetail[] = [
     routeCaption: "THE JOURNEY AT A GLANCE",
     routeDescription:
       "A seamless journey from Sri Lanka’s wild interior to the relaxed shores of the southern Indian Ocean.",
-    routeStops: [
-      { id: "colombo", name: "Colombo", x: 28, y: 72 },
-      { id: "yala", name: "Yala National Park", x: 68, y: 82 },
-      { id: "weligama", name: "Weligama", x: 42, y: 88 },
-      { id: "mirissa", name: "Mirissa", x: 38, y: 90 },
-    ],
-    routePath: "28,72 68,82 42,88 38,90 28,72",
+    routeStops: buildRouteStops([
+      "colombo",
+      "yala",
+      "weligama",
+      "mirissa",
+    ]),
     itineraryLabel: "DAILY PROGRAM",
     itinerary: [
       {

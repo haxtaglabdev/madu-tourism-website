@@ -11,9 +11,12 @@ export interface PackageDetailMeta {
 export interface PackageRouteStop {
   id: string;
   name: string;
-  /** Percentage coordinates on the Sri Lanka map viewBox (0–100). */
-  x: number;
-  y: number;
+  /** WGS84 latitude in decimal degrees. */
+  lat: number;
+  /** WGS84 longitude in decimal degrees. */
+  lng: number;
+  /** Optional short label shown in map tooltips. */
+  description?: string;
 }
 
 export interface PackageItineraryDay {
@@ -55,9 +58,8 @@ export interface PackageDetail {
   routeHeading: string;
   routeCaption: string;
   routeDescription: string;
+  /** Ordered itinerary stops for this package's route map. */
   routeStops: PackageRouteStop[];
-  /** Polyline points as "x,y x,y ..." in the same 0–100 coordinate space. */
-  routePath: string;
   itineraryLabel: string;
   itinerary: PackageItineraryDay[];
   experiencesLabel: string;

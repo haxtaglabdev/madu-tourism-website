@@ -99,11 +99,11 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
                   <p className="pkg-map-panel__meta">{pkg.routeLabel}</p>
                 </div>
                 <PackageRouteMap
-                  path={pkg.routePath}
+                  key={pkg.slug}
                   stops={pkg.routeStops}
                   title={pkg.routeHeading}
                 />
-                <p className="pkg-map-panel__desc">{pkg.routeDescription}</p>
+               
               </aside>
             </Reveal>
           </div>
