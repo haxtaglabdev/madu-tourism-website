@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { packages } from "../../data/homeContent";
+import { getPackageDetailsPath } from "../../data/packageDetails";
 import Reveal, { RevealGroup } from "../ui/Reveal";
 import TourCard from "./TourCard";
 
@@ -31,6 +32,7 @@ export default function PackagesSection() {
         {packages.map((tour, index) => (
           <TourCard
             key={tour.id}
+            detailsTo={getPackageDetailsPath(tour.id) ?? "/contact"}
             style={{ "--reveal-index": index } as CSSProperties}
             tour={tour}
           />

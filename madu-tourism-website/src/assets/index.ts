@@ -23,6 +23,9 @@ import kandyanDancer from "./unnamed (5).jpg";
 import galleSunset from "./unnamed (6).jpg";
 import trainTraveler from "./unnamed (7).jpg";
 import sticker from "./sticker.png";
+import minneriyaPark from "./hero_images/Minneriya national Park.jpg.jpeg";
+import teaPlantationsWide from "./hero_images/Tea Plantations.jpg.jpeg";
+import leopardPortrait from "./hero_images/1 Sri Lankan Leopard - Panthera pardus kotiya.jpg.jpeg";
 
 const heroImageModules = import.meta.glob("./hero_images/*", {
   eager: true,
@@ -67,6 +70,7 @@ export const images = {
   teaTrain,
   teaWoman,
   temple,
+  templeHeritage,
   stiltFishermen,
   leopardCloseup,
   teaMist,
@@ -75,6 +79,9 @@ export const images = {
   galleSunset,
   trainTraveler,
   sticker,
+  minneriyaPark,
+  teaPlantationsWide,
+  leopardPortrait,
 } as const;
 
 export type ImageKey = keyof typeof images;

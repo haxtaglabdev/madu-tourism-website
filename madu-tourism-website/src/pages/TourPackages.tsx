@@ -6,6 +6,7 @@ import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
 import Reveal, { RevealGroup } from "../components/ui/Reveal";
 import { packages } from "../data/homeContent";
+import { getPackageDetailsPath } from "../data/packageDetails";
 
 export default function TourPackages() {
   return (
@@ -57,7 +58,7 @@ export default function TourPackages() {
             {packages.map((tour, index) => (
               <TourCard
                 key={tour.id}
-                detailsTo="/contact"
+                detailsTo={getPackageDetailsPath(tour.id) ?? "/contact"}
                 style={{ "--reveal-index": index } as CSSProperties}
                 tour={tour}
               />
