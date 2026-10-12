@@ -15,6 +15,7 @@ import sigiriya from "./sigiriya.jpg";
 import teaTrain from "./tea.jpg";
 import teaWoman from "./hero image test.jpg";
 import temple from "./IMG_6237.JPG.jpg";
+import templeHeritage from "./temple.jpg";
 import stiltFishermen from "./unnamed.jpg";
 import leopardCloseup from "./unnamed (1).jpg";
 import teaMist from "./unnamed (2).jpg";
@@ -23,9 +24,9 @@ import kandyanDancer from "./unnamed (5).jpg";
 import galleSunset from "./unnamed (6).jpg";
 import trainTraveler from "./unnamed (7).jpg";
 import sticker from "./sticker.png";
-import minneriyaPark from "./hero_images/Minneriya national Park.jpg.jpeg";
-import teaPlantationsWide from "./hero_images/Tea Plantations.jpg.jpeg";
-import leopardPortrait from "./hero_images/1 Sri Lankan Leopard - Panthera pardus kotiya.jpg.jpeg";
+import minneriyaPark from "./hero_images/Minneriya national Park.jpg.jpg";
+import teaPlantationsWide from "./hero_images/Tea Plantations.jpg.jpg";
+import leopardPortrait from "./hero_images/1 SL Leopard - Panthera pardus kotiya.jpg";
 
 const heroImageModules = import.meta.glob("./hero_images/*", {
   eager: true,
