@@ -21,6 +21,7 @@ export default function Navbar() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(false);
   }, [pathname]);
 
