@@ -121,7 +121,7 @@ export default function Hero() {
             style={{ ["--hero-delay" as string]: "0ms" }}
           >
             <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-gold" />
-            Authentic Sri Lanka • Tailor-Made Journeys
+            WELCOME TO SRI LANKA
           </div>
           <h1
             className="hero-enter mb-5 font-serif text-[2rem] leading-[1.08] font-medium tracking-tight text-white sm:mb-6 sm:text-6xl lg:text-7xl"
