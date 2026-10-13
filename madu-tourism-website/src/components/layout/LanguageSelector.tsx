@@ -1,15 +1,60 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { useCurrentLanguage, type SupportedLanguage } from "../../i18n/useCurrentLanguage";
+
+function UkFlagIcon({ className = "w-[18px] h-[12px]" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 60 40"
+      className={`${className} shrink-0 inline-block rounded-[2px] shadow-[0_1px_2px_rgba(0,0,0,0.12)] ring-1 ring-black/10`}
+      aria-hidden="true"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <clipPath id="uk-flag-clip">
+        <rect width="60" height="40" rx="2" />
+      </clipPath>
+      <g clipPath="url(#uk-flag-clip)">
+        <rect width="60" height="40" fill="#012169" />
+        <path d="M0,0 L60,40 M60,0 L0,40" stroke="#ffffff" strokeWidth="8" />
+        <path d="M0,0 L60,40" stroke="#C8102E" strokeWidth="2.6" />
+        <path d="M60,0 L0,40" stroke="#C8102E" strokeWidth="2.6" />
+        <path d="M30,0 V40 M0,20 H60" stroke="#ffffff" strokeWidth="13" />
+        <path d="M30,0 V40 M0,20 H60" stroke="#C8102E" strokeWidth="8" />
+      </g>
+    </svg>
+  );
+}
+
+function RuFlagIcon({ className = "w-[18px] h-[12px]" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 60 40"
+      className={`${className} shrink-0 inline-block rounded-[2px] shadow-[0_1px_2px_rgba(0,0,0,0.12)] ring-1 ring-black/10`}
+      aria-hidden="true"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <clipPath id="ru-flag-clip">
+        <rect width="60" height="40" rx="2" />
+      </clipPath>
+      <g clipPath="url(#ru-flag-clip)">
+        <rect width="60" height="13.34" y="0" fill="#ffffff" />
+        <rect width="60" height="13.34" y="13.33" fill="#0039A6" />
+        <rect width="60" height="13.34" y="26.66" fill="#D52B1E" />
+      </g>
+    </svg>
+  );
+}
 
 interface LanguageOption {
   code: SupportedLanguage;
   label: string;
-  flag: string;
+  flag: ReactNode;
 }
 
 const LANGUAGES: LanguageOption[] = [
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "ru", label: "Русский", flag: "🇷🇺" },
+  { code: "en", label: "English", flag: <UkFlagIcon /> },
+  { code: "ru", label: "Русский", flag: <RuFlagIcon /> },
 ];
 
 interface LanguageSelectorProps {
@@ -83,7 +128,7 @@ export default function LanguageSelector({
                 onClick={() => handleSelect(lang.code)}
                 type="button"
               >
-                <span className="text-base select-none" role="img" aria-label={lang.label}>
+                <span className="inline-flex shrink-0 items-center" aria-hidden="true">
                   {lang.flag}
                 </span>
                 <span>{lang.label}</span>
@@ -101,12 +146,12 @@ export default function LanguageSelector({
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         aria-label={`Select language. Current language: ${activeLang.label}`}
-        className="inline-flex items-center gap-1.5 rounded-full border border-charcoal/10 bg-white/80 py-1.5 px-3 text-xs font-medium text-charcoal/80 shadow-2xs backdrop-blur-md transition-all duration-200 hover:border-tropical/40 hover:bg-white hover:text-tropical focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tropical sm:py-2 sm:px-3.5"
+        className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white/80 py-1.5 px-3 text-xs font-medium text-charcoal/80 shadow-2xs backdrop-blur-md transition-all duration-200 hover:border-tropical/40 hover:bg-white hover:text-tropical focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tropical sm:py-2 sm:px-3.5"
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
         type="button"
       >
-        <span className="text-sm select-none" role="img" aria-hidden="true">
+        <span className="inline-flex shrink-0 items-center" aria-hidden="true">
           {activeLang.flag}
         </span>
         <span className="font-semibold text-charcoal">{activeLang.label}</span>
@@ -142,7 +187,7 @@ export default function LanguageSelector({
                 type="button"
               >
                 <span className="flex items-center gap-2">
-                  <span className="text-base select-none" role="img" aria-hidden="true">
+                  <span className="inline-flex shrink-0 items-center" aria-hidden="true">
                     {lang.flag}
                   </span>
                   <span>{lang.label}</span>
