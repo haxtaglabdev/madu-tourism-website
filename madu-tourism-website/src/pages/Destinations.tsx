@@ -6,9 +6,15 @@ import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
 import Reveal, { RevealGroup } from "../components/ui/Reveal";
 import { destinations } from "../data/homeContent";
-import { destinationHighlights } from "../data/pageContent";
+import { destinationExperiences } from "../data/pageContent";
 
 export default function Destinations() {
+  const curatedDestinations = destinations.map((destination) =>
+    destination.id === "sigiriya"
+      ? { ...destination, image: images.sigiriyaRock }
+      : destination,
+  );
+
   return (
     <>
       <PageMeta
@@ -21,8 +27,8 @@ export default function Destinations() {
           unforgettable destination at a time."
           eyebrow="Iconic Territories"
           highlight="Lanka"
-          image={images.sigiriya}
-          imageAlt="Sigiriya rock fortress in Sri Lanka"
+          image={images.beachCafeHero}
+          imageAlt="Beach cafe and boats along the Sri Lankan shore"
           title="Discover Sri"
         />
 
@@ -56,7 +62,7 @@ export default function Destinations() {
             </div>
 
             <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-12">
-              {destinations.map((destination, index) => (
+              {curatedDestinations.map((destination, index) => (
                 <DestinationCard
                   key={destination.id}
                   destination={destination}
@@ -86,52 +92,40 @@ export default function Destinations() {
           </div>
 
           <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {destinations.map((destination, index) => {
-              const highlights = destinationHighlights[destination.id] ?? [];
-              return (
-                <article
-                  key={destination.id}
-                  className="reveal-item overflow-hidden rounded-2xl border border-border-subtle bg-white shadow-sm"
-                  style={{ "--reveal-index": index } as CSSProperties}
-                >
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      alt={destination.title}
-                      className="h-full w-full object-cover"
-                      src={destination.image}
-                    />
-                  </div>
-                  <div className="p-6">
-                    <span
-                      className={
-                        destination.badgeVariant === "gold"
-                          ? "mb-3 inline-block rounded-full bg-gold/90 px-2.5 py-1 text-[11px] font-bold tracking-wider text-forest-dark uppercase"
-                          : "mb-3 inline-block rounded-full bg-soft-mint px-2.5 py-1 text-[11px] font-semibold tracking-wider text-tropical uppercase"
-                      }
-                    >
-                      {destination.badge}
-                    </span>
-                    <h3 className="mb-2 font-serif text-xl font-medium text-charcoal">
-                      {destination.title}
-                    </h3>
-                    <p className="mb-5 text-sm leading-relaxed font-light text-muted">
-                      {destination.description}
-                    </p>
-                    {highlights.length > 0 && (
-                      <ul className="mb-6 space-y-2 border-t border-border-subtle pt-4">
-                        {highlights.map((highlight) => (
-                          <li
-                            key={highlight}
-                            className="flex items-center gap-2 text-xs text-charcoal/80"
-                          >
-                            <span className="material-symbols-outlined text-[16px] text-tropical">
-                              check_circle
-                            </span>
-                            {highlight}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+            {destinationExperiences.map((destination, index) => (
+              <article
+                key={destination.id}
+                className="reveal-item flex flex-col overflow-hidden rounded-2xl border border-border-subtle bg-white shadow-sm"
+                style={{ "--reveal-index": index } as CSSProperties}
+              >
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    alt={destination.title}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    src={destination.image}
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="mb-2 font-serif text-xl font-medium text-charcoal">
+                    {destination.title}
+                  </h3>
+                  <p className="mb-5 text-sm leading-relaxed font-light text-muted">
+                    {destination.description}
+                  </p>
+                  <ul className="mb-6 space-y-2 border-t border-border-subtle pt-4">
+                    {destination.highlights.map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="flex items-center gap-2 text-xs text-charcoal/80"
+                      >
+                        <span className="material-symbols-outlined text-[16px] text-tropical">
+                          check_circle
+                        </span>
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto">
                     <Link
                       className="inline-flex items-center gap-1.5 rounded-full bg-forest px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 hover:-translate-y-px hover:bg-tropical"
                       to="/contact"
@@ -142,9 +136,9 @@ export default function Destinations() {
                       </span>
                     </Link>
                   </div>
-                </article>
-              );
-            })}
+                </div>
+              </article>
+            ))}
           </RevealGroup>
         </section>
 
