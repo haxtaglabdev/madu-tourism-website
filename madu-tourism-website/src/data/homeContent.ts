@@ -120,7 +120,7 @@ export const packages: TourPackage[] = [
       "All Entrance & UNESCO Site Fees Included",
     ],
     // Placeholder pricing — replace with confirmed rates
-    price: "$1,250",
+    price: "$485",
   },
   {
     id: "highland-tea",
@@ -138,7 +138,7 @@ export const packages: TourPackage[] = [
       "Luxury Boutique Bungalows",
     ],
     // Placeholder pricing — replace with confirmed rates
-    price: "$1,480",
+    price: "$560",
   },
   {
     id: "wild-leopards",
@@ -156,7 +156,7 @@ export const packages: TourPackage[] = [
       "Exclusive Sunset Whale Cruise",
     ],
     // Placeholder pricing — replace with confirmed rates
-    price: "$1,890",
+    price: "$635",
   },
   {
     id: "ceylon-essentials",

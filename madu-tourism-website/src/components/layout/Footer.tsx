@@ -7,10 +7,10 @@ export default function Footer() {
     <footer className="w-full border-t border-white/10 bg-forest-dark pt-14 pb-10 text-white/70 sm:pt-20 sm:pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-10 border-b border-white/10 pb-12 sm:gap-12 sm:pb-16 md:grid-cols-12">
-          <div className="space-y-5 md:col-span-4">
+          <div className="md:col-span-4">
             <img
               alt="Madu Tseylon Tours"
-              className="h-14 w-auto rounded-full object-contain bg-white p-1"
+              className="h-25 w-auto rounded-full object-contain"
               src={images.logo}
             />
             <p className="text-xs leading-relaxed font-light text-white/60">
@@ -18,7 +18,7 @@ export default function Footer() {
               Company specializing in bespoke private chauffeur journeys, luxury
               villa retreats, and responsible wildlife expeditions.
             </p>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-3 pt-5">
               <a
                 aria-label="Website"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors hover:bg-tropical hover:text-white"
@@ -93,7 +93,7 @@ export default function Footer() {
                 <span className="material-symbols-outlined mt-0.5 text-sm text-gold">
                   location_on
                 </span>
-                <span>Level 4, Galle Road, Colombo 03, Sri Lanka</span>
+                <span>No.247, kurudu waththa,holuwagoda,godakanda,galla</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <span className="material-symbols-outlined text-sm text-gold">

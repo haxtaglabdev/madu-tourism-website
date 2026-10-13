@@ -242,7 +242,7 @@ function ContactPage({ packageName }: { packageName: string | null }) {
                         Office
                       </p>
                       <p className="mt-1 text-sm font-light text-muted">
-                        Level 4, Galle Road, Colombo 03, Sri Lanka
+                        No.247, kurudu waththa,holuwagoda,godakanda,galla
                       </p>
                     </div>
                   </div>
