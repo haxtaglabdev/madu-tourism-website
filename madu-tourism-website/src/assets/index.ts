@@ -53,6 +53,7 @@ import destHabarana from "./destinations/habarana.jpg";
 import destKitulgala from "./destinations/kithulgala.jpg";
 import destPolonnaruwa from "./destinations/polonnaruwa.jpg";
 
+
 const heroImageModules = import.meta.glob("./hero_images/*", {
   eager: true,
   import: "default",

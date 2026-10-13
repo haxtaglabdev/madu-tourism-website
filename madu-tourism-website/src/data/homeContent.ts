@@ -184,7 +184,7 @@ export const packages: TourPackage[] = [
       "All Entrance & UNESCO Site Fees Included",
     ],
     // Placeholder pricing — replace with confirmed rates
-    price: "$1,250",
+    price: "$485",
   },
   {
     id: "highland-tea",
@@ -202,7 +202,7 @@ export const packages: TourPackage[] = [
       "Luxury Boutique Bungalows",
     ],
     // Placeholder pricing — replace with confirmed rates
-    price: "$1,480",
+    price: "$560",
   },
   {
     id: "wild-leopards",
@@ -220,7 +220,75 @@ export const packages: TourPackage[] = [
       "Exclusive Sunset Whale Cruise",
     ],
     // Placeholder pricing — replace with confirmed rates
-    price: "$1,890",
+    price: "$635",
+  },
+  {
+    id: "ceylon-essentials",
+    title: "Ceylon Essentials Escape",
+    description:
+      "A compact five-day journey from Colombo through Sigiriya's ancient fortress, Kandy's sacred heritage, Nuwara Eliya's tea highlands, and Ella's mountain scenery.",
+    duration: "5 Days / 4 Nights",
+    tag: "Compact Discovery",
+    image: images.sigiriyaArrange,
+    rating: 5,
+    reviewCount: 36,
+    inclusions: [
+      "Private Chauffeur Throughout",
+      "Handpicked Comfortable Stays",
+      "Curated Cultural Experiences",
+    ],
+    price: "$295",
+  },
+  {
+    id: "island-highlights",
+    title: "Island Highlights & Southern Shores",
+    description:
+      "Seven days combining ancient heritage, tea country, mountain landscapes, wildlife, southern beaches, and the historic streets of Galle Fort.",
+    duration: "7 Days / 6 Nights",
+    tag: "Island Explorer",
+    image: images.galleFortArrange,
+    rating: 5,
+    reviewCount: 41,
+    inclusions: [
+      "Private Chauffeur & Guided Experiences",
+      "Comfortable Accommodation",
+      "Wildlife & Coastal Encounters",
+    ],
+    price: "$485",
+  },
+  {
+    id: "ancient-kingdoms",
+    title: "Ancient Kingdoms & Wild Southern Coast",
+    description:
+      "A ten-day exploration featuring ancient cities, sacred temples, tea plantations, Yala wildlife, Mirissa's shores, and Galle Fort.",
+    duration: "10 Days / 9 Nights",
+    tag: "Heritage & Wildlife",
+    image: images.nineArchArrange,
+    rating: 5,
+    reviewCount: 38,
+    inclusions: [
+      "Private Chauffeur Throughout",
+      "Comfortable Stays at Each Destination",
+      "Cultural & Wildlife Experiences",
+    ],
+    price: "$635",
+  },
+  {
+    id: "grand-expedition",
+    title: "The Grand Ceylon Island Expedition",
+    description:
+      "A comprehensive fourteen-day expedition through Sri Lanka's cultural triangle, highlands, wildlife regions, southern coast, and the distinctive north and east.",
+    duration: "14 Days / 13 Nights",
+    tag: "Grand Island Circuit",
+    image: images.trainArrange,
+    rating: 5,
+    reviewCount: 29,
+    inclusions: [
+      "Private Chauffeur & Nationwide Transfers",
+      "Handpicked Stays Across the Island",
+      "Full Cultural & Nature Immersion",
+    ],
+    price: "$895",
   },
 ];
 

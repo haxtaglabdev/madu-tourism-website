@@ -29,7 +29,7 @@ export default function PackagesSection() {
       </div>
 
       <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {packages.map((tour, index) => (
+        {packages.slice(0, 3).map((tour, index) => (
           <TourCard
             key={tour.id}
             detailsTo={getPackageDetailsPath(tour.id) ?? "/contact"}

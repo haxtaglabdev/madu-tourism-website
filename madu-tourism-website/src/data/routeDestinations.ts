@@ -78,6 +78,41 @@ export const ROUTE_DESTINATIONS = {
     lng: 80.4589,
     description: "Whale watching & shores",
   },
+  polonnaruwa: {
+    id: "polonnaruwa",
+    name: "Polonnaruwa",
+    lat: 7.9403,
+    lng: 81.0188,
+    description: "Ancient archaeological city",
+  },
+  galle: {
+    id: "galle",
+    name: "Galle",
+    lat: 6.0535,
+    lng: 80.2210,
+    description: "Historic colonial fort city",
+  },
+  jaffna: {
+    id: "jaffna",
+    name: "Jaffna",
+    lat: 9.6615,
+    lng: 80.0255,
+    description: "Northern cultural capital",
+  },
+  trincomalee: {
+    id: "trincomalee",
+    name: "Trincomalee",
+    lat: 8.5874,
+    lng: 81.2152,
+    description: "Eastern harbour & temples",
+  },
+  anuradhapura: {
+    id: "anuradhapura",
+    name: "Anuradhapura",
+    lat: 8.3114,
+    lng: 80.4037,
+    description: "Sacred ancient capital",
+  },
 } as const satisfies Record<string, RouteDestination>;
 
 export type RouteDestinationKey = keyof typeof ROUTE_DESTINATIONS;
