@@ -27,6 +27,15 @@ import sticker from "./sticker.png";
 import minneriyaPark from "./hero_images/Minneriya national Park.jpg.jpg";
 import teaPlantationsWide from "./hero_images/Tea Plantations.jpg.jpg";
 import leopardPortrait from "./hero_images/1 SL Leopard - Panthera pardus kotiya.jpg";
+import galleFortress from "./hero_images/Fortress in Galle‧.jpg.jpg";
+import surfSpots from "./hero_images/The Best Surf Spots in Sri Lanka for Every Skill___.jpg.jpg";
+import heroTea from "./hero_images/tea.jpg";
+import sigiriyaArrange from "./image_arrenge/sigiriya.jpg";
+import galleFortArrange from "./image_arrenge/galle fort.jpg";
+import nineArchArrange from "./image_arrenge/nine arch.jpg";
+import trainArrange from "./image_arrenge/train Gb.jpg";
+import mirissaArrange from "./image_arrenge/mirissa.jpg";
+import minneriyaArrange from "./image_arrenge/Minneriya .jpg.jpg";
 
 const heroImageModules = import.meta.glob("./hero_images/*", {
   eager: true,
@@ -83,6 +92,15 @@ export const images = {
   minneriyaPark,
   teaPlantationsWide,
   leopardPortrait,
+  galleFortress,
+  surfSpots,
+  heroTea,
+  sigiriyaArrange,
+  galleFortArrange,
+  nineArchArrange,
+  trainArrange,
+  mirissaArrange,
+  minneriyaArrange,
 } as const;
 
 export type ImageKey = keyof typeof images;
