@@ -7,13 +7,24 @@ import TestimonialsSection from "../components/home/TestimonialsSection";
 import GallerySection from "../components/home/GallerySection";
 import FinalCTA from "../components/home/FinalCTA";
 import PageMeta from "../components/seo/PageMeta";
+import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 
 export default function Home() {
+  const { isRussian } = useCurrentLanguage();
+
   return (
     <>
       <PageMeta
-        description="Discover Sri Lanka with Madu Tseylon Tours — private chauffeur journeys, UNESCO citadels, tea highlands, and wildlife safaris."
-        title="Madu Tseylon Tours | Explore Sri Lanka"
+        description={
+          isRussian
+            ? "Откройте Шри-Ланку с Madu Tseylon Tours — индивидуальные туры с личным гидом, цитадели ЮНЕСКО, чайные горы и сафари."
+            : "Discover Sri Lanka with Madu Tseylon Tours — private chauffeur journeys, UNESCO citadels, tea highlands, and wildlife safaris."
+        }
+        title={
+          isRussian
+            ? "Madu Tseylon Tours | Авторские туры по Шри-Ланке"
+            : "Madu Tseylon Tours | Explore Sri Lanka"
+        }
       />
       <main>
         <Hero />

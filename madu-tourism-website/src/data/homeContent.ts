@@ -183,8 +183,7 @@ export const packages: TourPackage[] = [
       "4 & 5-Star Boutique Heritage Hotels",
       "All Entrance & UNESCO Site Fees Included",
     ],
-    // Placeholder pricing — replace with confirmed rates
-    price: "$485",
+    price: "$1,250",
   },
   {
     id: "highland-tea",
@@ -201,8 +200,7 @@ export const packages: TourPackage[] = [
       "Private Tea Estate Tasting Masterclass",
       "Luxury Boutique Bungalows",
     ],
-    // Placeholder pricing — replace with confirmed rates
-    price: "$560",
+    price: "$1,480",
   },
   {
     id: "wild-leopards",
@@ -219,8 +217,7 @@ export const packages: TourPackage[] = [
       "Boutique Oceanfront Villa Stay",
       "Exclusive Sunset Whale Cruise",
     ],
-    // Placeholder pricing — replace with confirmed rates
-    price: "$635",
+    price: "$1,890",
   },
   {
     id: "ceylon-essentials",

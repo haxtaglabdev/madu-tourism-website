@@ -1,22 +1,56 @@
 import { Link } from "react-router-dom";
 import { images } from "../../assets";
-import { footerExplore, footerTerritories } from "../../data/homeContent";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 
 export default function Footer() {
+  const { t, getLocalizedPath, isRussian } = useCurrentLanguage();
+
+  const exploreLinks = [
+    { label: isRussian ? "Главная" : "Home", to: "/" },
+    { label: isRussian ? "О компании" : "About Us", to: "/about" },
+    { label: isRussian ? "Все направления" : "Destinations", to: "/destinations" },
+    { label: isRussian ? "Авторские туры" : "Tour Packages", to: "/tour-packages" },
+    { label: isRussian ? "Фотогалерея" : "Gallery", to: "/gallery" },
+    { label: isRussian ? "Контакты" : "Contact", to: "/contact" },
+  ];
+
+  const territoryLinks = [
+    {
+      label: isRussian ? "Культурный треугольник (Сигирия)" : "Cultural Triangle (Sigiriya)",
+      to: "/destinations",
+    },
+    {
+      label: isRussian ? "Чайное высокогорье (Элла, Нувара-Элия)" : "Central Highlands (Ella, Nuwara Eliya)",
+      to: "/destinations",
+    },
+    {
+      label: isRussian ? "Национальный парк Яла (Сафари)" : "Yala National Park (Wildlife)",
+      to: "/destinations",
+    },
+    {
+      label: isRussian ? "Южное побережье (Мирисса, Велигама)" : "Southern Coast (Mirissa, Weligama)",
+      to: "/destinations",
+    },
+    {
+      label: isRussian ? "Исторический Форт Галле" : "Historic Galle Fort",
+      to: "/destinations",
+    },
+  ];
+
   return (
     <footer className="w-full border-t border-white/10 bg-forest-dark pt-14 pb-10 text-white/70 sm:pt-20 sm:pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-10 border-b border-white/10 pb-12 sm:gap-12 sm:pb-16 md:grid-cols-12">
           <div className="md:col-span-4">
-            <img
-              alt="Madu Tseylon Tours"
-              className="h-25 w-auto rounded-full object-contain"
-              src={images.logo}
-            />
+            <Link to={getLocalizedPath("/")}>
+              <img
+                alt={t("common.brandName")}
+                className="h-24 w-auto rounded-full object-contain mb-4"
+                src={images.logo}
+              />
+            </Link>
             <p className="text-xs leading-relaxed font-light text-white/60">
-              Madu Tseylon Tours is a licensed Sri Lankan Destination Management
-              Company specializing in bespoke private chauffeur journeys, luxury
-              villa retreats, and responsible wildlife expeditions.
+              {t("common.footer.description")}
             </p>
             <div className="flex items-center gap-3 pt-5">
               <a
@@ -50,21 +84,6 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                aria-label="TikTok"
-                className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-105 hover:border-tropical hover:bg-tropical hover:text-white hover:shadow-[0_6px_20px_rgba(22,122,62,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                href="https://www.instagram.com/madutseylontours/?hl=en"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="h-4 w-4 fill-current transition-transform duration-300 group-hover:scale-110"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3 15.28 6.34 6.34 0 0 0 9.34 21.6c3.5 0 6.34-2.84 6.34-6.34V9.05a8.27 8.27 0 0 0 4.91 1.59V7.19a4.87 4.87 0 0 1-1-.5z" />
-                </svg>
-              </a>
-              <a
                 aria-label="TripAdvisor"
                 className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-105 hover:border-tropical hover:bg-tropical hover:text-white hover:shadow-[0_6px_20px_rgba(22,122,62,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                 href="https://www.instagram.com/madutseylontours/?hl=en"
@@ -84,14 +103,14 @@ export default function Footer() {
 
           <div className="space-y-3 md:col-span-2">
             <h4 className="text-xs font-semibold tracking-widest text-white uppercase">
-              Explore
+              {t("common.footer.exploreHeading")}
             </h4>
             <ul className="space-y-2.5 text-xs font-light">
-              {footerExplore.map((item) => (
+              {exploreLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     className="transition-colors hover:text-gold"
-                    to={item.to}
+                    to={getLocalizedPath(item.to)}
                   >
                     {item.label}
                   </Link>
@@ -102,14 +121,14 @@ export default function Footer() {
 
           <div className="space-y-3 md:col-span-3">
             <h4 className="text-xs font-semibold tracking-widest text-white uppercase">
-              Key Territories
+              {t("common.footer.territoriesHeading")}
             </h4>
             <ul className="space-y-2.5 text-xs font-light">
-              {footerTerritories.map((item) => (
+              {territoryLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     className="transition-colors hover:text-gold"
-                    to={item.to}
+                    to={getLocalizedPath(item.to)}
                   >
                     {item.label}
                   </Link>
@@ -120,32 +139,41 @@ export default function Footer() {
 
           <div className="space-y-3 md:col-span-3">
             <h4 className="text-xs font-semibold tracking-widest text-white uppercase">
-              Colombo Concierge
+              {t("common.footer.conciergeHeading")}
             </h4>
-            {/* Placeholder contact details — replace with verified business info */}
             <div className="space-y-3 text-xs font-light">
               <div className="flex items-start gap-2.5">
                 <span className="material-symbols-outlined mt-0.5 text-sm text-gold">
                   location_on
                 </span>
-                <span>No.247, kurudu waththa,holuwagoda,godakanda,galla</span>
+                <span>{t("common.footer.address")}</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <span className="material-symbols-outlined text-sm text-gold">
                   call
                 </span>
-                <span>+94 77 088 0425</span>
+                <a
+                  className="transition-colors hover:text-gold"
+                  href={`tel:${t("common.phone").replace(/\s+/g, "")}`}
+                >
+                  {t("common.phone")}
+                </a>
               </div>
               <div className="flex items-start gap-2.5">
                 <span className="material-symbols-outlined mt-0.5 shrink-0 text-sm text-gold">
                   mail
                 </span>
-                <span className="min-w-0 break-all">madutseylon@gmail.com</span>
+                <a
+                  className="min-w-0 break-all transition-colors hover:text-gold"
+                  href={`mailto:${t("common.email")}`}
+                >
+                  {t("common.email")}
+                </a>
               </div>
               <div className="pt-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-tropical/30 bg-tropical/20 px-3 py-1 text-[10px] font-semibold text-emerald-300">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  24/7 Island Concierge Online
+                  {t("common.footer.onlineBadge")}
                 </span>
               </div>
             </div>
@@ -154,25 +182,24 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 pt-8 text-center text-[11px] font-light text-white/50 sm:flex-row sm:text-left">
           <p className="max-w-xl">
-            © 2026 Madu Tseylon Tours (Pvt) Ltd. All rights reserved. Sri Lanka
-            Tourism Development Authority Reg. DMC.
+            {t("common.footer.copyright")}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <a className="transition-colors hover:text-white">
-              Privacy Policy
-            </a>
+            <span className="transition-colors hover:text-white cursor-pointer">
+              {t("common.footer.privacyPolicy")}
+            </span>
             <span className="hidden sm:inline" aria-hidden>
               •
             </span>
-            <a className="transition-colors hover:text-white">
-              Terms of Service
-            </a>
+            <span className="transition-colors hover:text-white cursor-pointer">
+              {t("common.footer.termsOfService")}
+            </span>
             <span className="hidden sm:inline" aria-hidden>
               •
             </span>
-            <a className="transition-colors hover:text-white">
-              Responsible Travel Code
-            </a>
+            <span className="transition-colors hover:text-white cursor-pointer">
+              {t("common.footer.responsibleTravel")}
+            </span>
           </div>
         </div>
       </div>

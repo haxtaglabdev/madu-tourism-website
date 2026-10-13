@@ -1,4 +1,5 @@
 import { useId, useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { PackageItineraryDay } from "../../types/PackageDetail";
 
 interface PackageItineraryProps {
@@ -10,6 +11,8 @@ export default function PackageItinerary({
   label,
   days,
 }: PackageItineraryProps) {
+  const { i18n } = useTranslation();
+  const isRu = i18n.language === "ru";
   const baseId = useId();
   const [openDays, setOpenDays] = useState<Set<number>>(() => new Set([1]));
 
@@ -27,7 +30,9 @@ export default function PackageItinerary({
       <div className="pkg-detail__container">
         <header className="pkg-itinerary__header">
           <p className="pkg-eyebrow">{label}</p>
-          <h2 className="pkg-itinerary__title">Itinerary</h2>
+          <h2 className="pkg-itinerary__title">
+            {isRu ? "Программа маршрута" : "Itinerary"}
+          </h2>
           <div aria-hidden="true" className="pkg-itinerary__rule" />
         </header>
 
@@ -52,7 +57,9 @@ export default function PackageItinerary({
                     onClick={() => toggleDay(item.day)}
                     type="button"
                   >
-                    <span className="pkg-day__number">Day {item.day}</span>
+                    <span className="pkg-day__number">
+                      {isRu ? `День ${item.day}` : `Day ${item.day}`}
+                    </span>
                     <span>
                       <span className="pkg-day__route">{item.route}</span>
                       <span className="pkg-day__title">{item.title}</span>
@@ -72,7 +79,9 @@ export default function PackageItinerary({
                       role="region"
                     >
                       <p>{item.description}</p>
-                      <p className="pkg-day__highlights-label">Highlights</p>
+                      <p className="pkg-day__highlights-label">
+                        {isRu ? "Главные впечатления" : "Highlights"}
+                      </p>
                       <ul className="pkg-day__highlights">
                         {item.highlights.map((highlight) => (
                           <li key={highlight}>{highlight}</li>

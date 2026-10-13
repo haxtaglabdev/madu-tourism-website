@@ -1,5 +1,6 @@
 import { lazy, Suspense, type ComponentType } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LanguageSync from "./components/layout/LanguageSync";
 import MainLayout from "./components/layout/MainLayout";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import {
@@ -40,9 +41,11 @@ export default function App() {
   return (
     <LoadingProvider>
       <BrowserRouter>
+        <LanguageSync />
         <ScrollToTop />
         <Routes>
           <Route element={<MainLayout />}>
+            {/* English Routes (Default) */}
             <Route element={<LazyRoute Component={Home} />} path="/" />
             <Route element={<LazyRoute Component={About} />} path="/about" />
             <Route
@@ -59,6 +62,26 @@ export default function App() {
             />
             <Route element={<LazyRoute Component={Gallery} />} path="/gallery" />
             <Route element={<LazyRoute Component={Contact} />} path="/contact" />
+
+            {/* Russian Routes */}
+            <Route element={<LazyRoute Component={Home} />} path="/ru" />
+            <Route element={<LazyRoute Component={About} />} path="/ru/about" />
+            <Route
+              element={<LazyRoute Component={Destinations} />}
+              path="/ru/destinations"
+            />
+            <Route
+              element={<LazyRoute Component={TourPackages} />}
+              path="/ru/tour-packages"
+            />
+            <Route
+              element={<LazyRoute Component={PackageDetail} />}
+              path="/ru/tour-packages/:slug"
+            />
+            <Route element={<LazyRoute Component={Gallery} />} path="/ru/gallery" />
+            <Route element={<LazyRoute Component={Contact} />} path="/ru/contact" />
+
+            {/* Not Found */}
             <Route element={<LazyRoute Component={NotFound} />} path="*" />
           </Route>
         </Routes>

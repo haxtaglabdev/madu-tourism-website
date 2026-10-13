@@ -1,18 +1,20 @@
 import { useMemo, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { images } from "../assets";
 import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
 import Reveal, { RevealGroup } from "../components/ui/Reveal";
 import {
-
   galleryPageItems,
   type GalleryCategory,
 } from "../data/pageContent";
+import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 
 export default function Gallery() {
-  const [activeCategory,] =
-    useState<GalleryCategory>("All");
+  const { t } = useTranslation();
+  const { getLocalizedPath } = useCurrentLanguage();
+  const [activeCategory] = useState<GalleryCategory>("All");
 
   const filteredItems = useMemo(() => {
     if (activeCategory === "All") return galleryPageItems;
@@ -22,30 +24,27 @@ export default function Gallery() {
   return (
     <>
       <PageMeta
-        description="Browse moments from Sri Lanka — nature, wildlife, culture, beaches, and local life with Madu Tseylon Tours."
-        title="Gallery | Madu Tseylon Tours"
+        description={t("gallery.metaDescription")}
+        title={t("gallery.metaTitle")}
       />
       <main>
         <PageHero
-          description="From timeless cultural traditions and extraordinary wildlife to sunlit coastlines and everyday island life, 
-          explore the moments that make Sri Lanka truly unforgettable."
-          eyebrow="A JOURNEY IN PICTURES"
-          highlight="Sri Lanka"
+          description={t("gallery.hero.description")}
+          eyebrow={t("gallery.hero.eyebrow")}
+          highlight={t("gallery.hero.highlight")}
           image={images.fortressInGalle}
-          imageAlt="Fortress in Galle with lighthouse at sunset"
-          title="Moments From"
+          imageAlt={t("gallery.hero.title") + t("gallery.hero.highlight")}
+          title={t("gallery.hero.title")}
         />
 
         <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
-
-
-
           <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
             {filteredItems.map((item, index) => (
               <div
                 key={item.id}
-                className={`reveal-item group overflow-hidden rounded-xl shadow-sm ${item.aspect === "portrait" ? "aspect-[3/4]" : "aspect-square"
-                  } ${index % 2 === 1 ? "md:mt-6" : ""}`}
+                className={`reveal-item group overflow-hidden rounded-xl shadow-sm ${
+                  item.aspect === "portrait" ? "aspect-[3/4]" : "aspect-square"
+                } ${index % 2 === 1 ? "md:mt-6" : ""}`}
                 style={{ "--reveal-index": index } as CSSProperties}
               >
                 <img
@@ -59,7 +58,7 @@ export default function Gallery() {
 
           {filteredItems.length === 0 && (
             <p className="py-16 text-center text-sm text-muted">
-              No images in this category yet.
+              {t("gallery.empty")}
             </p>
           )}
         </section>
@@ -69,15 +68,15 @@ export default function Gallery() {
           <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
             <Reveal>
               <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-4xl">
-                Want These Moments as Your Own Memories?
+                {t("gallery.ctaTitle")}
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <Link
                 className="inline-flex w-full items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:bg-sunset-hover sm:w-auto"
-                to="/contact"
+                to={getLocalizedPath("/contact")}
               >
-                Plan Your Trip
+                {t("gallery.planTrip")}
               </Link>
             </Reveal>
           </div>
