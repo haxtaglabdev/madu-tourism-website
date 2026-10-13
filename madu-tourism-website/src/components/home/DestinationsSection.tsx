@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { destinations } from "../../data/homeContent";
+import { homeDestinations as destinations } from "../../data/homeContent";
 import Reveal from "../ui/Reveal";
 import DestinationCard from "./DestinationCard";
 

@@ -9,6 +9,16 @@ import { packages } from "../data/homeContent";
 import { getPackageDetailsPath } from "../data/packageDetails";
 
 export default function TourPackages() {
+  const journeyPackages = packages.map((tour) => {
+    if (tour.id === "classic-ceylon") {
+      return { ...tour, image: images.maligawa };
+    }
+    if (tour.id === "wild-leopards") {
+      return { ...tour, image: images.kotiDenna };
+    }
+    return tour;
+  });
+
   return (
     <>
       <PageMeta
@@ -21,8 +31,8 @@ export default function TourPackages() {
           experiences tailored to your interests."
           eyebrow="Private Handcrafted Itineraries"
           highlight="for You"
-          image={images.sigiriyaAerial}
-          imageAlt="Aerial view of Sigiriya and surrounding landscape"
+          image={images.nelumKola}
+          imageAlt="Lotus lake with mountain view in Sri Lanka"
           title="Journeys Made"
         />
 
@@ -56,7 +66,7 @@ export default function TourPackages() {
           </div>
 
           <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {packages.map((tour, index) => (
+            {journeyPackages.map((tour, index) => (
               <TourCard
                 key={tour.id}
                 detailsTo={getPackageDetailsPath(tour.id) ?? "/contact"}

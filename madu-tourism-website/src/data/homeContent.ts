@@ -103,6 +103,70 @@ export const destinations: Destination[] = [
   },
 ];
 
+export const homeDestinations: Destination[] = [
+  {
+    id: "sigiriya",
+    title: "Sigiriya & The Ancient Citadel",
+    description:
+      "Ascend King Kashyapa's 5th-century palace atop a sheer 200m granite monolith adorned with celestial frescoes and mirror walls.",
+    badge: "Cultural Triangle",
+    badgeVariant: "gold",
+    meta: "UNESCO World Heritage",
+    image: images.homeSigiriya,
+    linkLabel: "Discover Region Details",
+    span: "large",
+    minHeight: "min-h-[380px]",
+  },
+  {
+    id: "ella",
+    title: "Ella & Nine Arch Bridge",
+    description:
+      "Misty valleys, iconic viaduct trains, and secluded highland tea tastings.",
+    badge: "High Tea & Peaks",
+    badgeVariant: "glass",
+    image: images.homeNineArch,
+    linkLabel: "Explore Highlights",
+    span: "medium",
+    minHeight: "min-h-[380px]",
+  },
+  {
+    id: "galle",
+    title: "Historic Galle Fort",
+    description:
+      "17th-century cobblestones, boutique artisan jeweler ateliers, and sea ramparts.",
+    badge: "Southern Ramparts",
+    badgeVariant: "glass",
+    image: images.homeGalleFort,
+    linkLabel: "Explore Highlights",
+    span: "medium",
+    minHeight: "min-h-[340px]",
+  },
+  {
+    id: "mirissa",
+    title: "Mirissa & Weligama",
+    description:
+      "Private blue whale watching charters, palm hills, and sunset cocktails.",
+    badge: "Coastal Bliss",
+    badgeVariant: "glass",
+    image: images.homeMirissa,
+    linkLabel: "Explore Highlights",
+    span: "medium",
+    minHeight: "min-h-[340px]",
+  },
+  {
+    id: "yala",
+    title: "Yala National Park",
+    description:
+      "Highest density of Sri Lankan leopards, sloth bears, and wild tuskers.",
+    badge: "Wildlife Kingdom",
+    badgeVariant: "glass",
+    image: images.homeMinneriya,
+    linkLabel: "Explore Highlights",
+    span: "medium",
+    minHeight: "min-h-[340px]",
+  },
+];
+
 export const packages: TourPackage[] = [
   {
     id: "classic-ceylon",
@@ -111,7 +175,7 @@ export const packages: TourPackage[] = [
       "Sigiriya Lion Fortress, Temple of the Tooth Relic, mist-shrouded Nuwara Eliya tea trails, and a Minneriya elephant gathering.",
     duration: "7 Days / 6 Nights",
     tag: "Private Chauffeur",
-    image: images.sigiriyaAerial,
+    image: images.maligawa,
     rating: 5,
     reviewCount: 48,
     inclusions: [
@@ -147,7 +211,7 @@ export const packages: TourPackage[] = [
       "Dual wildlife immersion: custom 4x4 open-top jeep safaris in Yala followed by barefoot luxury along southern Indian Ocean beaches.",
     duration: "10 Days / 9 Nights",
     tag: "Safari & Ocean Villa",
-    image: images.elephantBath,
+    image: images.kotiDenna,
     rating: 5,
     reviewCount: 54,
     inclusions: [

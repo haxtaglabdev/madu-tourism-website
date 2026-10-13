@@ -203,8 +203,8 @@ function ContactPage({ packageName }: { packageName: string | null }) {
           description="Tell us when you plan to visit, what inspires you, and how you love to travel. We’ll help craft a personalised Sri Lankan journey filled with unforgettable experiences, at your own pace."
           eyebrow="TRAVEL PLANNING"
           highlight="Journey"
-          image={images.beachBoats}
-          imageAlt="Boats along a Sri Lankan coastal bay"
+          image={images.blueBeachContact}
+          imageAlt="Aerial view of Blue Beach Island in Sri Lanka"
           title="Let's Plan Your Sri Lankan"
         />
 
