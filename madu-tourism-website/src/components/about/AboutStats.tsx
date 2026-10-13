@@ -1,39 +1,40 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Reveal from "../ui/Reveal";
 
-interface StatItem {
+interface StatItemConfig {
   readonly id: string;
   readonly target: number;
   readonly suffix: string;
-  readonly label: string;
+  readonly labelKey: string;
   readonly icon: string;
-  readonly ariaLabel: string;
+  readonly ariaLabelKey: string;
 }
 
-const STATS: readonly StatItem[] = [
+const STAT_CONFIGS: readonly StatItemConfig[] = [
   {
     id: "travelers",
     target: 500,
     suffix: "+",
-    label: "Happy Travelers",
+    labelKey: "about.stats.travelersLabel",
     icon: "groups",
-    ariaLabel: "Over 500 Happy Travelers",
+    ariaLabelKey: "about.stats.travelersAria",
   },
   {
     id: "packages",
     target: 10,
     suffix: "+",
-    label: "Tour Packages",
+    labelKey: "about.stats.packagesLabel",
     icon: "explore",
-    ariaLabel: "Over 10 Tour Packages",
+    ariaLabelKey: "about.stats.packagesAria",
   },
   {
     id: "excellence",
     target: 5,
     suffix: "+",
-    label: "Years of Excellence",
+    labelKey: "about.stats.excellenceLabel",
     icon: "workspace_premium",
-    ariaLabel: "Over 5 Years of Excellence",
+    ariaLabelKey: "about.stats.excellenceAria",
   },
 ] as const;
 
@@ -43,6 +44,7 @@ function easeOutCubic(t: number): number {
 }
 
 export default function AboutStats() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement | null>(null);
   const numberRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -57,7 +59,7 @@ export default function AboutStats() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const setFinalValues = () => {
-      STATS.forEach((stat, index) => {
+      STAT_CONFIGS.forEach((stat, index) => {
         const el = numberRefs.current[index];
         if (el) {
           el.textContent = String(stat.target);
@@ -90,7 +92,7 @@ export default function AboutStats() {
           const progress = Math.min(elapsed / duration, 1);
           const eased = easeOutCubic(progress);
 
-          STATS.forEach((stat, index) => {
+          STAT_CONFIGS.forEach((stat, index) => {
             const el = numberRefs.current[index];
             if (el) {
               const current = Math.round(eased * stat.target);
@@ -132,7 +134,7 @@ export default function AboutStats() {
           <div className="mb-2 inline-flex items-center justify-center gap-2">
             <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
             <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-              Proven Track Record
+              {t("about.stats.eyebrow")}
             </span>
           </div>
         </Reveal>
@@ -141,7 +143,7 @@ export default function AboutStats() {
             id="about-stats-heading"
             className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl"
           >
-            Our Journey in Numbers
+            {t("about.stats.title")}
           </h2>
         </Reveal>
       </div>
@@ -159,13 +161,13 @@ export default function AboutStats() {
           />
 
           <dl className="relative z-10 grid grid-cols-1 divide-y divide-charcoal/8 md:grid-cols-3 md:divide-y-0 md:divide-x md:divide-charcoal/8">
-            {STATS.map((stat, index) => (
+            {STAT_CONFIGS.map((stat, index) => (
               <div
                 key={stat.id}
                 className="group flex flex-col items-center py-7 text-center transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] first:pt-0 last:pb-0 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:py-4 md:px-6 lg:px-10"
               >
                 {/* Accessible text for screen readers */}
-                <span className="sr-only">{stat.ariaLabel}</span>
+                <span className="sr-only">{t(stat.ariaLabelKey)}</span>
 
                 <div aria-hidden="true" className="flex flex-col items-center w-full">
                   {/* Icon badge */}
@@ -192,7 +194,7 @@ export default function AboutStats() {
 
                   {/* Descriptive label */}
                   <dt className="mt-3 text-sm font-semibold tracking-wide text-charcoal sm:text-base">
-                    {stat.label}
+                    {t(stat.labelKey)}
                   </dt>
                 </div>
               </div>

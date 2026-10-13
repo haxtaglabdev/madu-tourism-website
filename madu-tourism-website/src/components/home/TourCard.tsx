@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import type { TourPackage } from "../../types/Home";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 
 interface TourCardProps {
   tour: TourPackage;
@@ -8,7 +9,15 @@ interface TourCardProps {
   detailsTo?: string;
 }
 
-function StarRow({ rating, reviewCount }: { rating: number; reviewCount: number }) {
+function StarRow({
+  rating,
+  reviewCount,
+  reviewsLabel,
+}: {
+  rating: number;
+  reviewCount: number;
+  reviewsLabel: string;
+}) {
   return (
     <div className="mb-2 flex items-center gap-1.5 text-xs text-gold">
       {Array.from({ length: rating }).map((_, index) => (
@@ -20,7 +29,7 @@ function StarRow({ rating, reviewCount }: { rating: number; reviewCount: number 
         </span>
       ))}
       <span className="ml-1 font-semibold text-charcoal">5.0</span>
-      <span className="text-muted">({reviewCount} reviews)</span>
+      <span className="text-muted">({reviewCount} {reviewsLabel})</span>
     </div>
   );
 }
@@ -30,6 +39,14 @@ export default function TourCard({
   style,
   detailsTo = "/contact",
 }: TourCardProps) {
+  const { t, getLocalizedPath } = useCurrentLanguage();
+
+  const isPerPerson =
+    tour.id === "ceylon-essentials" ||
+    tour.id === "island-highlights" ||
+    tour.id === "ancient-kingdoms" ||
+    tour.id === "grand-expedition";
+
   return (
     <article
       className={`reveal-item group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
@@ -56,7 +73,11 @@ export default function TourCard({
           </span>
         </div>
         <div className="p-5 sm:p-7">
-          <StarRow rating={tour.rating} reviewCount={tour.reviewCount} />
+          <StarRow
+            rating={tour.rating}
+            reviewCount={tour.reviewCount}
+            reviewsLabel={t("common.reviewsCount")}
+          />
           <h3 className="mb-2 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl">
             {tour.title}
           </h3>
@@ -78,12 +99,12 @@ export default function TourCard({
       <div className="flex flex-col gap-4 p-5 pt-0 sm:flex-row sm:items-center sm:justify-between sm:p-7 sm:pt-0">
         <div className="min-w-0">
           <span className="block text-[11px] tracking-wider text-muted uppercase">
-            From
+            {t("common.fromPrice")}
           </span>
           <span className="font-serif text-2xl font-semibold text-charcoal">
             {tour.price}{" "}
             <span className="font-sans text-xs font-normal text-muted">
-              / guest
+              {isPerPerson ? t("common.perPerson") : t("common.perGuest")}
             </span>
           </span>
         </div>
@@ -93,9 +114,9 @@ export default function TourCard({
               ? "bg-sunset shadow-md hover:bg-sunset-hover"
               : "bg-forest group-hover:bg-tropical"
           }`}
-          to={detailsTo}
+          to={getLocalizedPath(detailsTo)}
         >
-          Explore Details
+          {t("common.exploreDetails")}
         </Link>
       </div>
     </article>

@@ -1,15 +1,23 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { images } from "../assets";
 import TourCard from "../components/home/TourCard";
 import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
 import Reveal, { RevealGroup } from "../components/ui/Reveal";
-import { packages } from "../data/homeContent";
-import { getPackageDetailsPath } from "../data/packageDetails";
+import {
+  getLocalizedPackages,
+  getLocalizedPackageDetailsPath,
+} from "../data/localizedPackages";
+import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 
 export default function TourPackages() {
-  const journeyPackages = packages.map((tour) => {
+  const { t } = useTranslation();
+  const { currentLang, getLocalizedPath } = useCurrentLanguage();
+
+  const allPackages = getLocalizedPackages(currentLang);
+  const journeyPackages = allPackages.map((tour) => {
     if (tour.id === "classic-ceylon") {
       return { ...tour, image: images.maligawa };
     }
@@ -22,28 +30,23 @@ export default function TourPackages() {
   return (
     <>
       <PageMeta
-        description="Browse handcrafted Sri Lanka tour packages — Classic Ceylon, Highland Tea, and Wild Leopards journeys with Madu Tseylon Tours."
-        title="Tour Packages | Madu Tseylon Tours"
+        description={t("tourPackages.metaDescription")}
+        title={t("tourPackages.metaTitle")}
       />
       <main>
         <PageHero
-          description="Discover Sri Lanka your way with personalised itineraries, handpicked stays, private chauffeur journeys, and authentic cultural 
-          experiences tailored to your interests."
-          eyebrow="Private Handcrafted Itineraries"
-          highlight="for You"
+          description={t("tourPackages.hero.description")}
+          eyebrow={t("tourPackages.hero.eyebrow")}
+          highlight={t("tourPackages.hero.highlight")}
           image={images.nelumKola}
-          imageAlt="Lotus lake with mountain view in Sri Lanka"
-          title="Journeys Made"
+          imageAlt={t("tourPackages.hero.title") + t("tourPackages.hero.highlight")}
+          title={t("tourPackages.hero.title")}
         />
 
         <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
           <Reveal>
             <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:text-base">
-              One island. Countless experiences. Your journey, your way.
-
-              Discover our collection of Sri Lanka tours, thoughtfully designed for every kind of traveller.
-
-
+              {t("tourPackages.intro")}
             </p>
           </Reveal>
         </section>
@@ -54,13 +57,13 @@ export default function TourPackages() {
               <div className="mb-2 inline-flex items-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                  Featured Travel Packages
+                  {t("tourPackages.sectionEyebrow")}
                 </span>
               </div>
             </Reveal>
             <Reveal delay={100}>
               <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
-                Choose Your Journey
+                {t("tourPackages.sectionTitle")}
               </h2>
             </Reveal>
           </div>
@@ -69,7 +72,10 @@ export default function TourPackages() {
             {journeyPackages.map((tour, index) => (
               <TourCard
                 key={tour.id}
-                detailsTo={getPackageDetailsPath(tour.id) ?? "/contact"}
+                detailsTo={
+                  getLocalizedPackageDetailsPath(tour.id, currentLang) ??
+                  getLocalizedPath("/contact")
+                }
                 style={{ "--reveal-index": index } as CSSProperties}
                 tour={tour}
               />
@@ -83,28 +89,26 @@ export default function TourPackages() {
               <div className="mb-2 inline-flex items-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                  YOUR JOURNEY, YOUR WAY
+                  {t("tourPackages.bespokeEyebrow")}
                 </span>
               </div>
             </Reveal>
             <Reveal delay={100}>
               <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
-                A Sri Lankan Experience, Crafted Around You
+                {t("tourPackages.bespokeTitle")}
               </h2>
             </Reveal>
             <Reveal delay={180}>
               <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed font-light text-muted sm:text-base">
-                Share your travel dates, favourite destinations, and the experiences you love. We’ll help you create a
-                personalised Sri Lankan journey,
-                from handpicked stays to private chauffeur services, all at your own pace.
+                {t("tourPackages.bespokeDescription")}
               </p>
             </Reveal>
             <Reveal delay={240}>
               <Link
                 className="inline-flex w-full items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:bg-sunset-hover sm:w-auto"
-                to="/contact"
+                to={getLocalizedPath("/contact")}
               >
-                Request Custom Itinerary
+                {t("tourPackages.planTrip")}
               </Link>
             </Reveal>
           </div>

@@ -4,18 +4,17 @@ import type { PackageDetail } from "../../types/PackageDetail";
 import Reveal, { RevealGroup } from "../ui/Reveal";
 import PackageItinerary from "./PackageItinerary";
 import PackageRouteMap from "./PackageRouteMap";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 import "../../styles/packageDetail.css";
 
 interface PackageDetailViewProps {
   pkg: PackageDetail;
 }
 
-function inquiryPath(title: string) {
-  return `/contact?package=${encodeURIComponent(title)}`;
-}
-
 export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
-  const planTo = inquiryPath(pkg.title);
+  const { currentLang, getLocalizedPath } = useCurrentLanguage();
+  const planTo = getLocalizedPath(`/contact?package=${encodeURIComponent(pkg.title)}`);
+  const isRu = currentLang === "ru";
 
   return (
     <div className="pkg-detail">
@@ -50,11 +49,11 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
             </dl>
             <div className="pkg-hero__actions">
               <Link className="pkg-btn" to={planTo}>
-                Plan This Journey
+                {isRu ? "Забронировать тур" : "Plan This Journey"}
                 <span aria-hidden="true">→</span>
               </Link>
               <a className="pkg-hero__itinerary-link" href="#itinerary">
-                View Full Itinerary
+                {isRu ? "Программа тура" : "View Full Itinerary"}
                 <span aria-hidden="true" className="material-symbols-outlined">
                   keyboard_arrow_down
                 </span>
@@ -168,7 +167,7 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
                 ))}
               </ul>
               <Link className="pkg-btn" to={planTo}>
-                Plan This Journey
+                {isRu ? "Забронировать тур" : "Plan This Journey"}
                 <span aria-hidden="true">→</span>
               </Link>
             </div>

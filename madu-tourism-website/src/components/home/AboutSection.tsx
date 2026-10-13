@@ -1,9 +1,13 @@
 import type { CSSProperties } from "react";
 import { images } from "../../assets";
-import { valuePillars } from "../../data/homeContent";
+import { getLocalizedValuePillars } from "../../data/localizedContent";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 import Reveal, { RevealGroup } from "../ui/Reveal";
 
 export default function AboutSection() {
+  const { t, currentLang } = useCurrentLanguage();
+  const pillars = getLocalizedValuePillars(currentLang);
+
   return (
     <section
       className="mx-auto w-full max-w-7xl px-4 pt-24 pb-24 sm:px-6 sm:pt-32 sm:pb-36"
@@ -42,35 +46,32 @@ export default function AboutSection() {
             <div className="mb-3 flex items-center gap-2">
               <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
               <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                BESPOKE CEYLON JOURNEYS
+                {t("home.about.eyebrow")}
               </span>
             </div>
           </Reveal>
           <Reveal delay={100}>
             <h2 className="mb-6 font-serif text-[1.75rem] leading-tight font-medium text-charcoal sm:text-3xl md:text-5xl">
-              Discover Sri Lanka Beyond the Ordinary
+              {t("home.about.title")}
             </h2>
           </Reveal>
           <Reveal delay={180}>
             <p className="mb-6 text-base leading-relaxed font-light text-muted">
-              At MaduTseylon, every journey is an invitation to experience Sri Lanka at its finest. From the misty tea hills and timeless
-              cultural landmarks to unforgettable wildlife encounters and secluded coastal escapes,
-              discover the island at your own pace, with personalised journeys shaped around your interests
+              {t("home.about.description")}
             </p>
           </Reveal>
           <Reveal delay={240}>
             <div className="mb-8 rounded-xl border-l-4 border-tropical bg-soft-mint p-5">
               <p className="font-serif text-sm text-charcoal italic">
-                &ldquo;Some places stay with you long after you leave. Sri Lanka is one of them — a land of timeless beauty, rich traditions,
-                and moments worth remembering.&rdquo;
+                &ldquo;{t("home.about.quote")}&rdquo;
               </p>
               <span className="mt-2 block text-xs font-semibold tracking-wider text-tropical uppercase">
-                — The Madu Tseylon Team
+                {t("home.about.quoteAuthor")}
               </span>
             </div>
           </Reveal>
           <RevealGroup className="grid grid-cols-1 gap-6 border-t border-border-subtle pt-4 sm:grid-cols-3">
-            {valuePillars.map((pillar, index) => (
+            {pillars.map((pillar, index) => (
               <div
                 key={pillar.title}
                 className="reveal-item space-y-1.5"
