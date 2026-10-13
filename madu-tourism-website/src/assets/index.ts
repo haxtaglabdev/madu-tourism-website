@@ -43,6 +43,9 @@ import fortressInGalle from "./image_arrenge/Fortress in Galle‧.jpg.jpg";
 import blueBeachContact from "./image_arrenge/blue beach contact.jpg";
 import women from "./image_arrenge/women.jpg";
 import perahera from "./image_arrenge/perahera.jpg";
+import colomboMusi from "./image_arrenge/colombo musi.jpg";
+import nuwaraEliya from "./image_arrenge/nuwara eliya.jpg";
+import teaW from "./image_arrenge/tea w.jpg";
 import destAnuradhapura from "./destinations/anuradha.jpg";
 import destTrincomalee from "./destinations/Trincomale.jpg";
 import destArugambe from "./destinations/arugambe.jpg";
@@ -122,10 +125,15 @@ export const images = {
   maligawa,
   kotiDenna,
   fortressInGalle,
+  galleFortress: fortressInGalle,
+  mirissaArrange: homeMirissa,
   blueBeachContact,
   women,
   homeWomen: women,
   perahera,
+  colomboMusi,
+  nuwaraEliya,
+  teaW,
   destAnuradhapura,
   destTrincomalee,
   destArugambe,

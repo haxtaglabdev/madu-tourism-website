@@ -24,6 +24,18 @@ export default function TourPackages() {
     if (tour.id === "wild-leopards") {
       return { ...tour, image: images.kotiDenna };
     }
+    if (tour.id === "ceylon-essentials") {
+      return { ...tour, image: images.colomboMusi };
+    }
+    if (tour.id === "island-highlights") {
+      return { ...tour, image: images.sigiriyaRock };
+    }
+    if (tour.id === "ancient-kingdoms") {
+      return { ...tour, image: images.nuwaraEliya };
+    }
+    if (tour.id === "grand-expedition") {
+      return { ...tour, image: images.teaW };
+    }
     return tour;
   });
 

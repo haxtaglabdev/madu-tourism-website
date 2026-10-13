@@ -523,9 +523,9 @@ export const packageDetails: PackageDetail[] = [
     heroLabel: "COMPACT DISCOVERY · CULTURE · HERITAGE · HIGHLANDS",
     heroDescription:
       "Discover the highlights of Sri Lanka in five memorable days, from ancient cultural landmarks to misty tea country and the breathtaking mountain scenery of Ella.",
-    heroImage: images.sigiriyaArrange,
+    heroImage: images.colomboMusi,
     heroImageAlt:
-      "Sigiriya Rock Fortress rising above the surrounding landscape",
+      "National Museum of Colombo and Sri Lankan cultural landmarks",
     heroMeta: [
       { label: "Duration", value: "5 Days / 4 Nights" },
       { label: "Travel Style", value: "Private Guided Tour" },
@@ -677,9 +677,9 @@ export const packageDetails: PackageDetail[] = [
     heroLabel: "ISLAND EXPLORER · HERITAGE · WILDLIFE · COAST",
     heroDescription:
       "Journey through Sri Lanka's celebrated highlights, combining ancient kingdoms, emerald highlands, wild southern landscapes, tropical beaches, and the coastal charm of Galle.",
-    heroImage: images.galleFortArrange,
+    heroImage: images.sigiriyaRock,
     heroImageAlt:
-      "Historic Galle Fort architecture overlooking the southern coastline",
+      "Sigiriya Rock Fortress rising above the surrounding landscape",
     heroMeta: [
       { label: "Duration", value: "7 Days / 6 Nights" },
       { label: "Travel Style", value: "Private Guided Tour" },
@@ -858,9 +858,9 @@ export const packageDetails: PackageDetail[] = [
     heroLabel: "HERITAGE EXPLORER · CULTURE · WILDLIFE · COAST",
     heroDescription:
       "Experience a broader journey across Sri Lanka, connecting ancient cities, sacred temples, emerald tea plantations, mountain escapes, wildlife landscapes, southern beaches, and Colombo's urban character.",
-    heroImage: images.nineArchArrange,
+    heroImage: images.nuwaraEliya,
     heroImageAlt:
-      "Nine Arches Bridge surrounded by lush tropical vegetation in Ella",
+      "Scenic tea country landscapes in Nuwara Eliya",
     heroMeta: [
       { label: "Duration", value: "10 Days / 9 Nights" },
       { label: "Travel Style", value: "Private Guided Tour" },
@@ -1078,9 +1078,9 @@ export const packageDetails: PackageDetail[] = [
     heroLabel: "GRAND EXPEDITION · NORTH · SOUTH · EAST · HIGHLANDS",
     heroDescription:
       "Travel deeper into the Pearl of the Indian Ocean on a fourteen-day expedition through ancient kingdoms, sacred cities, tea-covered mountains, wildlife landscapes, tropical coastlines, and the distinctive cultures of Sri Lanka's north and east.",
-    heroImage: images.trainArrange,
+    heroImage: images.teaW,
     heroImageAlt:
-      "Scenic blue train crossing through Sri Lanka's lush highland landscapes",
+      "Lush green tea plantations and tea country landscape in Sri Lanka",
     heroMeta: [
       { label: "Duration", value: "14 Days / 13 Nights" },
       { label: "Travel Style", value: "Private Guided Expedition" },

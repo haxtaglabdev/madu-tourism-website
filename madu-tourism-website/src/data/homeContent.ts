@@ -226,7 +226,7 @@ export const packages: TourPackage[] = [
       "A compact five-day journey from Colombo through Sigiriya's ancient fortress, Kandy's sacred heritage, Nuwara Eliya's tea highlands, and Ella's mountain scenery.",
     duration: "5 Days / 4 Nights",
     tag: "Compact Discovery",
-    image: images.sigiriyaArrange,
+    image: images.colomboMusi,
     rating: 5,
     reviewCount: 36,
     inclusions: [
@@ -243,7 +243,7 @@ export const packages: TourPackage[] = [
       "Seven days combining ancient heritage, tea country, mountain landscapes, wildlife, southern beaches, and the historic streets of Galle Fort.",
     duration: "7 Days / 6 Nights",
     tag: "Island Explorer",
-    image: images.galleFortArrange,
+    image: images.sigiriyaRock,
     rating: 5,
     reviewCount: 41,
     inclusions: [
@@ -260,7 +260,7 @@ export const packages: TourPackage[] = [
       "A ten-day exploration featuring ancient cities, sacred temples, tea plantations, Yala wildlife, Mirissa's shores, and Galle Fort.",
     duration: "10 Days / 9 Nights",
     tag: "Heritage & Wildlife",
-    image: images.nineArchArrange,
+    image: images.nuwaraEliya,
     rating: 5,
     reviewCount: 38,
     inclusions: [
@@ -277,7 +277,7 @@ export const packages: TourPackage[] = [
       "A comprehensive fourteen-day expedition through Sri Lanka's cultural triangle, highlands, wildlife regions, southern coast, and the distinctive north and east.",
     duration: "14 Days / 13 Nights",
     tag: "Grand Island Circuit",
-    image: images.trainArrange,
+    image: images.teaW,
     rating: 5,
     reviewCount: 29,
     inclusions: [
