@@ -18,14 +18,14 @@ export default function AboutSection() {
             <img
               alt="Ceylon tea plucking in emerald hills"
               className="h-full w-full object-cover object-top"
-              src={images.teaWoman}
+              src={images.homeTrainGb}
             />
           </div>
           <div className="absolute -right-2 -bottom-8 z-20 hidden aspect-[4/3] w-3/5 overflow-hidden rounded-2xl border-4 border-white shadow-[0_20px_40px_rgba(0,37,26,0.14)] sm:-right-4 sm:-bottom-10 lg:-right-6 sm:block">
             <img
-              alt="Ancient Buddhist temple stupa"
+              alt="Sri Lankan hospitality and traditional welcome"
               className="h-full w-full object-cover"
-              src={images.temple}
+              src={images.women}
             />
           </div>
           <div className="absolute -top-4 -left-2 z-30 flex h-20 w-20 items-center justify-center border border-charcoal/5 bg-white p-1.5 shadow-xl sm:-top-5 sm:-left-4 sm:h-24 sm:w-24 lg:-top-6 lg:-left-6 md:h-28 md:w-28">

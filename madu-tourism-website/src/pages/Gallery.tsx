@@ -31,8 +31,8 @@ export default function Gallery() {
           explore the moments that make Sri Lanka truly unforgettable."
           eyebrow="A JOURNEY IN PICTURES"
           highlight="Sri Lanka"
-          image={images.galleSunset}
-          imageAlt="Galle Fort lighthouse at golden hour"
+          image={images.fortressInGalle}
+          imageAlt="Fortress in Galle with lighthouse at sunset"
           title="Moments From"
         />
 

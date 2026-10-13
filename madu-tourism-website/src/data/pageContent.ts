@@ -68,7 +68,7 @@ export const sriLankaExpertise = [
     title: "Culture",
     description:
       "Ancient kingdoms, Kandyan rituals, Dutch fort towns, and living temple traditions.",
-    image: images.temple,
+    image: images.perahera,
   },
   {
     icon: "forest",
@@ -150,6 +150,134 @@ export const destinationHighlights: Record<string, string[]> = {
     "Dawn & dusk game drives",
   ],
 };
+
+export interface DestinationExperience {
+  id: string;
+  title: string;
+  description: string;
+  highlights: string[];
+  image: string;
+}
+
+export const destinationExperiences: DestinationExperience[] = [
+  {
+    id: "anuradhapura",
+    title: "Anuradhapura",
+    description:
+      "Step into Sri Lanka's ancient first kingdom, where sacred stupas, magnificent monasteries, and centuries-old ruins reveal the island's rich Buddhist heritage.",
+    highlights: [
+      "Sacred Sri Maha Bodhi Tree",
+      "Ruwanwelisaya and Jetavanaramaya stupas",
+      "Ancient royal monasteries and ruins",
+      "Peaceful cycling trails through the sacred city",
+    ],
+    image: images.destAnuradhapura,
+  },
+  {
+    id: "trincomalee",
+    title: "Trincomalee",
+    description:
+      "Discover turquoise waters, golden beaches, and rich coastal heritage in a beautiful eastern city known for its ocean views and marine adventures.",
+    highlights: [
+      "Nilaveli and Uppuveli beaches",
+      "Pigeon Island snorkeling adventures",
+      "Koneswaram Temple and Swami Rock",
+      "Seasonal whale and dolphin watching",
+    ],
+    image: images.destTrincomalee,
+  },
+  {
+    id: "arugambe",
+    title: "Arugambe",
+    description:
+      "Embrace the laid-back spirit of Sri Lanka's eastern coast, where legendary surf breaks, tropical lagoons, and golden sunsets create an unforgettable escape.",
+    highlights: [
+      "Surfing at Arugam Bay",
+      "Scenic lagoon boat safaris",
+      "Elephant Rock and coastal viewpoints",
+      "Relaxed beachside cafés and sunset views",
+    ],
+    image: images.destArugambe,
+  },
+  {
+    id: "dambulla",
+    title: "Dambulla",
+    description:
+      "Explore a remarkable cultural landmark where ancient cave temples, intricate Buddhist murals, and towering golden statues preserve centuries of spiritual history.",
+    highlights: [
+      "Dambulla Royal Cave Temple",
+      "Ancient Buddhist paintings and sculptures",
+      "Golden Temple complex",
+      "Excursions through the Cultural Triangle",
+    ],
+    image: images.destDambulla,
+  },
+  {
+    id: "bentota",
+    title: "Bentota",
+    description:
+      "Unwind along Sri Lanka's sun-kissed southwestern coast, combining beautiful sandy beaches with river adventures and leisurely oceanfront escapes.",
+    highlights: [
+      "Relaxing golden-sand beaches",
+      "Madu River boat safaris",
+      "Water sports and coastal activities",
+      "Riverside mangroves and wildlife",
+    ],
+    image: images.destBentota,
+  },
+  {
+    id: "colombo",
+    title: "Colombo",
+    description:
+      "Experience Sri Lanka's vibrant commercial capital, where colonial architecture, contemporary city life, colorful markets, and oceanfront sunsets meet.",
+    highlights: [
+      "Galle Face Green and seaside sunsets",
+      "Gangaramaya Temple",
+      "Pettah Market and historic streets",
+      "Colonial landmarks and modern city dining",
+    ],
+    image: images.destColombo,
+  },
+  {
+    id: "habarana",
+    title: "Habarana",
+    description:
+      "Escape into the heart of Sri Lanka's dry-zone wilderness, surrounded by peaceful lakes, lush countryside, and unforgettable wildlife encounters.",
+    highlights: [
+      "Wildlife safaris in nearby national parks",
+      "Scenic village and lake experiences",
+      "Traditional Sri Lankan village cuisine",
+      "Easy access to Sigiriya and Polonnaruwa",
+    ],
+    image: images.destHabarana,
+  },
+  {
+    id: "kitulgala",
+    title: "Kitulgala",
+    description:
+      "Discover an adventurous rainforest retreat where rushing rivers, lush green hills, and tropical forests create the perfect setting for outdoor exploration.",
+    highlights: [
+      "White-water rafting on the Kelani River",
+      "Rainforest walks and birdwatching",
+      "Jungle trails and nature photography",
+      "Scenic riverside relaxation",
+    ],
+    image: images.destKitulgala,
+  },
+  {
+    id: "polonnaruwa",
+    title: "Polonnaruwa",
+    description:
+      "Journey through a magnificent medieval capital filled with royal ruins, remarkable stone carvings, and monumental Buddhist sculptures from Sri Lanka's ancient past.",
+    highlights: [
+      "Gal Vihara's magnificent Buddha statues",
+      "Royal Palace and ancient council chamber ruins",
+      "Vatadage and historic religious monuments",
+      "Cycling through the ancient archaeological city",
+    ],
+    image: images.destPolonnaruwa,
+  },
+];
 
 export const galleryCategories = [
   "All",
