@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { images } from "../assets";
+import AboutStats from "../components/about/AboutStats";
 import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
 import Reveal, { RevealGroup } from "../components/ui/Reveal";
@@ -94,6 +95,9 @@ export default function About() {
             </div>
           </div>
         </section>
+
+        {/* Statistics */}
+        <AboutStats />
 
         {/* Mission */}
         <section className="w-full bg-soft-mint py-16 sm:py-24">
