@@ -52,7 +52,7 @@ export default function About() {
           eyebrow={t("about.hero.eyebrow")}
           highlight={t("about.hero.highlight")}
           image={images.teaWoman}
-          imageAlt={t("about.hero.title") + t("about.hero.highlight")}
+          imageAlt={t("about.hero.imageAlt")}
           title={t("about.hero.title")}
         />
 
@@ -67,6 +67,8 @@ export default function About() {
                 <img
                   alt="Ceylon tea plucking in emerald hills"
                   className="h-full w-full object-cover object-top"
+                  decoding="async"
+                  loading="lazy"
                   src={images.teaWoman}
                 />
               </div>
@@ -74,6 +76,8 @@ export default function About() {
                 <img
                   alt="Ancient Buddhist temple stupa"
                   className="h-full w-full object-cover"
+                  decoding="async"
+                  loading="lazy"
                   src={images.temple}
                 />
               </div>
@@ -81,6 +85,8 @@ export default function About() {
                 <img
                   alt="Madu Tseylon Tours Seal"
                   className="h-full w-full object-contain"
+                  decoding="async"
+                  loading="lazy"
                   src={images.sticker}
                 />
               </div>
@@ -255,8 +261,10 @@ export default function About() {
                 >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      alt={item.title}
+                      alt={`${item.title} — Sri Lanka Travel Expertise`}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      decoding="async"
+                      loading="lazy"
                       src={enExpertiseList[index]?.image || images.sigiriya}
                     />
                   </div>

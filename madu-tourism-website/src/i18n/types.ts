@@ -109,6 +109,7 @@ export interface TranslationResource {
       title: string;
       highlight: string;
       description: string;
+      imageAlt: string;
     };
     story: {
       eyebrow: string;
@@ -174,6 +175,7 @@ export interface TranslationResource {
       title: string;
       highlight: string;
       description: string;
+      imageAlt: string;
     };
     intro: string;
     featuredEyebrow: string;
@@ -190,6 +192,7 @@ export interface TranslationResource {
       title: string;
       highlight: string;
       description: string;
+      imageAlt: string;
     };
     intro: string;
     sectionEyebrow: string;
@@ -223,6 +226,7 @@ export interface TranslationResource {
       title: string;
       highlight: string;
       description: string;
+      imageAlt: string;
     };
     empty: string;
     ctaTitle: string;
@@ -236,6 +240,7 @@ export interface TranslationResource {
       title: string;
       highlight: string;
       description: string;
+      imageAlt: string;
     };
     conciergeTitle: string;
     conciergeSubtitle: string;

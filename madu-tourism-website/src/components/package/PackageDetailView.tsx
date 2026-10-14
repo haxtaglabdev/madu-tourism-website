@@ -19,8 +19,13 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
   return (
     <div className="pkg-detail">
       <section className="pkg-hero" aria-label={`${pkg.title} hero`}>
-        <div className="pkg-hero__media" aria-hidden="true">
-          <img alt="" src={pkg.heroImage} />
+        <div className="pkg-hero__media">
+          <img
+            alt={pkg.heroImageAlt || pkg.title}
+            decoding="async"
+            fetchPriority="high"
+            src={pkg.heroImage}
+          />
           <div className="pkg-hero__overlay" />
         </div>
 
@@ -166,7 +171,12 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
                 style={{ "--reveal-index": index } as CSSProperties}
               >
                 <div className="pkg-exp__media">
-                  <img alt={experience.imageAlt} src={experience.image} />
+                  <img
+                    alt={experience.imageAlt}
+                    decoding="async"
+                    loading="lazy"
+                    src={experience.image}
+                  />
                 </div>
                 <div className="pkg-exp__body">
                   <h3 className="pkg-exp__title">{experience.title}</h3>

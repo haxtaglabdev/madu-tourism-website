@@ -78,7 +78,11 @@ export default function Navbar() {
           <img
             alt=""
             className="h-16 w-auto max-w-[min(100%,7.5rem)] object-contain sm:h-20 sm:max-w-none lg:h-28"
+            decoding="async"
+            fetchPriority="high"
+            height={80}
             src={images.logo}
+            width={80}
           />
           <span className="brand-wordmark overflow-visible py-1 font-serif text-[0.95rem] leading-normal font-medium tracking-[0.02em] text-forest sm:text-xl lg:text-[1.65rem]">
             Madu

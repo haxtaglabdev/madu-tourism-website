@@ -242,7 +242,7 @@ function ContactPage({ packageName }: { packageName: string | null }) {
           eyebrow={t("contact.hero.eyebrow")}
           highlight={t("contact.hero.highlight")}
           image={images.blueBeachContact}
-          imageAlt={t("contact.hero.title") + t("contact.hero.highlight")}
+          imageAlt={t("contact.hero.imageAlt")}
           title={t("contact.hero.title")}
         />
 
