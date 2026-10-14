@@ -20,8 +20,10 @@ export default function AboutSection() {
         >
           <div className="relative z-10 aspect-[4/3] overflow-hidden rounded-2xl border border-charcoal/5 shadow-[0_16px_36px_rgba(0,37,26,0.08)]">
             <img
-              alt="Ceylon tea plucking in emerald hills"
+              alt="Scenic blue passenger train passing through lush green tea country in Sri Lanka"
               className="h-full w-full object-cover object-top"
+              decoding="async"
+              loading="lazy"
               src={images.homeTrainGb}
             />
           </div>
@@ -29,6 +31,8 @@ export default function AboutSection() {
             <img
               alt="Sri Lankan hospitality and traditional welcome"
               className="h-full w-full object-cover"
+              decoding="async"
+              loading="lazy"
               src={images.women}
             />
           </div>
@@ -36,6 +40,8 @@ export default function AboutSection() {
             <img
               alt="Madu Tseylon Tours Seal"
               className="h-full w-full object-contain"
+              decoding="async"
+              loading="lazy"
               src={images.sticker}
             />
           </div>

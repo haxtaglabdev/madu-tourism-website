@@ -1,16 +1,17 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PackageDetailView from "../components/package/PackageDetailView";
 import PageMeta from "../components/seo/PageMeta";
 import { getLocalizedPackageBySlug } from "../data/localizedPackages";
 import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
+import NotFound from "./NotFound";
 
 export default function PackageDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const { currentLang, getLocalizedPath } = useCurrentLanguage();
+  const { currentLang } = useCurrentLanguage();
   const pkg = slug ? getLocalizedPackageBySlug(slug, currentLang) : undefined;
 
   if (!pkg) {
-    return <Navigate replace to={getLocalizedPath("/tour-packages")} />;
+    return <NotFound />;
   }
 
   return (

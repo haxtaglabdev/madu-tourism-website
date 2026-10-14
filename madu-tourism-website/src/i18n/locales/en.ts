@@ -35,14 +35,14 @@ export const en: TranslationResource = {
     },
     footer: {
       description:
-        "Madu Tseylon Tours is a licensed Sri Lankan Destination Management Company specializing in bespoke private chauffeur journeys, luxury villa retreats, and responsible wildlife expeditions.",
+        "Madu Tseylon Tours is a Sri Lankan Destination Management Company specializing in bespoke private chauffeur journeys, luxury villa retreats, and responsible wildlife expeditions.",
       exploreHeading: "Explore",
       territoriesHeading: "Key Territories",
       conciergeHeading: "Colombo Concierge",
       address: "No.247, kurudu waththa, holuwagoda, godakanda, galle",
       onlineBadge: "24/7 Island Concierge Online",
       copyright:
-        "© 2026 Madu Tseylon Tours (Pvt) Ltd. All rights reserved. Sri Lanka Tourism Development Authority Reg. DMC.",
+        "© 2026 Madu Tseylon Tours. All rights reserved.",
       privacyPolicy: "Privacy Policy",
       termsOfService: "Terms of Service",
       responsibleTravel: "Responsible Travel Code",
@@ -64,7 +64,7 @@ export const en: TranslationResource = {
         "Private chauffeur journeys, UNESCO citadel sanctuaries, highland tea trails, and wild ocean escapes tailored to your personal rhythm.",
       ctaPlan: "Plan Your Journey",
       ctaExplore: "Explore Packages",
-      trustDmc: "Licensed Sri Lanka DMC",
+      trustDmc: "Sri Lanka Local DMC",
       trustPace: "Unhurried Island Pace",
       trustPrivate: "100% Private Chauffeur",
     },
@@ -120,14 +120,16 @@ export const en: TranslationResource = {
       title: "Our Island, Your ",
       highlight: "Journey",
       description:
-        "A licensed Sri Lankan destination management company. Seven Years of Exploring Sri Lanka.",
+        "A Sri Lankan destination management company. Seven Years of Exploring Sri Lanka.",
+      imageAlt:
+        "Collage of travelers exploring Sri Lankan landmarks, tea estates, Sigiriya, and elephants",
     },
     story: {
       eyebrow: "Bespoke Ceylon Expeditions",
       title: "Our Story",
       paragraphs: [
         "At Madu Tseylon Tours, we don’t offer hurried cookie-cutter excursions. We invite you into our motherland as honoured guests. From forgotten highland trails winding through artisanal tea factories to privileged private jeep safaris in quiet corners of Yala, every passage is crafted around your pace.",
-        "Our roots run through villages, tea estates, and coastal fishing communities. That means privileged access to local chiefs, family-run bungalows, and viewpoints that rarely appear in guidebooks — always with the quiet assurance of licensed, English-speaking chauffeur-naturalists.",
+        "Our roots run through villages, tea estates, and coastal fishing communities. That means privileged access to local chiefs, family-run bungalows, and viewpoints that rarely appear in guidebooks — always with the quiet assurance of professional, English-speaking chauffeur-naturalists.",
         "We believe travel should feel intimate, unhurried, and responsible. Every itinerary balances iconic UNESCO highlights with soft moments: a temple blessing at dusk, a cup of rare white tea with a planter, or a candlelit supper beside the Indian Ocean.",
       ],
       quote:
@@ -182,7 +184,7 @@ export const en: TranslationResource = {
         {
           title: "Trusted Service",
           description:
-            "Licensed DMC standards, vetted hotels, certified naturalist drivers, and transparent planning from first inquiry.",
+            "Professional DMC standards, vetted hotels, experienced naturalist drivers, and transparent planning from first inquiry.",
         },
         {
           title: "24/7 Support",
@@ -260,6 +262,8 @@ export const en: TranslationResource = {
       highlight: "Lanka",
       description:
         "From misty mountain peaks to turquoise southern shores, discover the extraordinary beauty of Sri Lanka, one unforgettable destination at a time.",
+      imageAlt:
+        "Beachfront dining terrace overlooking turquoise ocean waters and coastal boats in Sri Lanka",
     },
     intro:
       "Explore Sri Lanka’s most captivating destinations, from rich cultural heritage and incredible wildlife to scenic highlands and sun-kissed shores. Find the places that inspire you and create a journey that feels uniquely yours.",
@@ -279,6 +283,8 @@ export const en: TranslationResource = {
       highlight: "for You",
       description:
         "Discover Sri Lanka your way with personalised itineraries, handpicked stays, private chauffeur journeys, and authentic cultural experiences tailored to your interests.",
+      imageAlt:
+        "Pink lotus blossoms and lily pads floating on a serene lake with distant mountains in Sri Lanka",
     },
     intro:
       "One island. Countless experiences. Your journey, your way. Discover our collection of Sri Lanka tours, thoughtfully designed for every kind of traveller.",
@@ -316,6 +322,8 @@ export const en: TranslationResource = {
       highlight: "Sri Lanka",
       description:
         "From timeless cultural traditions and extraordinary wildlife to sunlit coastlines and everyday island life, explore the moments that make Sri Lanka truly unforgettable.",
+      imageAlt:
+        "Historic Galle Fort lighthouse and oceanfront stone ramparts at sunset in Sri Lanka",
     },
     empty: "No images in this category yet.",
     ctaTitle: "Want These Moments as Your Own Memories?",
@@ -331,6 +339,8 @@ export const en: TranslationResource = {
       highlight: "Journey",
       description:
         "Speak directly with our Colombo-based travel designers. Tell us how you wish to experience Sri Lanka.",
+      imageAlt:
+        "Aerial view of the Blue Beach Island sandbar and turquoise waters in southern Sri Lanka",
     },
     conciergeTitle: "Bespoke Travel Planning",
     conciergeSubtitle:

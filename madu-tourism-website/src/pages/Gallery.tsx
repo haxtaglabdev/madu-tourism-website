@@ -13,7 +13,7 @@ import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 
 export default function Gallery() {
   const { t } = useTranslation();
-  const { getLocalizedPath } = useCurrentLanguage();
+  const { getLocalizedPath, isRussian } = useCurrentLanguage();
   const [activeCategory] = useState<GalleryCategory>("All");
 
   const filteredItems = useMemo(() => {
@@ -33,7 +33,7 @@ export default function Gallery() {
           eyebrow={t("gallery.hero.eyebrow")}
           highlight={t("gallery.hero.highlight")}
           image={images.fortressInGalle}
-          imageAlt={t("gallery.hero.title") + t("gallery.hero.highlight")}
+          imageAlt={t("gallery.hero.imageAlt")}
           title={t("gallery.hero.title")}
         />
 
@@ -48,8 +48,10 @@ export default function Gallery() {
                 style={{ "--reveal-index": index } as CSSProperties}
               >
                 <img
-                  alt={item.alt}
+                  alt={isRussian && item.altRu ? item.altRu : item.alt}
                   className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  decoding="async"
+                  loading="lazy"
                   src={item.image}
                 />
               </div>

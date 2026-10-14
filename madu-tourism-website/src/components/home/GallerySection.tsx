@@ -54,6 +54,8 @@ export default function GallerySection() {
                     <img
                       alt={item.alt}
                       className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                      decoding="async"
+                      loading="lazy"
                       src={item.image}
                     />
                   </div>

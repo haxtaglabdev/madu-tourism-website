@@ -6,7 +6,7 @@ export const aboutStory = {
   title: "Explore Sri Lanka With People Who Have Walked Its Trails for Generations",
   paragraphs: [
     "At Madu Tseylon Tours, we don’t offer hurried cookie-cutter excursions. We invite you into our motherland as honoured guests. From forgotten highland trails winding through artisanal tea factories to privileged private jeep safaris in quiet corners of Yala, every passage is crafted around your pace.",
-    "Our roots run through villages, tea estates, and coastal fishing communities. That means privileged access to local chiefs, family-run bungalows, and viewpoints that rarely appear in guidebooks — always with the quiet assurance of licensed, English-speaking chauffeur-naturalists.",
+    "Our roots run through villages, tea estates, and coastal fishing communities. That means privileged access to local chiefs, family-run bungalows, and viewpoints that rarely appear in guidebooks — always with the quiet assurance of professional, English-speaking chauffeur-naturalists.",
     "We believe travel should feel intimate, unhurried, and responsible. Every itinerary balances iconic UNESCO highlights with soft moments: a temple blessing at dusk, a cup of rare white tea with a planter, or a candlelit supper beside the Indian Ocean.",
   ],
   quote:
@@ -52,7 +52,7 @@ export const whyTravelWithUs = [
     icon: "verified",
     title: "Trusted Service",
     description:
-      "Licensed DMC standards, vetted hotels, certified naturalist drivers, and transparent planning from first inquiry.",
+      "Professional DMC standards, vetted hotels, experienced naturalist drivers, and transparent planning from first inquiry.",
   },
   {
     icon: "support_agent",
@@ -305,15 +305,134 @@ const galleryPageAspectPattern: Array<"portrait" | "square"> = [
   "portrait",
 ];
 
-export const galleryPageItems = Object.keys(galleryPageImageModules)
+export interface GalleryPageItem {
+  id: string;
+  alt: string;
+  altRu: string;
+  image: string;
+  aspect: "portrait" | "square";
+  category: GalleryCategory;
+}
+
+interface GalleryAltText {
+  en: string;
+  ru: string;
+}
+
+const galleryImageAltMap: Record<string, GalleryAltText> = {
+  "IMG_5040.jpg": {
+    en: "Travelers smiling in front of a tropical cascade waterfall in Sri Lanka",
+    ru: "Путешественники у подножия тропического каскадного водопада на Шри-Ланке",
+  },
+  "IMG_5995.jpg": {
+    en: "Travelers standing amidst lush green tea bushes on a highland tea estate",
+    ru: "Путешественники среди изумрудных чайных кустов на высокогорной плантации",
+  },
+  "IMG_6814.jpg": {
+    en: "Tour guide with a family in the courtyard outside the Temple of the Tooth Relic in Kandy",
+    ru: "Гид и семья путешественников во дворе Храма Зуба Будды в Канди",
+  },
+  "IMG_7051.jpg": {
+    en: "Tour guide and travelers smiling beside a riverfront garden terrace",
+    ru: "Гид и путешественницы на террасе прибрежного сада у реки",
+  },
+  "IMG_7104.jpg": {
+    en: "Travelers and tour guide posing with a mahout and an Asian elephant along a jungle path",
+    ru: "Путешественники и гид рядом с погонщиком и азиатским слоном на лесной тропе",
+  },
+  "IMG_7117.jpg": {
+    en: "Tour guide and travelers in traditional temple attire outside a historic rock cave temple",
+    ru: "Гид и туристы в храмовой одежде у входа в старинный пещерный храм",
+  },
+  "IMG_7135.jpg": {
+    en: "Traveler smiling on Pidurangala Rock summit with Sigiriya Lion Rock in the background",
+    ru: "Путешественница на вершине скалы Пидурангала с видом на львиную скалу Сигирия",
+  },
+  "IMG_7145.jpg": {
+    en: "Travelers with a camera admiring the view towards Sigiriya Lion Rock from Pidurangala",
+    ru: "Путешественники с фотоаппаратом любуются панорамой Сигирии с вершины Пидурангала",
+  },
+  "IMG_7161.jpg": {
+    en: "Tour guide and traveler taking a selfie atop Pidurangala with Sigiriya Rock in the distance",
+    ru: "Селфи гида и путешественницы на скале Пидурангала с видом на Сигирию вдалеке",
+  },
+  "IMG_7172.jpg": {
+    en: "Couple sitting on a rock ledge taking in the panoramic landscape of the Sigiriya forest canopy",
+    ru: "Пара на скалистом выступе любуется панорамой тропических лесов Сигирии",
+  },
+  "IMG_7199.jpg": {
+    en: "Tour guide and traveler taking a selfie at a highland mountain overlook",
+    ru: "Селфи гида и путешественницы на смотровой площадке в горном высокогорье",
+  },
+  "IMG_7266.jpg": {
+    en: "Tour guide and traveler walking along a scenic hillside tea plantation path",
+    ru: "Гид и путешественница на живописной тропе среди чайных плантаций",
+  },
+  "IMG_7280.jpg": {
+    en: "Tour guide and travelers with a tea plucking basket at Bluefield Tea Estate in Ramboda",
+    ru: "Гид и туристы с корзиной для сбора чая на чайной фабрике Bluefield в Рамбоде",
+  },
+  "IMG_7426.jpg": {
+    en: "Group of travelers standing at a panoramic mountain ridge viewpoint in Sri Lanka",
+    ru: "Группа путешественников на панорамной вершине горного хребта на Шри-Ланке",
+  },
+  "IMG_7432.jpg": {
+    en: "Tour guide taking a selfie with a group of travelers at a mountain summit viewpoint",
+    ru: "Селфи гида и группы путешественниц на смотровой площадке в горах",
+  },
+  "IMG_7998.jpg": {
+    en: "Tour guide and a couple smiling together on a hillside tea plantation trail",
+    ru: "Гид и пара туристов на фоне живописных чайных склонов",
+  },
+  "IMG_8259.jpg": {
+    en: "Tour guide and couple posing atop Pidurangala Rock with Sigiriya Lion Rock behind them",
+    ru: "Гид и пара путешественников на скале Пидурангала на фоне львиной скалы Сигирия",
+  },
+  "IMG_8459.jpg": {
+    en: "Tour guide, visiting family, and a tea plucker smiling together in a tea plantation",
+    ru: "Гид, семья туристов и сборщица чая на чайной плантации",
+  },
+  "IMG_8898.jpg": {
+    en: "Tour guide and traveler smiling amongst lush tea bushes on a hillside plantation",
+    ru: "Гид и путешественница среди чайных кустов на холмистой плантации",
+  },
+  "IMG_9161.jpg": {
+    en: "Tour guide and a visiting family enjoying a tea tasting visit at Bluefield Tea Estate",
+    ru: "Гид и семья туристов во время дегустации чая на чайной фабрике Bluefield",
+  },
+  "IMG_9547.jpg": {
+    en: "Tour guide and travelers posing for a selfie in front of a natural granite rock formation",
+    ru: "Гид и путешественницы на фоне массивной гранитной скалы во время экскурсии",
+  },
+  "IMG_9905.jpg": {
+    en: "Traveler posing in front of the spiral Ambuluwawa Tower in Gampola, Sri Lanka",
+    ru: "Путешественница на фоне спиральной башни Амбулувава в Гамполе",
+  },
+  "IMG_9914.jpg": {
+    en: "Traveler posing at the base of the white Ambuluwawa biodiversity complex tower in Gampola",
+    ru: "Путешественница у подножия башни биокомплекса Амбулувава в Гамполе",
+  },
+  "IMG_9921.jpg": {
+    en: "Tour guide and travelers smiling during a scenic walk along a Sri Lankan mountain road",
+    ru: "Гид и путешественницы во время прогулки по горной дороге на Шри-Ланке",
+  },
+};
+
+export const galleryPageItems: GalleryPageItem[] = Object.keys(galleryPageImageModules)
   .filter((path) => GALLERY_PAGE_IMAGE_EXTENSION_PATTERN.test(path))
   .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }))
-  .map((path, index) => ({
-    id: `gallery-page-${index + 1}`,
-    alt: "Sri Lankan travel photograph",
-    image: galleryPageImageModules[path],
-    aspect: galleryPageAspectPattern[index % galleryPageAspectPattern.length],
-    category: "Nature" as GalleryCategory,
-  }));
+  .map((path, index) => {
+    const filename = path.split("/").pop() ?? "";
+    const description = galleryImageAltMap[filename];
+
+    return {
+      id: `gallery-page-${index + 1}`,
+      alt: description?.en ?? "Sri Lankan travel photograph",
+      altRu: description?.ru ?? "Фотография путешествия по Шри-Ланке",
+      image: galleryPageImageModules[path],
+      aspect: galleryPageAspectPattern[index % galleryPageAspectPattern.length],
+      category: "Nature" as GalleryCategory,
+    };
+  });
 
 export { destinations, packages, valuePillars, galleryItems };
