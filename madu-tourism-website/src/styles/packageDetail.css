@@ -15,8 +15,8 @@
   --pkg-parchment: #f5f2eb;
   --pkg-accent-terracotta: #c86d3b;
   --pkg-accent-amber: #d48b38;
-  --pkg-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --pkg-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --pkg-serif: var(--font-heading, "Lora", Georgia, serif);
+  --pkg-sans: var(--font-body, "Poppins", Arial, sans-serif);
   --pkg-max: 1280px;
   --pkg-gutter: 24px;
   color: var(--pkg-text);
@@ -176,7 +176,7 @@
   background: var(--pkg-orange);
   color: #ffffff;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
@@ -251,7 +251,7 @@
 .pkg-eyebrow {
   margin: 0 0 0.85rem;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--pkg-accent-amber);
@@ -341,7 +341,7 @@
 .pkg-map-panel__caption {
   margin: 0;
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--pkg-accent-terracotta);
@@ -511,7 +511,7 @@
   fill: #ffffff;
   font-family: var(--pkg-sans);
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: -0.02em;
   pointer-events: none;
 }
@@ -520,7 +520,7 @@
   fill: var(--pkg-text);
   font-family: var(--pkg-sans);
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.01em;
   paint-order: stroke fill;
   stroke: #ffffff;
@@ -547,7 +547,7 @@
 .pkg-route-map__tooltip-order {
   display: block;
   font-size: 0.62rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--pkg-accent-terracotta);
@@ -615,7 +615,7 @@
   background: var(--pkg-orange);
   color: #ffffff;
   font-size: 0.62rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .pkg-route-map__credit {
@@ -752,7 +752,7 @@
 .pkg-day__highlights-label {
   margin: 0 0 0.5rem;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--pkg-tropical);

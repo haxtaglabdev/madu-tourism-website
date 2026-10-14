@@ -141,7 +141,7 @@ export default function AboutStats() {
         <Reveal delay={100}>
           <h2
             id="about-stats-heading"
-            className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl"
+            className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl"
           >
             {t("about.stats.title")}
           </h2>
@@ -187,7 +187,7 @@ export default function AboutStats() {
                     >
                       {hasAnimated ? stat.target : 0}
                     </span>
-                    <span className="ml-1 font-serif text-2xl font-light text-tropical select-none sm:text-3xl lg:text-4xl">
+                    <span className="ml-1 font-serif text-2xl font-normal text-tropical select-none sm:text-3xl lg:text-4xl">
                       {stat.suffix}
                     </span>
                   </dd>

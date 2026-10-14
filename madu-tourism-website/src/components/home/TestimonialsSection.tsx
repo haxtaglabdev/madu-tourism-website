@@ -19,7 +19,7 @@ export default function TestimonialsSection() {
           </div>
         </Reveal>
         <Reveal delay={100}>
-          <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
+          <h2 className="mb-4 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.625rem]">
             {t("home.testimonials.title")}
           </h2>
         </Reveal>

@@ -43,7 +43,7 @@ export default function Destinations() {
 
         <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
           <Reveal>
-            <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:text-base">
+            <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-muted sm:text-base">
               {t("destinations.intro")}
             </p>
           </Reveal>
@@ -62,7 +62,7 @@ export default function Destinations() {
                   </div>
                 </Reveal>
                 <Reveal delay={100}>
-                  <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
+                  <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.625rem]">
                     {t("destinations.featuredTitle")}
                   </h2>
                 </Reveal>
@@ -93,7 +93,7 @@ export default function Destinations() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+              <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
                 {t("destinations.highlightsTitle")}
               </h2>
             </Reveal>
@@ -114,10 +114,10 @@ export default function Destinations() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 font-serif text-xl font-medium text-charcoal">
+                  <h3 className="mb-2 font-serif text-[1.3125rem] leading-snug font-medium text-charcoal sm:text-[1.45rem]">
                     {destination.title}
                   </h3>
-                  <p className="mb-5 text-sm leading-relaxed font-light text-muted">
+                  <p className="mb-5 text-sm leading-relaxed text-muted">
                     {destination.description}
                   </p>
                   <ul className="mb-6 space-y-2 border-t border-border-subtle pt-4">
@@ -154,7 +154,7 @@ export default function Destinations() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,201,74,0.12),transparent_40%)]" />
           <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
             <Reveal>
-              <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-4xl">
+              <h2 className="mb-5 font-serif text-[1.75rem] leading-[1.25] font-medium text-white sm:mb-6 sm:text-4xl">
                 {currentLang === "ru"
                   ? "Готовы спланировать свой маршрут по острову?"
                   : "Ready to Map Your Island Route?"}

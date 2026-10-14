@@ -51,12 +51,12 @@ export default function AboutSection() {
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="mb-6 font-serif text-[1.75rem] leading-tight font-medium text-charcoal sm:text-3xl md:text-5xl">
+            <h2 className="mb-6 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.625rem]">
               {t("home.about.title")}
             </h2>
           </Reveal>
           <Reveal delay={180}>
-            <p className="mb-6 text-base leading-relaxed font-light text-muted">
+            <p className="mb-6 text-base leading-relaxed text-muted">
               {t("home.about.description")}
             </p>
           </Reveal>

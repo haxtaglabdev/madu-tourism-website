@@ -34,7 +34,7 @@ export default function PageHero({
             <span className="h-2 w-2 shrink-0 rounded-full bg-gold" />
             {eyebrow}
           </div>
-          <h1 className="mb-4 text-center font-serif text-[1.85rem] leading-[1.08] font-medium tracking-tight text-white sm:mb-5 sm:text-5xl lg:text-6xl">
+          <h1 className="mb-4 text-center font-serif text-[2.125rem] leading-[1.2] font-medium tracking-tight text-white sm:mb-5 sm:text-4xl md:text-[2.65rem] lg:text-[3rem]">
             {title}
             {highlight ? (
               <>
@@ -43,7 +43,7 @@ export default function PageHero({
               </>
             ) : null}
           </h1>
-          <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed font-light text-white/80 sm:text-lg">
+          <p className="mx-auto max-w-2xl text-center text-base leading-relaxed text-white/85 sm:text-lg">
             {description}
           </p>
         </div>

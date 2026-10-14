@@ -49,7 +49,7 @@ export default function Footer() {
                 src={images.logo}
               />
             </Link>
-            <p className="text-xs leading-relaxed font-light text-white/60">
+            <p className="text-xs leading-relaxed text-white/60">
               {t("common.footer.description")}
             </p>
             <div className="flex items-center gap-3 pt-5">
@@ -105,7 +105,7 @@ export default function Footer() {
             <h4 className="text-xs font-semibold tracking-widest text-white uppercase">
               {t("common.footer.exploreHeading")}
             </h4>
-            <ul className="space-y-2.5 text-xs font-light">
+            <ul className="space-y-2.5 text-xs">
               {exploreLinks.map((item) => (
                 <li key={item.label}>
                   <Link
@@ -123,7 +123,7 @@ export default function Footer() {
             <h4 className="text-xs font-semibold tracking-widest text-white uppercase">
               {t("common.footer.territoriesHeading")}
             </h4>
-            <ul className="space-y-2.5 text-xs font-light">
+            <ul className="space-y-2.5 text-xs">
               {territoryLinks.map((item) => (
                 <li key={item.label}>
                   <Link
@@ -141,7 +141,7 @@ export default function Footer() {
             <h4 className="text-xs font-semibold tracking-widest text-white uppercase">
               {t("common.footer.conciergeHeading")}
             </h4>
-            <div className="space-y-3 text-xs font-light">
+            <div className="space-y-3 text-xs">
               <div className="flex items-start gap-2.5">
                 <span className="material-symbols-outlined mt-0.5 text-sm text-gold">
                   location_on
@@ -180,7 +180,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-center text-[11px] font-light text-white/50 sm:flex-row sm:text-left">
+        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-center text-[11px] text-white/50 sm:flex-row sm:text-left">
           <p className="max-w-xl">
             {t("common.footer.copyright")}
           </p>

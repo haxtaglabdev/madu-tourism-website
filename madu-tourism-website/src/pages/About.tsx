@@ -96,13 +96,13 @@ export default function About() {
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="mb-6 font-serif text-3xl leading-tight font-medium text-charcoal md:text-4xl">
+                <h2 className="mb-6 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.5rem]">
                   {t("about.story.title")}
                 </h2>
               </Reveal>
               {storyParagraphs.map((paragraph, index) => (
                 <Reveal key={paragraph.slice(0, 24)} delay={140 + index * 60}>
-                  <p className="mb-5 text-base leading-relaxed font-light text-muted">
+                  <p className="mb-5 text-base leading-relaxed text-muted">
                     {paragraph}
                   </p>
                 </Reveal>
@@ -137,7 +137,7 @@ export default function About() {
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+                <h2 className="mb-4 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
                   {t("about.mission.title")}
                 </h2>
               </Reveal>
@@ -154,10 +154,10 @@ export default function About() {
                       {enMissionIcons[index]?.icon || "eco"}
                     </span>
                   </div>
-                  <h3 className="mb-2 font-serif text-xl font-medium text-charcoal">
+                  <h3 className="mb-2 font-serif text-[1.3125rem] leading-snug font-medium text-charcoal sm:text-[1.45rem]">
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed font-light text-muted">
+                  <p className="text-sm leading-relaxed text-muted">
                     {item.description}
                   </p>
                 </div>
@@ -178,7 +178,7 @@ export default function About() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+              <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
                 {t("about.whyUs.title")}
               </h2>
             </Reveal>
@@ -241,7 +241,7 @@ export default function About() {
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+                <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
                   {t("about.expertise.title")}
                 </h2>
               </Reveal>
@@ -291,7 +291,7 @@ export default function About() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+              <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
                 {t("about.values.title")}
               </h2>
             </Reveal>
@@ -303,10 +303,10 @@ export default function About() {
                 className="reveal-item text-center"
                 style={{ "--reveal-index": index } as CSSProperties}
               >
-                <h3 className="mb-3 text-center font-serif text-xl font-medium text-charcoal">
+                <h3 className="mb-3 text-center font-serif text-[1.3125rem] leading-snug font-medium text-charcoal sm:text-[1.45rem]">
                   {value.title}
                 </h3>
-                <p className="text-center text-sm leading-relaxed font-light text-muted">
+                <p className="text-center text-sm leading-relaxed text-muted">
                   {value.description}
                 </p>
               </div>
@@ -324,7 +324,7 @@ export default function About() {
               </span>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-5xl">
+              <h2 className="mb-5 font-serif text-[1.75rem] leading-[1.25] font-medium text-white sm:mb-6 sm:text-4xl md:text-[2.625rem]">
                 {t("about.cta.title")}
               </h2>
             </Reveal>
