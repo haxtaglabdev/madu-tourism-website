@@ -43,7 +43,7 @@ export default function TourCard({
               {tour.duration}
             </span>
           </div>
-          <span className="absolute right-4 bottom-4 rounded-md bg-white/95 px-2.5 py-1 text-[11px] font-bold text-forest-dark shadow-sm">
+          <span className="absolute right-4 bottom-4 rounded-md bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-forest-dark shadow-sm">
             {tour.tag}
           </span>
         </div>
@@ -51,7 +51,7 @@ export default function TourCard({
           <h3 className="mb-2 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl">
             {tour.title}
           </h3>
-          <p className="mb-6 text-xs leading-relaxed font-light text-muted">
+          <p className="mb-6 text-xs leading-relaxed text-muted">
             {tour.description}
           </p>
           <div className="space-y-2 border-y border-border-subtle py-4 text-xs text-charcoal/80">
@@ -71,9 +71,9 @@ export default function TourCard({
           <span className="block text-[11px] tracking-wider text-muted uppercase">
             {t("common.fromPrice")}
           </span>
-          <span className="font-serif text-2xl font-semibold text-charcoal">
+          <span className="font-sans text-2xl font-semibold text-charcoal">
             {tour.price}{" "}
-            <span className="font-sans text-xs font-normal text-muted">
+            <span className="text-xs font-normal text-muted">
               {isPerPerson ? t("common.perPerson") : t("common.perGuest")}
             </span>
           </span>

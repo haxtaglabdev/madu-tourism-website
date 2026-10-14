@@ -66,7 +66,7 @@ export default function TourPackages() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
+              <h2 className="mb-4 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.625rem]">
                 {t("tourPackages.sectionTitle")}
               </h2>
             </Reveal>
@@ -98,12 +98,12 @@ export default function TourPackages() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
+              <h2 className="mb-4 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
                 {t("tourPackages.bespokeTitle")}
               </h2>
             </Reveal>
             <Reveal delay={180}>
-              <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed font-light text-muted sm:text-base">
+              <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
                 {t("tourPackages.bespokeDescription")}
               </p>
             </Reveal>

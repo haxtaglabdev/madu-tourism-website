@@ -25,14 +25,14 @@ export default function NotFound() {
             </span>
           </Reveal>
           <Reveal delay={100}>
-            <h1 className="mb-5 font-serif text-4xl font-medium text-white sm:text-5xl">
+            <h1 className="mb-5 font-serif text-[2.125rem] leading-[1.2] font-medium text-white sm:text-4xl md:text-5xl">
               {isRu
                 ? "Эта тропа никуда не ведет"
                 : "This Trail Does Not Lead Anywhere"}
             </h1>
           </Reveal>
           <Reveal delay={180}>
-            <p className="mx-auto mb-10 max-w-md text-base leading-relaxed font-light text-white/80">
+            <p className="mx-auto mb-10 max-w-md text-base leading-relaxed text-white/85">
               {isRu
                 ? "Возможно, страница была перемещена или адрес введен с ошибкой. Вернитесь на главную страницу, чтобы продолжить знакомство со Шри-Ланкой."
                 : "The page you are looking for may have moved or never existed. Return home to continue exploring Sri Lanka with Madu Tseylon Tours."}

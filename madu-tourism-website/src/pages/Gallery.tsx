@@ -67,7 +67,7 @@ export default function Gallery() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,201,74,0.12),transparent_40%)]" />
           <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
             <Reveal>
-              <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-4xl">
+              <h2 className="mb-5 font-serif text-[1.75rem] leading-[1.25] font-medium text-white sm:mb-6 sm:text-4xl">
                 {t("gallery.ctaTitle")}
               </h2>
             </Reveal>

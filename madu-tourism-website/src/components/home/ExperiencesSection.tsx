@@ -25,7 +25,7 @@ export default function ExperiencesSection() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-center font-serif text-[1.75rem] font-medium text-white sm:text-3xl md:text-5xl">
+              <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-white sm:text-3xl md:text-[2.625rem]">
                 {isRussian ? "Популярные впечатления" : "Popular Experiences"}
               </h2>
             </Reveal>

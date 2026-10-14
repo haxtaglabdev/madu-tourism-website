@@ -20,14 +20,14 @@ export default function FinalCTA() {
           </span>
         </Reveal>
         <Reveal delay={100}>
-          <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-5xl">
+          <h2 className="mb-5 font-serif text-[1.75rem] leading-[1.25] font-medium text-white sm:mb-6 sm:text-4xl md:text-[2.625rem]">
             {isRussian
               ? "Ваше цейлонское путешествие начинается здесь"
               : "Your Sri Lankan Journey Begins Here"}
           </h2>
         </Reveal>
         <Reveal delay={180}>
-          <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed font-light text-white/80 sm:mb-10 sm:text-base">
+          <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed text-white/85 sm:mb-10 sm:text-base">
             {isRussian
               ? "Поделитесь вашими пожеланиями, и мы создадим индивидуальный маршрут по Шри-Ланке, выстроенный вокруг ваших интересов и комфортного ритма."
               : "Let us create a journey as unique as you are. Share your travel dreams with our team, and discover a personalised Sri Lankan experience crafted around your interests, pace, and style."}

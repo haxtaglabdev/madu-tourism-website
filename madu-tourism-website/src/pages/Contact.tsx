@@ -258,12 +258,12 @@ function ContactPage({ packageName }: { packageName: string | null }) {
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="mb-6 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl">
+                <h2 className="mb-6 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl">
                   {t("contact.conciergeTitle")}
                 </h2>
               </Reveal>
               <Reveal delay={160}>
-                <p className="mb-8 text-sm leading-relaxed font-light text-muted">
+                <p className="mb-8 text-sm leading-relaxed text-muted">
                   {t("contact.conciergeSubtitle")}
                 </p>
               </Reveal>
@@ -278,7 +278,7 @@ function ContactPage({ packageName }: { packageName: string | null }) {
                       <p className="text-xs font-semibold tracking-wider text-charcoal uppercase">
                         {t("contact.officeLocation")}
                       </p>
-                      <p className="mt-1 text-sm font-light text-muted">
+                      <p className="mt-1 text-sm text-muted">
                         {t("contact.officeAddress")}
                       </p>
                     </div>
@@ -292,7 +292,7 @@ function ContactPage({ packageName }: { packageName: string | null }) {
                         {isRu ? "Телефон" : "Phone"}
                       </p>
                       <a
-                        className="mt-1 block text-sm font-light text-muted transition-colors hover:text-tropical"
+                        className="mt-1 block text-sm text-muted transition-colors hover:text-tropical"
                         href="tel:+94770880425"
                       >
                         +94 77 088 0425
@@ -308,7 +308,7 @@ function ContactPage({ packageName }: { packageName: string | null }) {
                         {isRu ? "Электронная почта" : "Email"}
                       </p>
                       <a
-                        className="mt-1 block break-all text-sm font-light text-muted transition-colors hover:text-tropical"
+                        className="mt-1 block break-all text-sm text-muted transition-colors hover:text-tropical"
                         href="mailto:madutseylon@gmail.com"
                       >
                         madutseylon@gmail.com
@@ -342,10 +342,10 @@ function ContactPage({ packageName }: { packageName: string | null }) {
             <div className="min-w-0 lg:col-span-8">
               <Reveal>
                 <div className="rounded-2xl border border-border-subtle bg-white p-4 shadow-sm sm:p-8">
-                  <h2 className="mb-2 font-serif text-xl font-medium text-charcoal sm:text-2xl">
+                  <h2 className="mb-2 font-serif text-[1.3125rem] leading-snug font-medium text-charcoal sm:text-[1.5rem]">
                     {t("contact.formTitle")}
                   </h2>
-                  <p className="mb-8 text-sm font-light text-muted">
+                  <p className="mb-8 text-sm text-muted">
                     {t("contact.formSubtitle")}
                   </p>
 

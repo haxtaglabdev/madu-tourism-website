@@ -126,7 +126,7 @@ export default function Hero() {
             {isRussian ? "ДОБРО ПОЖАЛОВАТЬ НА ШРИ-ЛАНКУ" : "WELCOME TO SRI LANKA"}
           </div>
           <h1
-            className="hero-enter mb-5 font-serif text-[2rem] leading-[1.08] font-medium tracking-tight text-white sm:mb-6 sm:text-6xl lg:text-7xl"
+            className="hero-enter mb-5 font-serif text-[2.25rem] leading-[1.14] font-medium tracking-tight text-white sm:mb-6 sm:text-[2.625rem] md:text-[3rem] lg:text-[3.75rem]"
             style={{ ["--hero-delay" as string]: "100ms" }}
           >
             {isRussian ? (
@@ -142,7 +142,7 @@ export default function Hero() {
             )}
           </h1>
           <p
-            className="hero-enter mx-auto mb-8 max-w-2xl text-sm leading-relaxed font-light text-white/80 sm:mb-10 sm:text-lg"
+            className="hero-enter mx-auto mb-8 max-w-2xl text-base leading-relaxed text-white/85 sm:mb-10 sm:text-lg"
             style={{ ["--hero-delay" as string]: "180ms" }}
           >
             {isRussian
