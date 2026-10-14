@@ -13,8 +13,9 @@ import elephantBath from "./elephant.jpg";
 import logo from "./bgremove_logo.png";
 import sigiriya from "./sigiriya.jpg";
 import teaTrain from "./tea.jpg";
-import teaWoman from "./download (3).jpeg";
-import temple from "./download (3).jpeg";
+import teaWoman from "./hero image test.jpg";
+import temple from "./madu baby.jpg";
+import templeHeritage from "./temple.jpg";
 import stiltFishermen from "./unnamed.jpg";
 import leopardCloseup from "./unnamed (1).jpg";
 import teaMist from "./unnamed (2).jpg";
@@ -23,6 +24,38 @@ import kandyanDancer from "./unnamed (5).jpg";
 import galleSunset from "./unnamed (6).jpg";
 import trainTraveler from "./unnamed (7).jpg";
 import sticker from "./sticker.png";
+import minneriyaPark from "./hero_images/Minneriya national Park.jpg.jpg";
+import teaPlantationsWide from "./hero_images/Tea Plantations.jpg.jpg";
+import leopardPortrait from "./hero_images/1 SL Leopard - Panthera pardus kotiya.jpg";
+import homeSigiriya from "./image_arrenge/sigiriya.jpg";
+import homeNineArch from "./image_arrenge/nine arch.jpg";
+import homeMirissa from "./image_arrenge/mirissa.jpg";
+import homeMinneriya from "./image_arrenge/Minneriya .jpg.jpg";
+import homeGalleFort from "./image_arrenge/galle fort.jpg";
+import homeTrainGb from "./image_arrenge/train Gb.jpg";
+import homeFood from "./image_arrenge/food.jpg";
+import beachCafeHero from "./image_arrenge/beach cafe hero.jpg";
+import sigiriyaRock from "./image_arrenge/Sigiriya Rock.jpg";
+import nelumKola from "./image_arrenge/nelum kola.jpg";
+import maligawa from "./image_arrenge/maligawa.jpg";
+import kotiDenna from "./image_arrenge/koti denna.jpg";
+import fortressInGalle from "./image_arrenge/Fortress in Galle‧.jpg.jpg";
+import blueBeachContact from "./image_arrenge/blue beach contact.jpg";
+import women from "./image_arrenge/women.jpg";
+import perahera from "./image_arrenge/perahera.jpg";
+import colomboMusi from "./image_arrenge/colombo musi.jpg";
+import nuwaraEliya from "./image_arrenge/nuwara eliya.jpg";
+import teaW from "./image_arrenge/tea w.jpg";
+import destAnuradhapura from "./destinations/anuradha.jpg";
+import destTrincomalee from "./destinations/Trincomale.jpg";
+import destArugambe from "./destinations/arugambe.jpg";
+import destDambulla from "./destinations/dambulla.jpg";
+import destBentota from "./destinations/bentota.jpg";
+import destColombo from "./destinations/colombo.jpg";
+import destHabarana from "./destinations/habarana.jpg";
+import destKitulgala from "./destinations/kithulgala.jpg";
+import destPolonnaruwa from "./destinations/polonnaruwa.jpg";
+
 
 const heroImageModules = import.meta.glob("./hero_images/*", {
   eager: true,
@@ -67,6 +100,7 @@ export const images = {
   teaTrain,
   teaWoman,
   temple,
+  templeHeritage,
   stiltFishermen,
   leopardCloseup,
   teaMist,
@@ -75,6 +109,44 @@ export const images = {
   galleSunset,
   trainTraveler,
   sticker,
+  minneriyaPark,
+  teaPlantationsWide,
+  leopardPortrait,
+  homeSigiriya,
+  homeNineArch,
+  homeMirissa,
+  homeMinneriya,
+  homeGalleFort,
+  homeTrainGb,
+  homeFood,
+  beachCafeHero,
+  sigiriyaRock,
+  nelumKola,
+  maligawa,
+  kotiDenna,
+  fortressInGalle,
+  galleFortress: fortressInGalle,
+  mirissaArrange: homeMirissa,
+  blueBeachContact,
+  women,
+  homeWomen: women,
+  perahera,
+  colomboMusi,
+  nuwaraEliya,
+  teaW,
+  destAnuradhapura,
+  destTrincomalee,
+  destArugambe,
+  destDambulla,
+  destBentota,
+  destColombo,
+  destHabarana,
+  destKitulgala,
+  destPolonnaruwa,
+  sigiriyaArrange: homeSigiriya,
+  galleFortArrange: homeGalleFort,
+  nineArchArrange: homeNineArch,
+  trainArrange: homeTrainGb,
 } as const;
 
 export type ImageKey = keyof typeof images;

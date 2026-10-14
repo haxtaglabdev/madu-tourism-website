@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { heroSlideshowImages } from "../../assets";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 
 /** How long each slide stays fully visible before the next cross-fade begins. */
 const SLIDE_INTERVAL_MS = 5000;
@@ -15,6 +16,7 @@ function preloadImage(src: string): void {
 }
 
 export default function Hero() {
+  const { getLocalizedPath, isRussian } = useCurrentLanguage();
   const slides = heroSlideshowImages;
   const slideCount = slides.length;
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -121,22 +123,31 @@ export default function Hero() {
             style={{ ["--hero-delay" as string]: "0ms" }}
           >
             <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-gold" />
-            Authentic Sri Lanka • Tailor-Made Journeys
+            {isRussian ? "ДОБРО ПОЖАЛОВАТЬ НА ШРИ-ЛАНКУ" : "WELCOME TO SRI LANKA"}
           </div>
           <h1
-            className="hero-enter mb-5 font-serif text-[2rem] leading-[1.08] font-medium tracking-tight text-white sm:mb-6 sm:text-6xl lg:text-7xl"
+            className="hero-enter mb-5 font-serif text-[2.25rem] leading-[1.14] font-medium tracking-tight text-white sm:mb-6 sm:text-[2.625rem] md:text-[3rem] lg:text-[3.75rem]"
             style={{ ["--hero-delay" as string]: "100ms" }}
           >
-            Discover the Pearl of the{" "}
-            <span className="font-normal text-gold italic">Indian Ocean</span>
+            {isRussian ? (
+              <>
+                Откройте жемчужину{" "}
+                <span className="font-normal text-gold italic">Индийского океана</span>
+              </>
+            ) : (
+              <>
+                Discover the Pearl of the{" "}
+                <span className="font-normal text-gold italic">Indian Ocean</span>
+              </>
+            )}
           </h1>
           <p
-            className="hero-enter mx-auto mb-8 max-w-2xl text-sm leading-relaxed font-light text-white/80 sm:mb-10 sm:text-lg"
+            className="hero-enter mx-auto mb-8 max-w-2xl text-base leading-relaxed text-white/85 sm:mb-10 sm:text-lg"
             style={{ ["--hero-delay" as string]: "180ms" }}
           >
-            Immerse yourself in UNESCO rock citadels, mist-shrouded Ceylon tea
-            highlands, and wild leopard reserves with private
-            chauffeur-naturalists dedicated solely to your journey.
+            {isRussian
+              ? "Древние святыни, изумрудные чайные горы и первозданная дикая природа. Откройте для себя Цейлон в вашем собственном ритме."
+              : "Discover ancient wonders, lush tea hills, and breathtaking wildlife. Experience the beauty of Sri Lanka, your way."}
           </p>
           <div
             className="hero-enter flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4"
@@ -144,9 +155,9 @@ export default function Hero() {
           >
             <Link
               className="group inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover sm:w-auto sm:max-w-none"
-              to="/tour-packages"
+              to={getLocalizedPath("/tour-packages")}
             >
-              <span>Explore All Tours</span>
+              <span>{isRussian ? "Смотреть все туры" : "Explore All Tours"}</span>
               <span className="material-symbols-outlined text-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5">
                 arrow_forward
               </span>

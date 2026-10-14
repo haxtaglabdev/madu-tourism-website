@@ -1,33 +1,59 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { images } from "../assets";
+import AboutStats from "../components/about/AboutStats";
 import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
 import Reveal, { RevealGroup } from "../components/ui/Reveal";
 import {
-  aboutMission,
-  aboutStory,
-  sriLankaExpertise,
-  travelValues,
-  valuePillars,
-  whyTravelWithUs,
+  aboutMission as enMissionIcons,
+  sriLankaExpertise as enExpertiseList,
+  whyTravelWithUs as enWhyIcons,
 } from "../data/pageContent";
+import { getLocalizedValuePillars } from "../data/localizedContent";
+import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 
 export default function About() {
+  const { t } = useTranslation();
+  const { currentLang, getLocalizedPath } = useCurrentLanguage();
+
+  const storyParagraphs = (t("about.story.paragraphs", {
+    returnObjects: true,
+  }) || []) as string[];
+
+  const missionItems = (t("about.mission.items", {
+    returnObjects: true,
+  }) || []) as Array<{ title: string; description: string }>;
+
+  const whyUsItems = (t("about.whyUs.items", {
+    returnObjects: true,
+  }) || []) as Array<{ title: string; description: string }>;
+
+  const expertiseItems = (t("about.expertise.items", {
+    returnObjects: true,
+  }) || []) as Array<{ title: string; description: string }>;
+
+  const valuesItems = (t("about.values.items", {
+    returnObjects: true,
+  }) || []) as Array<{ title: string; description: string }>;
+
+  const pillars = getLocalizedValuePillars(currentLang);
+
   return (
     <>
       <PageMeta
-        description="Learn about Madu Tseylon Tours — local roots, responsible travel, and bespoke Sri Lankan journeys."
-        title="About Us | Madu Tseylon Tours"
+        description={t("about.metaDescription")}
+        title={t("about.metaTitle")}
       />
       <main>
         <PageHero
-          description="A licensed Sri Lankan destination management company crafting private chauffeur journeys, boutique stays, and responsible wildlife expeditions."
-          eyebrow="About Madu Tseylon Tours"
-          highlight="Tours"
+          description={t("about.hero.description")}
+          eyebrow={t("about.hero.eyebrow")}
+          highlight={t("about.hero.highlight")}
           image={images.teaWoman}
-          imageAlt="Ceylon tea plucking in emerald hills"
-          title="About Madu Tseylon"
+          imageAlt={t("about.hero.title") + t("about.hero.highlight")}
+          title={t("about.hero.title")}
         />
 
         {/* Our Story */}
@@ -65,18 +91,18 @@ export default function About() {
                 <div className="mb-3 flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-tropical" />
                   <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                    {aboutStory.eyebrow}
+                    {t("about.story.eyebrow")}
                   </span>
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="mb-6 font-serif text-3xl leading-tight font-medium text-charcoal md:text-4xl">
-                  Our Story
+                <h2 className="mb-6 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.5rem]">
+                  {t("about.story.title")}
                 </h2>
               </Reveal>
-              {aboutStory.paragraphs.map((paragraph, index) => (
+              {storyParagraphs.map((paragraph, index) => (
                 <Reveal key={paragraph.slice(0, 24)} delay={140 + index * 60}>
-                  <p className="mb-5 text-base leading-relaxed font-light text-muted">
+                  <p className="mb-5 text-base leading-relaxed text-muted">
                     {paragraph}
                   </p>
                 </Reveal>
@@ -84,16 +110,19 @@ export default function About() {
               <Reveal delay={320}>
                 <div className="rounded-xl border-l-4 border-tropical bg-soft-mint p-5">
                   <p className="font-serif text-sm text-charcoal italic">
-                    &ldquo;{aboutStory.quote}&rdquo;
+                    &ldquo;{t("about.story.quote")}&rdquo;
                   </p>
                   <span className="mt-2 block text-xs font-semibold tracking-wider text-tropical uppercase">
-                    {aboutStory.quoteAttribution}
+                    {t("about.story.quoteAttribution")}
                   </span>
                 </div>
               </Reveal>
             </div>
           </div>
         </section>
+
+        {/* Statistics */}
+        <AboutStats />
 
         {/* Mission */}
         <section className="w-full bg-soft-mint py-16 sm:py-24">
@@ -103,18 +132,18 @@ export default function About() {
                 <div className="mb-2 inline-flex items-center gap-2">
                   <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
                   <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                    Our Mission
+                    {t("about.mission.eyebrow")}
                   </span>
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
-                  Travel That Feels Personal &amp; Responsible
+                <h2 className="mb-4 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
+                  {t("about.mission.title")}
                 </h2>
               </Reveal>
             </div>
             <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {aboutMission.map((item, index) => (
+              {missionItems.map((item, index) => (
                 <div
                   key={item.title}
                   className="reveal-item rounded-2xl border border-charcoal/5 bg-white p-5 shadow-sm sm:p-7"
@@ -122,13 +151,13 @@ export default function About() {
                 >
                   <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-soft-mint text-tropical">
                     <span className="material-symbols-outlined text-xl">
-                      {item.icon}
+                      {enMissionIcons[index]?.icon || "eco"}
                     </span>
                   </div>
-                  <h3 className="mb-2 font-serif text-xl font-medium text-charcoal">
+                  <h3 className="mb-2 font-serif text-[1.3125rem] leading-snug font-medium text-charcoal sm:text-[1.45rem]">
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed font-light text-muted">
+                  <p className="text-sm leading-relaxed text-muted">
                     {item.description}
                   </p>
                 </div>
@@ -144,18 +173,18 @@ export default function About() {
               <div className="mb-2 inline-flex items-center justify-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                  Why Travel With Us
+                  {t("about.whyUs.eyebrow")}
                 </span>
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
-                The Madu Tseylon Difference
+              <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
+                {t("about.whyUs.title")}
               </h2>
             </Reveal>
           </div>
           <RevealGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {whyTravelWithUs.map((item, index) => (
+            {whyUsItems.map((item, index) => (
               <div
                 key={item.title}
                 className="reveal-item space-y-2 border-t border-border-subtle pt-5 text-center"
@@ -163,7 +192,7 @@ export default function About() {
               >
                 <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-soft-mint text-tropical">
                   <span className="material-symbols-outlined text-xl">
-                    {item.icon}
+                    {enWhyIcons[index]?.icon || "verified"}
                   </span>
                 </div>
                 <h3 className="text-center text-sm font-semibold text-charcoal">
@@ -177,7 +206,7 @@ export default function About() {
           </RevealGroup>
 
           <RevealGroup className="mt-16 grid grid-cols-1 gap-6 border-t border-border-subtle pt-10 sm:grid-cols-3">
-            {valuePillars.map((pillar, index) => (
+            {pillars.map((pillar, index) => (
               <div
                 key={pillar.title}
                 className="reveal-item space-y-1.5 text-center"
@@ -207,18 +236,18 @@ export default function About() {
                 <div className="mb-2 inline-flex items-center justify-center gap-2">
                   <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
                   <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                    Sri Lanka Expertise
+                    {t("about.expertise.eyebrow")}
                   </span>
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
-                  Culture, Nature, Wildlife &amp; Coast
+                <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
+                  {t("about.expertise.title")}
                 </h2>
               </Reveal>
             </div>
             <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-              {sriLankaExpertise.map((item, index) => (
+              {expertiseItems.map((item, index) => (
                 <div
                   key={item.title}
                   className="reveal-item group overflow-hidden rounded-2xl bg-white shadow-sm"
@@ -228,13 +257,13 @@ export default function About() {
                     <img
                       alt={item.title}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                      src={item.image}
+                      src={enExpertiseList[index]?.image || images.sigiriya}
                     />
                   </div>
                   <div className="p-5 text-center">
                     <div className="mb-2 flex items-center justify-center gap-2 text-tropical">
                       <span className="material-symbols-outlined text-lg">
-                        {item.icon}
+                        {enExpertiseList[index]?.icon || "explore"}
                       </span>
                       <h3 className="text-center text-sm font-semibold text-charcoal">
                         {item.title}
@@ -257,27 +286,27 @@ export default function About() {
               <div className="mb-2 inline-flex items-center justify-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                  Travel Philosophy
+                  {t("about.values.eyebrow")}
                 </span>
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-4xl">
-                Values That Guide Every Journey
+              <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-4xl">
+                {t("about.values.title")}
               </h2>
             </Reveal>
           </div>
           <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {travelValues.map((value, index) => (
+            {valuesItems.map((value, index) => (
               <div
                 key={value.title}
                 className="reveal-item text-center"
                 style={{ "--reveal-index": index } as CSSProperties}
               >
-                <h3 className="mb-3 text-center font-serif text-xl font-medium text-charcoal">
+                <h3 className="mb-3 text-center font-serif text-[1.3125rem] leading-snug font-medium text-charcoal sm:text-[1.45rem]">
                   {value.title}
                 </h3>
-                <p className="text-center text-sm leading-relaxed font-light text-muted">
+                <p className="text-center text-sm leading-relaxed text-muted">
                   {value.description}
                 </p>
               </div>
@@ -291,27 +320,27 @@ export default function About() {
           <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
             <Reveal>
               <span className="mb-3 block text-[10px] font-semibold tracking-[0.2em] text-gold uppercase sm:text-xs sm:tracking-[0.25em]">
-                Ready to Explore Sri Lanka?
+                {t("about.cta.eyebrow")}
               </span>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="mb-5 font-serif text-[1.75rem] font-medium text-white sm:mb-6 sm:text-5xl">
-                Let Us Craft Your Private Ceylon Journey
+              <h2 className="mb-5 font-serif text-[1.75rem] leading-[1.25] font-medium text-white sm:mb-6 sm:text-4xl md:text-[2.625rem]">
+                {t("about.cta.title")}
               </h2>
             </Reveal>
             <Reveal delay={180}>
               <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                 <Link
                   className="inline-flex items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover"
-                  to="/contact"
+                  to={getLocalizedPath("/contact")}
                 >
-                  Plan Your Trip
+                  {t("about.cta.planTrip")}
                 </Link>
                 <Link
                   className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-[13px] font-medium tracking-wide text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-px hover:bg-white/20"
-                  to="/tour-packages"
+                  to={getLocalizedPath("/tour-packages")}
                 >
-                  View Tour Packages
+                  {t("about.cta.viewPackages")}
                 </Link>
               </div>
             </Reveal>

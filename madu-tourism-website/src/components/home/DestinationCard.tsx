@@ -49,7 +49,7 @@ export default function DestinationCard({
           <span
             className={
               destination.badgeVariant === "gold"
-                ? "rounded-full bg-gold/90 px-2.5 py-1 text-[11px] font-bold tracking-wider text-forest-dark uppercase"
+                ? "rounded-full bg-gold/90 px-2.5 py-1 text-[11px] font-semibold tracking-wider text-forest-dark uppercase"
                 : "inline-block rounded-full bg-white/20 px-2.5 py-1 text-[11px] font-semibold tracking-wider text-white uppercase backdrop-blur-md"
             }
           >
@@ -62,8 +62,8 @@ export default function DestinationCard({
         <h3
           className={`mb-1 font-serif font-medium text-white ${
             useLargeCopy
-              ? "mb-2 text-xl sm:text-2xl md:text-3xl"
-              : "text-lg sm:text-xl"
+              ? "mb-2 text-xl sm:text-2xl md:text-[1.65rem] leading-tight"
+              : "text-[1.3125rem] sm:text-[1.45rem] leading-snug"
           }`}
         >
           {destination.title}

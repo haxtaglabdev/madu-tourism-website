@@ -21,21 +21,21 @@ export const navLinks: NavItem[] = [
 export const valuePillars: ValuePillar[] = [
   {
     icon: "psychology",
-    title: "Decades of Roots",
+    title: "Authentic Local Experiences",
     description:
-      "Lifelong insider access, local chiefs, and secret panorama points.",
+      "Discover hidden trails, family-run estates, and artisan villages away from tourist crowds",
   },
   {
     icon: "directions_car",
-    title: "Private Chauffeurs",
+    title: "Private Chauffeur Journeys",
     description:
-      "English-speaking certified naturalist drivers in luxury climate-controlled fleet.",
+      "Explore in comfort with personalised travel and private chauffeur services.",
   },
   {
     icon: "eco",
-    title: "Responsible Eco-Care",
+    title: "Thoughtful & Responsible Travel",
     description:
-      "Direct support to rural conservationists, weavers, and village schools.",
+      "Experience Sri Lanka while respecting its communities, culture, and natural beauty.",
   },
 ];
 
@@ -103,6 +103,70 @@ export const destinations: Destination[] = [
   },
 ];
 
+export const homeDestinations: Destination[] = [
+  {
+    id: "sigiriya",
+    title: "Sigiriya & The Ancient Citadel",
+    description:
+      "Ascend King Kashyapa's 5th-century palace atop a sheer 200m granite monolith adorned with celestial frescoes and mirror walls.",
+    badge: "Cultural Triangle",
+    badgeVariant: "gold",
+    meta: "UNESCO World Heritage",
+    image: images.homeSigiriya,
+    linkLabel: "Discover Region Details",
+    span: "large",
+    minHeight: "min-h-[380px]",
+  },
+  {
+    id: "ella",
+    title: "Ella & Nine Arch Bridge",
+    description:
+      "Misty valleys, iconic viaduct trains, and secluded highland tea tastings.",
+    badge: "High Tea & Peaks",
+    badgeVariant: "glass",
+    image: images.homeNineArch,
+    linkLabel: "Explore Highlights",
+    span: "medium",
+    minHeight: "min-h-[380px]",
+  },
+  {
+    id: "galle",
+    title: "Historic Galle Fort",
+    description:
+      "17th-century cobblestones, boutique artisan jeweler ateliers, and sea ramparts.",
+    badge: "Southern Ramparts",
+    badgeVariant: "glass",
+    image: images.homeGalleFort,
+    linkLabel: "Explore Highlights",
+    span: "medium",
+    minHeight: "min-h-[340px]",
+  },
+  {
+    id: "mirissa",
+    title: "Mirissa & Weligama",
+    description:
+      "Private blue whale watching charters, palm hills, and sunset cocktails.",
+    badge: "Coastal Bliss",
+    badgeVariant: "glass",
+    image: images.homeMirissa,
+    linkLabel: "Explore Highlights",
+    span: "medium",
+    minHeight: "min-h-[340px]",
+  },
+  {
+    id: "yala",
+    title: "Yala National Park",
+    description:
+      "Highest density of Sri Lankan leopards, sloth bears, and wild tuskers.",
+    badge: "Wildlife Kingdom",
+    badgeVariant: "glass",
+    image: images.homeMinneriya,
+    linkLabel: "Explore Highlights",
+    span: "medium",
+    minHeight: "min-h-[340px]",
+  },
+];
+
 export const packages: TourPackage[] = [
   {
     id: "classic-ceylon",
@@ -111,7 +175,7 @@ export const packages: TourPackage[] = [
       "Sigiriya Lion Fortress, Temple of the Tooth Relic, mist-shrouded Nuwara Eliya tea trails, and a Minneriya elephant gathering.",
     duration: "7 Days / 6 Nights",
     tag: "Private Chauffeur",
-    image: images.sigiriyaAerial,
+    image: images.maligawa,
     rating: 5,
     reviewCount: 48,
     inclusions: [
@@ -119,7 +183,6 @@ export const packages: TourPackage[] = [
       "4 & 5-Star Boutique Heritage Hotels",
       "All Entrance & UNESCO Site Fees Included",
     ],
-    // Placeholder pricing — replace with confirmed rates
     price: "$1,250",
   },
   {
@@ -137,7 +200,6 @@ export const packages: TourPackage[] = [
       "Private Tea Estate Tasting Masterclass",
       "Luxury Boutique Bungalows",
     ],
-    // Placeholder pricing — replace with confirmed rates
     price: "$1,480",
   },
   {
@@ -147,7 +209,7 @@ export const packages: TourPackage[] = [
       "Dual wildlife immersion: custom 4x4 open-top jeep safaris in Yala followed by barefoot luxury along southern Indian Ocean beaches.",
     duration: "10 Days / 9 Nights",
     tag: "Safari & Ocean Villa",
-    image: images.elephantBath,
+    image: images.kotiDenna,
     rating: 5,
     reviewCount: 54,
     inclusions: [
@@ -155,8 +217,75 @@ export const packages: TourPackage[] = [
       "Boutique Oceanfront Villa Stay",
       "Exclusive Sunset Whale Cruise",
     ],
-    // Placeholder pricing — replace with confirmed rates
     price: "$1,890",
+  },
+  {
+    id: "ceylon-essentials",
+    title: "Ceylon Essentials Escape",
+    description:
+      "A compact five-day journey from Colombo through Sigiriya's ancient fortress, Kandy's sacred heritage, Nuwara Eliya's tea highlands, and Ella's mountain scenery.",
+    duration: "5 Days / 4 Nights",
+    tag: "Compact Discovery",
+    image: images.colomboMusi,
+    rating: 5,
+    reviewCount: 36,
+    inclusions: [
+      "Private Chauffeur Throughout",
+      "Handpicked Comfortable Stays",
+      "Curated Cultural Experiences",
+    ],
+    price: "$295",
+  },
+  {
+    id: "island-highlights",
+    title: "Island Highlights & Southern Shores",
+    description:
+      "Seven days combining ancient heritage, tea country, mountain landscapes, wildlife, southern beaches, and the historic streets of Galle Fort.",
+    duration: "7 Days / 6 Nights",
+    tag: "Island Explorer",
+    image: images.sigiriyaRock,
+    rating: 5,
+    reviewCount: 41,
+    inclusions: [
+      "Private Chauffeur & Guided Experiences",
+      "Comfortable Accommodation",
+      "Wildlife & Coastal Encounters",
+    ],
+    price: "$485",
+  },
+  {
+    id: "ancient-kingdoms",
+    title: "Ancient Kingdoms & Wild Southern Coast",
+    description:
+      "A ten-day exploration featuring ancient cities, sacred temples, tea plantations, Yala wildlife, Mirissa's shores, and Galle Fort.",
+    duration: "10 Days / 9 Nights",
+    tag: "Heritage & Wildlife",
+    image: images.nuwaraEliya,
+    rating: 5,
+    reviewCount: 38,
+    inclusions: [
+      "Private Chauffeur Throughout",
+      "Comfortable Stays at Each Destination",
+      "Cultural & Wildlife Experiences",
+    ],
+    price: "$635",
+  },
+  {
+    id: "grand-expedition",
+    title: "The Grand Ceylon Island Expedition",
+    description:
+      "A comprehensive fourteen-day expedition through Sri Lanka's cultural triangle, highlands, wildlife regions, southern coast, and the distinctive north and east.",
+    duration: "14 Days / 13 Nights",
+    tag: "Grand Island Circuit",
+    image: images.teaW,
+    rating: 5,
+    reviewCount: 29,
+    inclusions: [
+      "Private Chauffeur & Nationwide Transfers",
+      "Handpicked Stays Across the Island",
+      "Full Cultural & Nature Immersion",
+    ],
+    price: "$895",
   },
 ];
 

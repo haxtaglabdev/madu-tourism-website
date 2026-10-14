@@ -1,13 +1,16 @@
 import { useCallback, useRef, useState } from "react";
-import { destinations } from "../../data/homeContent";
+import { getLocalizedHomeDestinations } from "../../data/localizedContent";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 import Reveal from "../ui/Reveal";
 import DestinationCard from "./DestinationCard";
 
-const SLIDE_COUNT = destinations.length;
 const FADE_MS = 180;
 
 export default function DestinationsSection() {
-  // destinations[0] is Sigiriya & The Ancient Citadel
+  const { t, currentLang, getLocalizedPath } = useCurrentLanguage();
+  const destinations = getLocalizedHomeDestinations(currentLang);
+  const slideCount = destinations.length;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const isAnimatingRef = useRef(false);
@@ -16,7 +19,7 @@ export default function DestinationsSection() {
     if (isAnimatingRef.current) return;
 
     const normalized =
-      ((nextIndex % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
+      ((nextIndex % slideCount) + slideCount) % slideCount;
     if (normalized === currentIndex) return;
 
     isAnimatingRef.current = true;
@@ -26,12 +29,12 @@ export default function DestinationsSection() {
       setIsVisible(true);
       isAnimatingRef.current = false;
     }, FADE_MS);
-  }, [currentIndex]);
+  }, [currentIndex, slideCount]);
 
   const goPrevious = () => goTo(currentIndex - 1);
   const goNext = () => goTo(currentIndex + 1);
 
-  const currentDestination = destinations[currentIndex];
+  const currentDestination = destinations[currentIndex] || destinations[0];
 
   return (
     <section className="w-full bg-soft-mint py-16 sm:py-24" id="destinations">
@@ -42,17 +45,16 @@ export default function DestinationsSection() {
               <div className="mb-2 inline-flex items-center justify-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
                 <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                  Iconic Territories
+                  {t("home.destinations.eyebrow")}
                 </span>
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-center font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
-                Popular Destinations
+              <h2 className="text-center font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.625rem]">
+                {t("home.destinations.title")}
               </h2>
             </Reveal>
           </div>
-
         </div>
 
         <Reveal delay={220}>
@@ -91,7 +93,7 @@ export default function DestinationsSection() {
               <DestinationCard
                 destination={currentDestination}
                 featured
-                to="/destinations"
+                to={getLocalizedPath("/destinations")}
               />
             </div>
 

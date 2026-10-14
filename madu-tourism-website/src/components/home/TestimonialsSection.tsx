@@ -1,8 +1,12 @@
 import type { CSSProperties } from "react";
-import { testimonials } from "../../data/homeContent";
+import { getLocalizedTestimonials } from "../../data/localizedContent";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 import Reveal, { RevealGroup } from "../ui/Reveal";
 
 export default function TestimonialsSection() {
+  const { t, currentLang } = useCurrentLanguage();
+  const testimonials = getLocalizedTestimonials(currentLang);
+
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-28">
       <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-16">
@@ -10,16 +14,15 @@ export default function TestimonialsSection() {
           <div className="mb-2 inline-flex items-center gap-2">
             <span className="h-2 w-2 shrink-0 rounded-full bg-sunset" />
             <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-              Traveler Reviews
+              {t("home.testimonials.eyebrow")}
             </span>
           </div>
         </Reveal>
         <Reveal delay={100}>
-          <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
-            Memories From Our Guests
+          <h2 className="mb-4 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.625rem]">
+            {t("home.testimonials.title")}
           </h2>
         </Reveal>
-        
       </div>
 
       <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -55,9 +58,9 @@ export default function TestimonialsSection() {
                 {item.initials}
               </div>
               <div className="min-w-0">
-                <h4 className="text-sm font-semibold text-charcoal">
+                <h3 className="text-sm font-semibold text-charcoal">
                   {item.name}
-                </h4>
+                </h3>
                 <span className="block text-xs break-words text-muted">
                   {item.detail}
                 </span>

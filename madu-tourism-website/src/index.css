@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+:root {
+  --font-heading: "Lora", Georgia, serif;
+  --font-body: "Poppins", Arial, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --text-body: clamp(0.9375rem, 0.2vw + 0.9rem, 1.125rem);
+  --text-small: clamp(0.75rem, 0.15vw + 0.72rem, 0.875rem);
+
+  --text-hero: clamp(2.25rem, 4.2vw, 4rem);
+  --text-page-title: clamp(2.125rem, 3.2vw, 3rem);
+  --text-section-title: clamp(1.75rem, 2.8vw, 2.625rem);
+  --text-card-title: clamp(1.3125rem, 1.5vw, 1.625rem);
+
+  --line-height-heading: 1.2;
+  --line-height-body: 1.75;
+}
+
 @theme {
   --color-forest: #003d2c;
   --color-forest-dark: #00251a;
@@ -13,8 +33,10 @@
   --color-muted: #66756f;
   --color-border-subtle: rgba(23, 43, 37, 0.08);
 
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 
   --shadow-card: 0px 4px 20px -2px rgba(0, 61, 44, 0.06);
   --shadow-card-hover: 0px 12px 28px -4px rgba(0, 61, 44, 0.12);
@@ -30,15 +52,54 @@
     padding: 0;
     background-color: #fafaf7;
     color: #172b25;
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--line-height-body);
+    font-weight: var(--font-weight-regular);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
   }
 
   ::selection {
     background-color: #167a3e;
     color: #ffffff;
   }
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.text-hero {
+  font-size: var(--text-hero);
+  line-height: 1.15;
+}
+
+.text-page-title {
+  font-size: var(--text-page-title);
+  line-height: var(--line-height-heading);
+}
+
+.text-section-title {
+  font-size: var(--text-section-title);
+  line-height: 1.25;
+}
+
+.text-card-title {
+  font-size: var(--text-card-title);
+  line-height: 1.35;
 }
 
 .material-symbols-outlined {
@@ -197,5 +258,18 @@
   .brand-wordmark-accent,
   .brand-wordmark::after {
     transition: none !important;
+  }
+
+  .animate-\[madu-orbit_2\.4s_linear_infinite\] {
+    animation: none !important;
+  }
+}
+
+@keyframes madu-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

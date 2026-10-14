@@ -1,9 +1,11 @@
 import { useRef, useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { images } from "../assets";
 import PageMeta from "../components/seo/PageMeta";
 import PageHero from "../components/ui/PageHero";
 import Reveal from "../components/ui/Reveal";
+import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 
 interface ContactFormState {
   fullName: string;
@@ -19,17 +21,26 @@ interface ContactFormState {
 
 type ContactFormErrors = Partial<Record<keyof ContactFormState, string>>;
 
-const initialForm: ContactFormState = {
-  fullName: "",
-  email: "",
-  phone: "",
-  country: "",
-  travelDates: "",
-  travelers: "",
-  destinations: "",
-  tourType: "",
-  message: "",
-};
+function createInitialForm(packageName?: string | null, isRu = false): ContactFormState {
+  const trimmed = packageName?.trim();
+  const defaultMessage = trimmed
+    ? isRu
+      ? `Здравствуйте! Я хочу узнать подробности о туре "${trimmed}".`
+      : `I would like to inquire about the "${trimmed}" package.`
+    : "";
+
+  return {
+    fullName: "",
+    email: "",
+    phone: "",
+    country: "",
+    travelDates: "",
+    travelers: "",
+    destinations: "",
+    tourType: "",
+    message: defaultMessage,
+  };
+}
 
 /** Existing Madu Tseylon concierge WhatsApp number (digits only, with country code). */
 const BUSINESS_WHATSAPP_NUMBER = "94770880425";
@@ -58,8 +69,8 @@ function fieldClassName(hasError: boolean, extra = "") {
   return `${inputClass} ${hasError ? inputErrorClass : ""} ${extra}`.trim();
 }
 
-function displayValue(value: string) {
-  return value.trim() || "Not provided";
+function displayValue(value: string, isRu = false) {
+  return value.trim() || (isRu ? "Не указано" : "Not provided");
 }
 
 function isValidPhoneNumber(value: string) {
@@ -69,7 +80,10 @@ function isValidPhoneNumber(value: string) {
   return digits.length >= 8 && digits.length <= 15;
 }
 
-function validateContactForm(form: ContactFormState): ContactFormErrors {
+function validateContactForm(
+  form: ContactFormState,
+  t: (key: string) => string,
+): ContactFormErrors {
   const errors: ContactFormErrors = {};
   const fullName = form.fullName.trim();
   const email = form.email.trim();
@@ -78,31 +92,62 @@ function validateContactForm(form: ContactFormState): ContactFormErrors {
   const message = form.message.trim();
 
   if (!fullName) {
-    errors.fullName = "Please enter your full name.";
+    errors.fullName = t("contact.errors.fullNameRequired");
   }
 
-  if (!email) {
-    errors.email = "Please enter a valid email address.";
-  } else if (!EMAIL_PATTERN.test(email)) {
-    errors.email = "Please enter a valid email address.";
+  if (!email || !EMAIL_PATTERN.test(email)) {
+    errors.email = t("contact.errors.emailInvalid");
   }
 
   if (phone && !isValidPhoneNumber(phone)) {
-    errors.phone = "Please enter a valid phone number.";
+    errors.phone = t("contact.errors.phoneInvalid");
   }
 
   if (form.country && !country) {
-    errors.country = "Please enter your country.";
+    errors.country = t("contact.errors.countryRequired");
   }
 
   if (form.message && !message) {
-    errors.message = "Please enter your inquiry message.";
+    errors.message = t("contact.errors.messageRequired");
   }
 
   return errors;
 }
 
-function buildInquiryMessage(form: ContactFormState) {
+function buildInquiryMessage(
+  form: ContactFormState,
+  packageName: string | null | undefined,
+  isRu: boolean,
+) {
+  if (isRu) {
+    const packageLine = packageName?.trim()
+      ? [`- Выбранный тур: ${packageName.trim()}`, ""]
+      : [];
+
+    return [
+      "Здравствуйте, команда Madu Tseylon Tours!",
+      "",
+      "Я хочу спланировать поездку на Шри-Ланку.",
+      "",
+      "Мои контактные данные:",
+      `- Имя: ${form.fullName.trim()}`,
+      `- Email: ${form.email.trim()}`,
+      `- Телефон / мессенджер: ${displayValue(form.phone, true)}`,
+      `- Страна проживания: ${displayValue(form.country, true)}`,
+      ...packageLine,
+      "Пожелания к маршруту:",
+      displayValue(form.message, true),
+      "",
+      "Буду ждать вашего ответа.",
+      "",
+      "Спасибо!",
+    ].join("\n");
+  }
+
+  const packageLine = packageName?.trim()
+    ? [`- Package: ${packageName.trim()}`, ""]
+    : [];
+
   return [
     "Hello Madu Tseylon Tours!",
     "",
@@ -113,7 +158,7 @@ function buildInquiryMessage(form: ContactFormState) {
     `- Email: ${form.email.trim()}`,
     `- Phone: ${displayValue(form.phone)}`,
     `- Country: ${displayValue(form.country)}`,
-    "",
+    ...packageLine,
     "Additional Message:",
     displayValue(form.message),
     "",
@@ -124,7 +169,26 @@ function buildInquiryMessage(form: ContactFormState) {
 }
 
 export default function Contact() {
-  const [form, setForm] = useState<ContactFormState>(initialForm);
+  const [searchParams] = useSearchParams();
+  const packageName = searchParams.get("package");
+  const { currentLang } = useCurrentLanguage();
+
+  return (
+    <ContactPage
+      key={`${currentLang}-${packageName ?? "general"}`}
+      packageName={packageName}
+    />
+  );
+}
+
+function ContactPage({ packageName }: { packageName: string | null }) {
+  const { t } = useTranslation();
+  const { currentLang, getLocalizedPath } = useCurrentLanguage();
+  const isRu = currentLang === "ru";
+
+  const [form, setForm] = useState<ContactFormState>(() =>
+    createInitialForm(packageName, isRu),
+  );
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const isSubmittingRef = useRef(false);
@@ -144,7 +208,7 @@ export default function Contact() {
     event.preventDefault();
     if (isSubmittingRef.current) return;
 
-    const nextErrors = validateContactForm(form);
+    const nextErrors = validateContactForm(form, t);
     setErrors(nextErrors);
 
     const firstInvalid = VISIBLE_FIELDS.find((field) => nextErrors[field]);
@@ -157,7 +221,7 @@ export default function Contact() {
 
     isSubmittingRef.current = true;
     const whatsappUrl = `https://wa.me/${BUSINESS_WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      buildInquiryMessage(form),
+      buildInquiryMessage(form, packageName, isRu),
     )}`;
     window.location.href = whatsappUrl;
     setSubmitted(true);
@@ -169,17 +233,17 @@ export default function Contact() {
   return (
     <>
       <PageMeta
-        description="Contact Madu Tseylon Tours to plan a private Sri Lankan journey. Share your dates, destinations, and travel style."
-        title="Contact | Madu Tseylon Tours"
+        description={t("contact.metaDescription")}
+        title={t("contact.metaTitle")}
       />
       <main>
         <PageHero
-          description="Speak with our Colombo destination designers. Share your travel window and preferences — we will shape a private itinerary around your pace."
-          eyebrow="Colombo Concierge"
-          highlight="Journey"
-          image={images.beachBoats}
-          imageAlt="Boats along a Sri Lankan coastal bay"
-          title="Let's Plan Your Sri Lankan"
+          description={t("contact.hero.description")}
+          eyebrow={t("contact.hero.eyebrow")}
+          highlight={t("contact.hero.highlight")}
+          image={images.blueBeachContact}
+          imageAlt={t("contact.hero.title") + t("contact.hero.highlight")}
+          title={t("contact.hero.title")}
         />
 
         <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 sm:py-24">
@@ -189,20 +253,18 @@ export default function Contact() {
                 <div className="mb-3 flex items-center gap-2">
                   <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
                   <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                    Contact Information
+                    {isRu ? "Контактная информация" : "Contact Information"}
                   </span>
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="mb-6 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl">
-                  We Are Ready When You Are
+                <h2 className="mb-6 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl">
+                  {t("contact.conciergeTitle")}
                 </h2>
               </Reveal>
               <Reveal delay={160}>
-                <p className="mb-8 text-sm leading-relaxed font-light text-muted">
-                  Reach our island concierge team for custom itineraries,
-                  package inquiries, or travel advice. Placeholder contact
-                  details below — replace with verified business information.
+                <p className="mb-8 text-sm leading-relaxed text-muted">
+                  {t("contact.conciergeSubtitle")}
                 </p>
               </Reveal>
 
@@ -214,10 +276,10 @@ export default function Contact() {
                     </span>
                     <div>
                       <p className="text-xs font-semibold tracking-wider text-charcoal uppercase">
-                        Office
+                        {t("contact.officeLocation")}
                       </p>
-                      <p className="mt-1 text-sm font-light text-muted">
-                        Level 4, Galle Road, Colombo 03, Sri Lanka
+                      <p className="mt-1 text-sm text-muted">
+                        {t("contact.officeAddress")}
                       </p>
                     </div>
                   </div>
@@ -227,13 +289,13 @@ export default function Contact() {
                     </span>
                     <div>
                       <p className="text-xs font-semibold tracking-wider text-charcoal uppercase">
-                        Phone
+                        {isRu ? "Телефон" : "Phone"}
                       </p>
                       <a
-                        className="mt-1 block text-sm font-light text-muted transition-colors hover:text-tropical"
-                        href="tel:+94112345678"
+                        className="mt-1 block text-sm text-muted transition-colors hover:text-tropical"
+                        href="tel:+94770880425"
                       >
-                        +94 11 234 5678
+                        +94 77 088 0425
                       </a>
                     </div>
                   </div>
@@ -243,10 +305,10 @@ export default function Contact() {
                     </span>
                     <div>
                       <p className="text-xs font-semibold tracking-wider text-charcoal uppercase">
-                        Email
+                        {isRu ? "Электронная почта" : "Email"}
                       </p>
                       <a
-                        className="mt-1 block break-all text-sm font-light text-muted transition-colors hover:text-tropical"
+                        className="mt-1 block break-all text-sm text-muted transition-colors hover:text-tropical"
                         href="mailto:madutseylon@gmail.com"
                       >
                         madutseylon@gmail.com
@@ -256,7 +318,7 @@ export default function Contact() {
                   <div className="pt-2">
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-tropical/30 bg-white px-3 py-1 text-[10px] font-semibold text-tropical">
                       <span className="h-1.5 w-1.5 rounded-full bg-tropical" />
-                      24/7 Island Concierge Online
+                      {isRu ? "Круглосуточный консьерж онлайн" : "24/7 Island Concierge Online"}
                     </span>
                   </div>
                 </div>
@@ -272,7 +334,7 @@ export default function Contact() {
                   <span className="material-symbols-outlined text-sm text-green-600">
                     chat
                   </span>
-                  WhatsApp Concierge
+                  {t("contact.whatsappButton")}
                 </a>
               </Reveal>
             </div>
@@ -280,12 +342,11 @@ export default function Contact() {
             <div className="min-w-0 lg:col-span-8">
               <Reveal>
                 <div className="rounded-2xl border border-border-subtle bg-white p-4 shadow-sm sm:p-8">
-                  <h2 className="mb-2 font-serif text-xl font-medium text-charcoal sm:text-2xl">
-                    Connect With Us
+                  <h2 className="mb-2 font-serif text-[1.3125rem] leading-snug font-medium text-charcoal sm:text-[1.5rem]">
+                    {t("contact.formTitle")}
                   </h2>
-                  <p className="mb-8 text-sm font-light text-muted">
-                    Complete the form below. When you send, WhatsApp will open
-                    with your inquiry so you can review and send it.
+                  <p className="mb-8 text-sm text-muted">
+                    {t("contact.formSubtitle")}
                   </p>
 
                   <form
@@ -296,7 +357,7 @@ export default function Contact() {
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                       <div>
                         <label className={labelClass} htmlFor="fullName">
-                          Full Name
+                          {t("contact.fullNameLabel")}
                         </label>
                         <input
                           required
@@ -310,7 +371,7 @@ export default function Contact() {
                           onChange={(e) =>
                             updateField("fullName", e.target.value)
                           }
-                          placeholder="Your full name"
+                          placeholder={t("contact.fullNamePlaceholder")}
                           type="text"
                           value={form.fullName}
                         />
@@ -326,7 +387,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <label className={labelClass} htmlFor="email">
-                          Email
+                          {t("contact.emailLabel")}
                         </label>
                         <input
                           required
@@ -338,7 +399,7 @@ export default function Contact() {
                           id="email"
                           name="email"
                           onChange={(e) => updateField("email", e.target.value)}
-                          placeholder="you@example.com"
+                          placeholder={t("contact.emailPlaceholder")}
                           type="email"
                           value={form.email}
                         />
@@ -354,7 +415,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <label className={labelClass} htmlFor="phone">
-                          Phone
+                          {t("contact.phoneLabel")}
                         </label>
                         <input
                           aria-describedby={
@@ -365,7 +426,7 @@ export default function Contact() {
                           id="phone"
                           name="phone"
                           onChange={(e) => updateField("phone", e.target.value)}
-                          placeholder="+1 555 000 0000"
+                          placeholder={t("contact.phonePlaceholder")}
                           type="tel"
                           value={form.phone}
                         />
@@ -381,7 +442,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <label className={labelClass} htmlFor="country">
-                          Country
+                          {t("contact.countryLabel")}
                         </label>
                         <input
                           aria-describedby={
@@ -394,7 +455,7 @@ export default function Contact() {
                           onChange={(e) =>
                             updateField("country", e.target.value)
                           }
-                          placeholder="Your country"
+                          placeholder={t("contact.countryPlaceholder")}
                           type="text"
                           value={form.country}
                         />
@@ -408,13 +469,11 @@ export default function Contact() {
                           </p>
                         ) : null}
                       </div>
-
-
                     </div>
 
                     <div>
                       <label className={labelClass} htmlFor="message">
-                        Message
+                        {t("contact.messageLabel")}
                       </label>
                       <textarea
                         aria-describedby={
@@ -428,7 +487,7 @@ export default function Contact() {
                         id="message"
                         name="message"
                         onChange={(e) => updateField("message", e.target.value)}
-                        placeholder="Tell us about your ideal Sri Lankan journey…"
+                        placeholder={t("contact.messagePlaceholder")}
                         rows={5}
                         value={form.message}
                       />
@@ -448,13 +507,13 @@ export default function Contact() {
                         className="inline-flex w-full items-center justify-center rounded-full bg-sunset px-8 py-3.5 text-[13px] font-semibold tracking-wider text-white uppercase shadow-[0_6px_20px_rgba(245,154,35,0.4)] transition-all duration-300 hover:-translate-y-px hover:scale-[1.01] hover:bg-sunset-hover sm:w-auto"
                         type="submit"
                       >
-                        Send
+                        {t("contact.submitButton")}
                       </button>
                       <Link
                         className="text-center text-sm font-medium text-tropical transition-colors hover:text-forest sm:text-left"
-                        to="/tour-packages"
+                        to={getLocalizedPath("/tour-packages")}
                       >
-                        Or browse tour packages →
+                        {isRu ? "Или посмотреть все туры →" : "Or browse tour packages →"}
                       </Link>
                     </div>
 
@@ -463,8 +522,9 @@ export default function Contact() {
                         className="rounded-xl border border-tropical/30 bg-soft-mint px-4 py-3 text-sm text-charcoal"
                         role="status"
                       >
-                        WhatsApp is opening with your inquiry. Please review the
-                        message and tap Send in WhatsApp to deliver it.
+                        {isRu
+                          ? "Открывается WhatsApp с вашим запросом. Пожалуйста, проверьте текст и нажмите «Отправить» в WhatsApp."
+                          : "WhatsApp is opening with your inquiry. Please review the message and tap Send in WhatsApp to deliver it."}
                       </p>
                     )}
                   </form>

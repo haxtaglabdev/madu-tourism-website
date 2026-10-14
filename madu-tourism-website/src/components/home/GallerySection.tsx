@@ -1,8 +1,10 @@
 import type { CSSProperties } from "react";
 import { galleryItems } from "../../data/homeContent";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 import Reveal, { RevealGroup } from "../ui/Reveal";
 
 export default function GallerySection() {
+  const { isRussian } = useCurrentLanguage();
   const columns = [
     galleryItems.slice(0, 2),
     galleryItems.slice(2, 4),
@@ -18,16 +20,15 @@ export default function GallerySection() {
             <div className="mb-2 inline-flex items-center gap-2">
               <span className="h-2 w-2 shrink-0 rounded-full bg-tropical" />
               <span className="text-xs font-semibold tracking-[0.2em] text-tropical uppercase">
-                Visual Travel Diary
+                {isRussian ? "Визуальный дневник" : "Visual Travel Diary"}
               </span>
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="mb-4 font-serif text-[1.75rem] font-medium text-charcoal sm:text-3xl md:text-5xl">
-              Postcards from the Island
+            <h2 className="mb-4 font-serif text-[1.75rem] leading-[1.25] font-medium text-charcoal sm:text-3xl md:text-[2.625rem]">
+              {isRussian ? "Открытки с райского острова" : "Postcards from the Island"}
             </h2>
           </Reveal>
-
         </div>
 
         <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">

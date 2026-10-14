@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import type { TourPackage } from "../../types/Home";
+import { useCurrentLanguage } from "../../i18n/useCurrentLanguage";
 
 interface TourCardProps {
   tour: TourPackage;
@@ -8,28 +9,19 @@ interface TourCardProps {
   detailsTo?: string;
 }
 
-function StarRow({ rating, reviewCount }: { rating: number; reviewCount: number }) {
-  return (
-    <div className="mb-2 flex items-center gap-1.5 text-xs text-gold">
-      {Array.from({ length: rating }).map((_, index) => (
-        <span
-          key={index}
-          className="material-symbols-outlined material-symbols-filled text-[16px]"
-        >
-          star
-        </span>
-      ))}
-      <span className="ml-1 font-semibold text-charcoal">5.0</span>
-      <span className="text-muted">({reviewCount} reviews)</span>
-    </div>
-  );
-}
-
 export default function TourCard({
   tour,
   style,
   detailsTo = "/contact",
 }: TourCardProps) {
+  const { t, getLocalizedPath } = useCurrentLanguage();
+
+  const isPerPerson =
+    tour.id === "ceylon-essentials" ||
+    tour.id === "island-highlights" ||
+    tour.id === "ancient-kingdoms" ||
+    tour.id === "grand-expedition";
+
   return (
     <article
       className={`reveal-item group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
@@ -51,16 +43,15 @@ export default function TourCard({
               {tour.duration}
             </span>
           </div>
-          <span className="absolute right-4 bottom-4 rounded-md bg-white/95 px-2.5 py-1 text-[11px] font-bold text-forest-dark shadow-sm">
+          <span className="absolute right-4 bottom-4 rounded-md bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-forest-dark shadow-sm">
             {tour.tag}
           </span>
         </div>
         <div className="p-5 sm:p-7">
-          <StarRow rating={tour.rating} reviewCount={tour.reviewCount} />
           <h3 className="mb-2 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl">
             {tour.title}
           </h3>
-          <p className="mb-6 text-xs leading-relaxed font-light text-muted">
+          <p className="mb-6 text-xs leading-relaxed text-muted">
             {tour.description}
           </p>
           <div className="space-y-2 border-y border-border-subtle py-4 text-xs text-charcoal/80">
@@ -78,24 +69,23 @@ export default function TourCard({
       <div className="flex flex-col gap-4 p-5 pt-0 sm:flex-row sm:items-center sm:justify-between sm:p-7 sm:pt-0">
         <div className="min-w-0">
           <span className="block text-[11px] tracking-wider text-muted uppercase">
-            From
+            {t("common.fromPrice")}
           </span>
-          <span className="font-serif text-2xl font-semibold text-charcoal">
+          <span className="font-sans text-2xl font-semibold text-charcoal">
             {tour.price}{" "}
-            <span className="font-sans text-xs font-normal text-muted">
-              / guest
+            <span className="text-xs font-normal text-muted">
+              {isPerPerson ? t("common.perPerson") : t("common.perGuest")}
             </span>
           </span>
         </div>
         <Link
-          className={`inline-flex shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${
-            tour.featured
+          className={`inline-flex shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${tour.featured
               ? "bg-sunset shadow-md hover:bg-sunset-hover"
               : "bg-forest group-hover:bg-tropical"
-          }`}
-          to={detailsTo}
+            }`}
+          to={getLocalizedPath(detailsTo)}
         >
-          Explore Details
+          {t("common.exploreDetails")}
         </Link>
       </div>
     </article>
