@@ -22,7 +22,7 @@ export const ruPackages: TourPackage[] = [
       "Бутик-отели 4* и 5* с историческим шармом",
       "Все входные билеты и сборы объектов ЮНЕСКО",
     ],
-    price: "$1,250",
+    price: "$485",
   },
   {
     id: "highland-tea",
@@ -39,7 +39,7 @@ export const ruPackages: TourPackage[] = [
       "Приватная дегустация и мастер-класс плантатора",
       "Роскошные аутентичные бунгало в горах",
     ],
-    price: "$1,480",
+    price: "$550",
   },
   {
     id: "wild-leopards",
@@ -56,7 +56,7 @@ export const ruPackages: TourPackage[] = [
       "Проживание на бутик-вилле на первой линии",
       "Эксклюзивный морской круиз к синим китам",
     ],
-    price: "$1,890",
+    price: "$635",
   },
   {
     id: "ceylon-essentials",

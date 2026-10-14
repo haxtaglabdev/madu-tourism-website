@@ -38,7 +38,7 @@ export const en: TranslationResource = {
         "Madu Tseylon Tours is a Sri Lankan Destination Management Company specializing in bespoke private chauffeur journeys, luxury villa retreats, and responsible wildlife expeditions.",
       exploreHeading: "Explore",
       territoriesHeading: "Key Territories",
-      conciergeHeading: "Colombo Concierge",
+      conciergeHeading: "Contact & Reservations",
       address: "No.247, kurudu waththa, holuwagoda, godakanda, galle",
       onlineBadge: "24/7 Island Concierge Online",
       copyright:
@@ -346,7 +346,7 @@ export const en: TranslationResource = {
     conciergeSubtitle:
       "Every journey begins with a conversation. Share your preferred travel dates, group size, and interests.",
     directChannels: "Direct Channels",
-    officeLocation: "Galle Concierge Office",
+    officeLocation: "Address",
     officeAddress: "No.247, kurudu waththa, holuwagoda, godakanda, galle",
     hoursTitle: "Working Hours",
     hoursDetail: "Monday – Sunday: 8:00 AM – 8:00 PM (Sri Lanka Time)",
