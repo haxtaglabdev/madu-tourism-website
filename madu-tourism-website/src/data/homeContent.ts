@@ -183,7 +183,7 @@ export const packages: TourPackage[] = [
       "4 & 5-Star Boutique Heritage Hotels",
       "All Entrance & UNESCO Site Fees Included",
     ],
-    price: "$1,250",
+    price: "$485",
   },
   {
     id: "highland-tea",
@@ -200,7 +200,7 @@ export const packages: TourPackage[] = [
       "Private Tea Estate Tasting Masterclass",
       "Luxury Boutique Bungalows",
     ],
-    price: "$1,480",
+    price: "$550",
   },
   {
     id: "wild-leopards",
@@ -217,7 +217,7 @@ export const packages: TourPackage[] = [
       "Boutique Oceanfront Villa Stay",
       "Exclusive Sunset Whale Cruise",
     ],
-    price: "$1,890",
+    price: "$635",
   },
   {
     id: "ceylon-essentials",
