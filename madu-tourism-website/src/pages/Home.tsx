@@ -9,6 +9,7 @@ import FinalCTA from "../components/home/FinalCTA";
 import PageMeta from "../components/seo/PageMeta";
 import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 
+
 export default function Home() {
   const { isRussian } = useCurrentLanguage();
 
