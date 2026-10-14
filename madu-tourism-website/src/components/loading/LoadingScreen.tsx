@@ -50,7 +50,11 @@ export default memo(function LoadingScreen() {
           <img
             alt="Madu Tseylon Tours"
             className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-contain select-none"
+            decoding="async"
+            fetchPriority="high"
+            height={112}
             src={images.logo}
+            width={112}
           />
         </div>
 

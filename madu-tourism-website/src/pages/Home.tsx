@@ -9,6 +9,7 @@ import FinalCTA from "../components/home/FinalCTA";
 import PageMeta from "../components/seo/PageMeta";
 import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 
+
 export default function Home() {
   const { isRussian } = useCurrentLanguage();
 
@@ -23,7 +24,7 @@ export default function Home() {
         title={
           isRussian
             ? "Madu Tseylon Tours | Авторские туры по Шри-Ланке"
-            : "Madu Tseylon Tours | Explore Sri Lanka"
+            : "Madu Tseylon Tours | Luxury Bespoke Sri Lanka Travel"
         }
       />
       <main>

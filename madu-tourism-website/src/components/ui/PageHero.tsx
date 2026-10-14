@@ -18,10 +18,12 @@ export default function PageHero({
 }: PageHeroProps) {
   return (
     <section className="relative flex min-h-[48vh] flex-col items-center justify-center overflow-hidden bg-forest-dark sm:min-h-[58vh]">
-      <div className="absolute inset-0" aria-hidden="true">
+      <div className="absolute inset-0">
         <img
           alt={imageAlt}
           className="h-full w-full object-cover object-[center_30%] opacity-85 sm:object-center"
+          decoding="async"
+          fetchPriority="high"
           src={image}
         />
       </div>

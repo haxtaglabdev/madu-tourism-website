@@ -37,7 +37,7 @@ export default function Destinations() {
           eyebrow={t("destinations.hero.eyebrow")}
           highlight={t("destinations.hero.highlight")}
           image={images.beachCafeHero}
-          imageAlt={t("destinations.hero.title") + t("destinations.hero.highlight")}
+          imageAlt={t("destinations.hero.imageAlt")}
           title={t("destinations.hero.title")}
         />
 
@@ -100,8 +100,10 @@ export default function Destinations() {
               >
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
-                    alt={destination.title}
+                    alt={`${destination.title} — Sri Lanka Destination`}
                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    decoding="async"
+                    loading="lazy"
                     src={destination.image}
                   />
                 </div>

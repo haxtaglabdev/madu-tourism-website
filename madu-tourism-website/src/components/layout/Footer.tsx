@@ -46,7 +46,11 @@ export default function Footer() {
               <img
                 alt={t("common.brandName")}
                 className="h-24 w-auto rounded-full object-contain mb-4"
+                decoding="async"
+                height={96}
+                loading="lazy"
                 src={images.logo}
+                width={96}
               />
             </Link>
             <p className="text-xs leading-relaxed text-white/60">

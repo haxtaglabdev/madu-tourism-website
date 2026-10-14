@@ -10,6 +10,8 @@ export default function NotFound() {
   return (
     <>
       <PageMeta
+        excludeAlternates
+        noIndex
         title={
           isRu
             ? "Страница не найдена | Madu Tseylon Tours"

@@ -51,7 +51,7 @@ export default function TourPackages() {
           eyebrow={t("tourPackages.hero.eyebrow")}
           highlight={t("tourPackages.hero.highlight")}
           image={images.nelumKola}
-          imageAlt={t("tourPackages.hero.title") + t("tourPackages.hero.highlight")}
+          imageAlt={t("tourPackages.hero.imageAlt")}
           title={t("tourPackages.hero.title")}
         />
 

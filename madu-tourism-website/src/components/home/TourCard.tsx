@@ -34,8 +34,10 @@ export default function TourCard({
       <div>
         <div className="relative aspect-[16/10] overflow-hidden">
           <img
-            alt={tour.title}
+            alt={`${tour.title} — Sri Lanka Tour Package`}
             className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            decoding="async"
+            loading="lazy"
             src={tour.image}
           />
           <div className="absolute top-4 left-4 flex gap-2">
