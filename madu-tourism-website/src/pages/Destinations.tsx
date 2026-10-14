@@ -41,14 +41,6 @@ export default function Destinations() {
           title={t("destinations.hero.title")}
         />
 
-        <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
-          <Reveal>
-            <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:text-base">
-              {t("destinations.intro")}
-            </p>
-          </Reveal>
-        </section>
-
         <section className="w-full bg-soft-mint py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
             <div className="mb-10 flex flex-col items-center text-center sm:mb-14">

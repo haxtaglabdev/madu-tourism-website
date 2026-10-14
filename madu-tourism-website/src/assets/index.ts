@@ -147,8 +147,6 @@ export const images = {
   galleFortArrange: homeGalleFort,
   nineArchArrange: homeNineArch,
   trainArrange: homeTrainGb,
-  galleFortress: fortressInGalle,
-  mirissaArrange: homeMirissa,
 } as const;
 
 export type ImageKey = keyof typeof images;

@@ -55,15 +55,7 @@ export default function TourPackages() {
           title={t("tourPackages.hero.title")}
         />
 
-        <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20">
-          <Reveal>
-            <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed font-light text-muted sm:text-base">
-              {t("tourPackages.intro")}
-            </p>
-          </Reveal>
-        </section>
-
-        <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 sm:pb-28">
+        <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-28">
           <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-16">
             <Reveal>
               <div className="mb-2 inline-flex items-center gap-2">
