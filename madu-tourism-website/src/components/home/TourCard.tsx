@@ -9,31 +9,6 @@ interface TourCardProps {
   detailsTo?: string;
 }
 
-function StarRow({
-  rating,
-  reviewCount,
-  reviewsLabel,
-}: {
-  rating: number;
-  reviewCount: number;
-  reviewsLabel: string;
-}) {
-  return (
-    <div className="mb-2 flex items-center gap-1.5 text-xs text-gold">
-      {Array.from({ length: rating }).map((_, index) => (
-        <span
-          key={index}
-          className="material-symbols-outlined material-symbols-filled text-[16px]"
-        >
-          star
-        </span>
-      ))}
-      <span className="ml-1 font-semibold text-charcoal">5.0</span>
-      <span className="text-muted">({reviewCount} {reviewsLabel})</span>
-    </div>
-  );
-}
-
 export default function TourCard({
   tour,
   style,
@@ -73,12 +48,7 @@ export default function TourCard({
           </span>
         </div>
         <div className="p-5 sm:p-7">
-          <StarRow
-            rating={tour.rating}
-            reviewCount={tour.reviewCount}
-            reviewsLabel={t("common.reviewsCount")}
-          />
-          <h3 className="mb-2 font-serif text-[1.3125rem] leading-snug font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-[1.4rem]">
+          <h3 className="mb-2 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl">
             {tour.title}
           </h3>
           <p className="mb-6 text-xs leading-relaxed text-muted">
@@ -109,11 +79,10 @@ export default function TourCard({
           </span>
         </div>
         <Link
-          className={`inline-flex shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${
-            tour.featured
+          className={`inline-flex shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${tour.featured
               ? "bg-sunset shadow-md hover:bg-sunset-hover"
               : "bg-forest group-hover:bg-tropical"
-          }`}
+            }`}
           to={getLocalizedPath(detailsTo)}
         >
           {t("common.exploreDetails")}

@@ -77,14 +77,42 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
                     <p key={paragraph.slice(0, 32)}>{paragraph}</p>
                   ))}
                 </div>
-                <dl className="pkg-stats">
-                  {pkg.stats.map((stat) => (
-                    <div key={stat.label} className="pkg-stats__item">
-                      <dt className="pkg-stats__value">{stat.value}</dt>
-                      <dd className="pkg-stats__label">{stat.label}</dd>
-                    </div>
-                  ))}
-                </dl>
+                <div className="pkg-glance" aria-labelledby="pkg-glance-title">
+                  <div className="pkg-glance__header">
+                    <span className="pkg-glance__accent" aria-hidden="true" />
+                    <h3 className="pkg-glance__title" id="pkg-glance-title">
+                      {isRu ? "Ваш маршрут кратко" : "Your Journey at a Glance"}
+                    </h3>
+                  </div>
+                  <dl
+                    className="pkg-glance__grid"
+                    aria-label={isRu ? "Краткий обзор маршрута" : "Your journey at a glance"}
+                  >
+                    {pkg.stats.map((stat, index) => {
+                      const fallbackIcons = [
+                        "calendar_today",
+                        "location_on",
+                        "auto_awesome",
+                        "directions_car",
+                      ];
+                      const icon = stat.icon || fallbackIcons[index % fallbackIcons.length];
+                      return (
+                        <div key={stat.label} className="pkg-glance__item">
+                          <span
+                            aria-hidden="true"
+                            className="pkg-glance__icon material-symbols-outlined"
+                          >
+                            {icon}
+                          </span>
+                          <div className="pkg-glance__content">
+                            <dt className="pkg-glance__value">{stat.value}</dt>
+                            <dd className="pkg-glance__label">{stat.label}</dd>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </dl>
+                </div>
               </div>
             </Reveal>
 
@@ -102,7 +130,7 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
                   stops={pkg.routeStops}
                   title={pkg.routeHeading}
                 />
-               
+
               </aside>
             </Reveal>
           </div>
