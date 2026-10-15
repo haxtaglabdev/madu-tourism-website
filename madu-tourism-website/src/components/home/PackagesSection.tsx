@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import {
   getLocalizedPackages,
@@ -10,7 +10,12 @@ import TourCard from "./TourCard";
 
 export default function PackagesSection() {
   const { t, currentLang, getLocalizedPath } = useCurrentLanguage();
-  const homeTours = getLocalizedPackages(currentLang).slice(0, 3);
+  const [selectedCategory, setSelectedCategory] = useState<"multi-day" | "day">("multi-day");
+
+  const allPackages = getLocalizedPackages(currentLang);
+  const displayedPackages = allPackages.filter(
+    (tour) => tour.category === selectedCategory,
+  );
 
   return (
     <section
@@ -31,10 +36,52 @@ export default function PackagesSection() {
             {t("home.packages.title")}
           </h2>
         </Reveal>
+
+        <Reveal delay={150}>
+          <div className="mt-8 flex justify-center">
+            <div
+              aria-label={t("home.packages.title")}
+              className="inline-flex rounded-full bg-soft-mint p-1.5 border border-border-subtle shadow-xs"
+              role="tablist"
+            >
+              <button
+                aria-pressed={selectedCategory === "multi-day"}
+                aria-selected={selectedCategory === "multi-day"}
+                className={`cursor-pointer rounded-full px-6 py-2.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  selectedCategory === "multi-day"
+                    ? "bg-forest text-white shadow-md"
+                    : "text-charcoal/70 hover:bg-white/80 hover:text-charcoal"
+                }`}
+                onClick={() => setSelectedCategory("multi-day")}
+                role="tab"
+                type="button"
+              >
+                {t("home.packages.categories.multiDay")}
+              </button>
+              <button
+                aria-pressed={selectedCategory === "day"}
+                aria-selected={selectedCategory === "day"}
+                className={`cursor-pointer rounded-full px-6 py-2.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  selectedCategory === "day"
+                    ? "bg-forest text-white shadow-md"
+                    : "text-charcoal/70 hover:bg-white/80 hover:text-charcoal"
+                }`}
+                onClick={() => setSelectedCategory("day")}
+                role="tab"
+                type="button"
+              >
+                {t("home.packages.categories.day")}
+              </button>
+            </div>
+          </div>
+        </Reveal>
       </div>
 
-      <RevealGroup className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {homeTours.map((tour, index) => (
+      <RevealGroup
+        key={selectedCategory}
+        className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+      >
+        {displayedPackages.map((tour, index) => (
           <TourCard
             key={tour.id}
             detailsTo={

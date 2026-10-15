@@ -85,9 +85,13 @@ export const en: TranslationResource = {
       viewRegion: "Discover Region Details",
     },
     packages: {
-      eyebrow: "Private Handcrafted Itineraries",
-      title: "Featured Travel Packages",
+      eyebrow: "Travel Packages",
+      title: "Perfect Tour Packages",
       allPackages: "Explore All Packages",
+      categories: {
+        multiDay: "Multi-Day Tours",
+        day: "Day Tours",
+      },
     },
     experiences: {
       eyebrow: "SIGNATURE ENCOUNTERS",
@@ -288,8 +292,12 @@ export const en: TranslationResource = {
     },
     intro:
       "One island. Countless experiences. Your journey, your way. Discover our collection of Sri Lanka tours, thoughtfully designed for every kind of traveller.",
-    sectionEyebrow: "Featured Travel Packages",
-    sectionTitle: "Choose Your Journey",
+    sectionEyebrow: "Travel Packages",
+    sectionTitle: "Perfect Tour Packages",
+    categories: {
+      multiDay: "Multi-Day Tours",
+      day: "Day Tours",
+    },
     bespokeEyebrow: "YOUR JOURNEY, YOUR WAY",
     bespokeTitle: "A Sri Lankan Experience, Crafted Around You",
     bespokeDescription:

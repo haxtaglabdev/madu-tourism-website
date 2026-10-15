@@ -50,10 +50,25 @@ export default function TourCard({
           </span>
         </div>
         <div className="p-5 sm:p-7">
-          <h3 className="mb-2 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl">
+          <div className="mb-2.5 flex items-center justify-between text-xs">
+            {tour.categoryLabel && (
+              <span className="font-semibold tracking-wider uppercase text-sunset text-[11px]">
+                {tour.categoryLabel}
+              </span>
+            )}
+            {tour.maxGroupSize && (
+              <span className="flex items-center gap-1 text-[11px] font-medium text-muted">
+                <span className="material-symbols-outlined text-[15px] text-tropical" aria-hidden="true">
+                  group
+                </span>
+                <span>{tour.maxGroupSize}</span>
+              </span>
+            )}
+          </div>
+          <h3 className="mb-2.5 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl line-clamp-2">
             {tour.title}
           </h3>
-          <p className="mb-6 text-xs leading-relaxed text-muted">
+          <p className="mb-5 text-xs leading-relaxed text-muted line-clamp-3">
             {tour.description}
           </p>
           <div className="space-y-2 border-y border-border-subtle py-4 text-xs text-charcoal/80">

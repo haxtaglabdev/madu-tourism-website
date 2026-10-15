@@ -60,29 +60,36 @@ function getDestinationLabelPosition(stop: ProjectedStop): LabelPosition {
       // Out into the western ocean — clear of all inland route lines
       return { x: x - 30, y: y + 8, textAnchor: "end" };
     case "sigiriya":
-      // Positioned to the west of the rock fortress
       return { x: x - 28, y: y + 7, textAnchor: "end" };
+    case "dambulla":
+      return { x: x - 28, y: y + 16, textAnchor: "end" };
+    case "hiriwadunna":
+    case "habarana":
     case "minneriya":
-      // Positioned to the east/north-east (away from Sigiriya)
       return { x: x + 28, y: y - 6, textAnchor: "start" };
+    case "matale":
+      return { x: x - 28, y: y - 6, textAnchor: "end" };
     case "kandy":
-      // Positioned to the west
       return { x: x - 28, y: y + 8, textAnchor: "end" };
+    case "peradeniya":
+      return { x: x + 28, y: y + 16, textAnchor: "start" };
     case "nuwara-eliya":
     case "nuwaraEliya":
-      // Positioned to the east into tea country
       return { x: x + 28, y: y + 7, textAnchor: "start" };
+    case "ramboda":
+      return { x: x - 28, y: y + 8, textAnchor: "end" };
     case "ella":
-      // Positioned to the east
       return { x: x + 28, y: y + 7, textAnchor: "start" };
     case "yala":
-      // Positioned to the east/south-east
       return { x: x + 28, y: y + 8, textAnchor: "start" };
+    case "galle":
+      return { x: x - 28, y: y + 8, textAnchor: "end" };
+    case "bentota":
+    case "kosgoda":
+      return { x: x - 28, y: y + 4, textAnchor: "end" };
     case "weligama":
-      // Positioned to the west/north-west
       return { x: x - 26, y: y - 8, textAnchor: "end" };
     case "mirissa":
-      // Positioned to the east/south-east (clear of Weligama)
       return { x: x + 26, y: y + 24, textAnchor: "start" };
     default: {
       const isSouth = y > 1500;
