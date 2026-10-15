@@ -113,6 +113,62 @@ export const ROUTE_DESTINATIONS = {
     lng: 80.4037,
     description: "Sacred ancient capital",
   },
+  dambulla: {
+    id: "dambulla",
+    name: "Dambulla",
+    lat: 7.8742,
+    lng: 80.6511,
+    description: "Golden cave temple & heritage",
+  },
+  hiriwadunna: {
+    id: "hiriwadunna",
+    name: "Hiriwadunna",
+    lat: 8.0183,
+    lng: 80.7547,
+    description: "Traditional rural village & lake",
+  },
+  habarana: {
+    id: "habarana",
+    name: "Habarana",
+    lat: 8.0336,
+    lng: 80.7513,
+    description: "Wildlife & elephant safari sanctuary",
+  },
+  matale: {
+    id: "matale",
+    name: "Matale",
+    lat: 7.4675,
+    lng: 80.6234,
+    description: "Historic Hindu Kovil & spices",
+  },
+  peradeniya: {
+    id: "peradeniya",
+    name: "Peradeniya",
+    lat: 7.2711,
+    lng: 80.5954,
+    description: "Royal Botanical Gardens",
+  },
+  bentota: {
+    id: "bentota",
+    name: "Bentota",
+    lat: 6.4256,
+    lng: 79.9958,
+    description: "River safari & golden beaches",
+  },
+  kosgoda: {
+    id: "kosgoda",
+    name: "Kosgoda",
+    lat: 6.2575,
+    lng: 80.0339,
+    description: "Sea turtle conservation center",
+  },
+  ramboda: {
+    id: "ramboda",
+    name: "Ramboda",
+    lat: 7.0544,
+    lng: 80.6978,
+    description: "Highland waterfall & tea valley",
+  },
 } as const satisfies Record<string, RouteDestination>;
 
 export type RouteDestinationKey = keyof typeof ROUTE_DESTINATIONS;

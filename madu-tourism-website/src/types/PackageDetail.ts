@@ -42,6 +42,11 @@ export interface PackageExperience {
 export interface PackageDetail {
   slug: string;
   packageId: string;
+  category?: "multi-day" | "day";
+  categoryLabel?: string;
+  price?: string;
+  maxGroupSize?: string;
+  tourType?: string;
   title: string;
   metaTitle: string;
   metaDescription: string;
@@ -66,6 +71,11 @@ export interface PackageDetail {
   experiencesLabel: string;
   experiencesHeading: string;
   experiences: PackageExperience[];
+  experiencesLayout?: "asymmetric" | "grid";
+  includedLabel?: string;
+  included?: string[];
+  excludedLabel?: string;
+  excluded?: string[];
   ctaLabel: string;
   ctaHeading: string;
   ctaDescription: string;

@@ -15,7 +15,7 @@ export const ru: TranslationResource = {
     backToHome: "На главную",
     reviewsCount: "отзывов",
     fromPrice: "От",
-    perGuest: "/ гостя",
+    perGuest: "/ человека",
     perPerson: "/ человека",
     loading: "Загрузка Madu Tseylon...",
     errorTitle: "Не удалось загрузить раздел. Пожалуйста, проверьте интернет-соединение.",
@@ -85,9 +85,13 @@ export const ru: TranslationResource = {
       viewRegion: "Подробнее о регионе",
     },
     packages: {
-      eyebrow: "Индивидуальные продуманные маршруты",
-      title: "Коллекция авторских туров",
-      allPackages: "Все варианты маршрутов",
+      eyebrow: "Туристические пакеты",
+      title: "Идеальные туры",
+      allPackages: "Смотреть все туры",
+      categories: {
+        multiDay: "Многодневные туры",
+        day: "Однодневные туры",
+      },
     },
     experiences: {
       eyebrow: "ФИРМЕННЫЕ ВПЕЧАТЛЕНИЯ",
@@ -288,8 +292,12 @@ export const ru: TranslationResource = {
     },
     intro:
       "Один остров. Бесконечное множество открытий. Ваш тур — по вашим правилам. Ознакомьтесь с нашей коллекцией программ, разработанных для самых разных путешественников.",
-    sectionEyebrow: "Коллекция туров",
-    sectionTitle: "Выберите свой маршрут",
+    sectionEyebrow: "Туристические пакеты",
+    sectionTitle: "Идеальные туры",
+    categories: {
+      multiDay: "Многодневные туры",
+      day: "Однодневные туры",
+    },
     bespokeEyebrow: "ТУР ПО ВАШИМ ЖЕЛАНИЯМ",
     bespokeTitle: "Шри-Ланка, созданная специально для вас",
     bespokeDescription:

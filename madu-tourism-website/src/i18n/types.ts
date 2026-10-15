@@ -79,6 +79,10 @@ export interface TranslationResource {
       eyebrow: string;
       title: string;
       allPackages: string;
+      categories: {
+        multiDay: string;
+        day: string;
+      };
     };
     experiences: {
       eyebrow: string;
@@ -197,6 +201,10 @@ export interface TranslationResource {
     intro: string;
     sectionEyebrow: string;
     sectionTitle: string;
+    categories: {
+      multiDay: string;
+      day: string;
+    };
     bespokeEyebrow: string;
     bespokeTitle: string;
     bespokeDescription: string;
