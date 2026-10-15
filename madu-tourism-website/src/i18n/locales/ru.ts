@@ -15,7 +15,7 @@ export const ru: TranslationResource = {
     backToHome: "На главную",
     reviewsCount: "отзывов",
     fromPrice: "От",
-    perGuest: "/ гостя",
+    perGuest: "/ человека",
     perPerson: "/ человека",
     loading: "Загрузка Madu Tseylon...",
     errorTitle: "Не удалось загрузить раздел. Пожалуйста, проверьте интернет-соединение.",

@@ -189,7 +189,6 @@ export const packages: TourPackage[] = [
       "Private Vehicle & Professional Chauffeur",
     ],
     price: "$375",
-    featured: true,
   },
   {
     id: "sri-lanka-5-days",

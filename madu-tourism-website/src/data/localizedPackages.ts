@@ -28,7 +28,6 @@ export const ruPackages: TourPackage[] = [
       "Приватный автомобиль и личный водитель",
     ],
     price: "$375",
-    featured: true,
   },
   {
     id: "sri-lanka-5-days",

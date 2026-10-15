@@ -1,5 +1,5 @@
-import { useState, type CSSProperties } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, type CSSProperties } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { images } from "../assets";
 import TourCard from "../components/home/TourCard";
@@ -15,7 +15,17 @@ import { useCurrentLanguage } from "../i18n/useCurrentLanguage";
 export default function TourPackages() {
   const { t } = useTranslation();
   const { currentLang, getLocalizedPath } = useCurrentLanguage();
-  const [selectedCategory, setSelectedCategory] = useState<"multi-day" | "day">("multi-day");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryParam = searchParams.get("category");
+  const [selectedCategory, setSelectedCategory] = useState<"multi-day" | "day">(
+    categoryParam === "day" ? "day" : "multi-day",
+  );
+
+  useEffect(() => {
+    if (categoryParam === "day" || categoryParam === "multi-day") {
+      setSelectedCategory(categoryParam);
+    }
+  }, [categoryParam]);
 
   const allPackages = getLocalizedPackages(currentLang);
   const displayedPackages = allPackages.filter(
@@ -69,7 +79,10 @@ export default function TourPackages() {
                         ? "bg-forest text-white shadow-md"
                         : "text-charcoal/70 hover:bg-white/80 hover:text-charcoal"
                     }`}
-                    onClick={() => setSelectedCategory("multi-day")}
+                    onClick={() => {
+                      setSelectedCategory("multi-day");
+                      setSearchParams({ category: "multi-day" }, { replace: true });
+                    }}
                     role="tab"
                     type="button"
                   >
@@ -83,7 +96,10 @@ export default function TourPackages() {
                         ? "bg-forest text-white shadow-md"
                         : "text-charcoal/70 hover:bg-white/80 hover:text-charcoal"
                     }`}
-                    onClick={() => setSelectedCategory("day")}
+                    onClick={() => {
+                      setSelectedCategory("day");
+                      setSearchParams({ category: "day" }, { replace: true });
+                    }}
                     role="tab"
                     type="button"
                   >
