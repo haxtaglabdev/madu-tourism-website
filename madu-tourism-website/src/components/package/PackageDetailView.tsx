@@ -54,7 +54,7 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
             </dl>
             <div className="pkg-hero__actions">
               <Link className="pkg-btn" to={planTo}>
-                {isRu ? "Забронировать тур" : "Plan This Journey"}
+                {isRu ? "Забронировать" : "Book Now"}
                 <span aria-hidden="true">→</span>
               </Link>
               <a className="pkg-hero__itinerary-link" href="#itinerary">
@@ -146,6 +146,62 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
         <PackageItinerary days={pkg.itinerary} label={pkg.itineraryLabel} />
       </Reveal>
 
+      {((pkg.included && pkg.included.length > 0) || (pkg.excluded && pkg.excluded.length > 0)) && (
+        <section className="pkg-inclusions-section" aria-labelledby="pkg-inclusions-heading">
+          <div className="pkg-detail__container">
+            <Reveal>
+              <div className="pkg-inclusions-grid">
+                {pkg.included && pkg.included.length > 0 && (
+                  <div className="pkg-inc-card pkg-inc-card--included">
+                    <div className="pkg-inc-card__header">
+                      <span className="material-symbols-outlined pkg-inc-card__icon pkg-inc-card__icon--inc">
+                        check_circle
+                      </span>
+                      <h3 className="pkg-inc-card__title" id="pkg-inclusions-heading">
+                        {pkg.includedLabel || (isRu ? "Что включено в тур" : "What's Included")}
+                      </h3>
+                    </div>
+                    <ul className="pkg-inc-card__list">
+                      {pkg.included.map((item) => (
+                        <li key={item} className="pkg-inc-card__item">
+                          <span className="material-symbols-outlined pkg-inc-card__bullet text-tropical">
+                            check
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {pkg.excluded && pkg.excluded.length > 0 && (
+                  <div className="pkg-inc-card pkg-inc-card--excluded">
+                    <div className="pkg-inc-card__header">
+                      <span className="material-symbols-outlined pkg-inc-card__icon pkg-inc-card__icon--exc">
+                        cancel
+                      </span>
+                      <h3 className="pkg-inc-card__title">
+                        {pkg.excludedLabel || (isRu ? "Что оплачивается дополнительно" : "Not Included")}
+                      </h3>
+                    </div>
+                    <ul className="pkg-inc-card__list">
+                      {pkg.excluded.map((item) => (
+                        <li key={item} className="pkg-inc-card__item">
+                          <span className="material-symbols-outlined pkg-inc-card__bullet text-muted-2">
+                            close
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
       <section
         className="pkg-experiences"
         aria-labelledby="pkg-experiences-heading"
@@ -163,7 +219,13 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
             </header>
           </Reveal>
 
-          <RevealGroup className="pkg-experiences__grid">
+          <RevealGroup
+            className={
+              pkg.experiencesLayout === "asymmetric"
+                ? "pkg-experiences__grid"
+                : "pkg-experiences__grid pkg-experiences__grid--balanced"
+            }
+          >
             {pkg.experiences.map((experience, index) => (
               <article
                 key={experience.id}
@@ -205,7 +267,7 @@ export default function PackageDetailView({ pkg }: PackageDetailViewProps) {
                 ))}
               </ul>
               <Link className="pkg-btn" to={planTo}>
-                {isRu ? "Забронировать тур" : "Plan This Journey"}
+                {isRu ? "Забронировать тур" : "Book Now"}
                 <span aria-hidden="true">→</span>
               </Link>
             </div>

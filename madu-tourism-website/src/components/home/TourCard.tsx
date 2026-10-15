@@ -16,19 +16,9 @@ export default function TourCard({
 }: TourCardProps) {
   const { t, getLocalizedPath } = useCurrentLanguage();
 
-  const isPerPerson =
-    tour.id === "ceylon-essentials" ||
-    tour.id === "island-highlights" ||
-    tour.id === "ancient-kingdoms" ||
-    tour.id === "grand-expedition";
-
   return (
     <article
-      className={`reveal-item group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
-        tour.featured
-          ? "border-2 border-sunset shadow-lg hover:shadow-2xl"
-          : "border border-border-subtle shadow-sm hover:border-tropical/30 hover:shadow-xl"
-      }`}
+      className="reveal-item group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white border border-border-subtle shadow-sm hover:border-tropical/30 hover:shadow-xl transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
       style={style}
     >
       <div>
@@ -50,10 +40,25 @@ export default function TourCard({
           </span>
         </div>
         <div className="p-5 sm:p-7">
-          <h3 className="mb-2 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl">
+          <div className="mb-2.5 flex items-center justify-between text-xs">
+            {tour.categoryLabel && (
+              <span className="font-semibold tracking-wider uppercase text-sunset text-[11px]">
+                {tour.categoryLabel}
+              </span>
+            )}
+            {tour.maxGroupSize && (
+              <span className="flex items-center gap-1 text-[11px] font-medium text-muted">
+                <span className="material-symbols-outlined text-[15px] text-tropical" aria-hidden="true">
+                  group
+                </span>
+                <span>{tour.maxGroupSize}</span>
+              </span>
+            )}
+          </div>
+          <h3 className="mb-2.5 font-serif text-lg font-medium text-charcoal transition-colors duration-300 group-hover:text-tropical sm:text-xl line-clamp-2">
             {tour.title}
           </h3>
-          <p className="mb-6 text-xs leading-relaxed text-muted">
+          <p className="mb-5 text-xs leading-relaxed text-muted line-clamp-3">
             {tour.description}
           </p>
           <div className="space-y-2 border-y border-border-subtle py-4 text-xs text-charcoal/80">
@@ -76,15 +81,12 @@ export default function TourCard({
           <span className="font-sans text-2xl font-semibold text-charcoal">
             {tour.price}{" "}
             <span className="text-xs font-normal text-muted">
-              {isPerPerson ? t("common.perPerson") : t("common.perGuest")}
+              {t("common.perPerson")}
             </span>
           </span>
         </div>
         <Link
-          className={`inline-flex shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] ${tour.featured
-              ? "bg-sunset shadow-md hover:bg-sunset-hover"
-              : "bg-forest group-hover:bg-tropical"
-            }`}
+          className="inline-flex shrink-0 items-center justify-center rounded-full bg-forest px-5 py-2.5 text-xs font-semibold tracking-wider text-white uppercase transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:scale-[1.01] group-hover:bg-tropical"
           to={getLocalizedPath(detailsTo)}
         >
           {t("common.exploreDetails")}

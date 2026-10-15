@@ -19,6 +19,10 @@ export interface Destination {
 
 export interface TourPackage {
   id: string;
+  slug: string;
+  category: "multi-day" | "day";
+  categoryLabel: string;
+  maxGroupSize: string;
   title: string;
   description: string;
   duration: string;
